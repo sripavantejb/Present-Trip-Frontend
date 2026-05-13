@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 200" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="hfp-fuselage" x1="32" y1="96" x2="452" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0c4a6e" />
+      <stop offset="0.42" stop-color="#0891b2" />
+      <stop offset="1" stop-color="#a5f3fc" />
+    </linearGradient>
+    <linearGradient id="hfp-wing" x1="160" y1="120" x2="340" y2="175" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f766e" />
+      <stop offset="1" stop-color="#14b8a6" />
+    </linearGradient>
+  </defs>
+  <g opacity="0.92">
+    <path fill="#155e75" d="M418 70 436 26h10l-18 48z" />
+    <path fill="url(#hfp-fuselage)" d="M28 88c0-18 32-24 104-24h208c76 0 120 10 128 28v4c0 16-48 26-128 26H132c-72 0-104-8-104-26v-8z" />
+    <path fill="#ecfeff" opacity="0.55" d="m72 78 18-8c12-4 28-2 36 6l-10 20c-10-6-24-8-38-4l-6-14z" />
+    <path fill="url(#hfp-wing)" d="M164 102 292 178h44l28-16-96-60z" />
+    <path fill="#5eead4" opacity="0.28" d="m180 108 88 54h22l-92-54z" />
+    <ellipse cx="228" cy="118" rx="16" ry="11" fill="#134e4a" />
+    <ellipse cx="228" cy="118" rx="10" ry="7" fill="#ccfbf1" opacity="0.45" />
+    <ellipse cx="268" cy="118" rx="16" ry="11" fill="#134e4a" />
+    <ellipse cx="268" cy="118" rx="10" ry="7" fill="#ccfbf1" opacity="0.45" />
+    <path fill="#0e7490" opacity="0.9" d="M380 78h72c8 0 14 6 14 14s-6 14-14 14h-72l-8-14 8-14z" />
+  </g>
+</svg>
