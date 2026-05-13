@@ -280,6 +280,7 @@ export function HeroSection({ bookingTab, setBookingTab, navScrolled }: Props) {
 
               <div id="darshan-search" className="darshan__search-card darshan__search-card--lite">
                 <div className="darshan__search-card-head darshan__search-card-head--lite">
+                  <p className="darshan__search-card-eyebrow">Secure booking · Tirumala &amp; surrounds</p>
                   <h1 className="darshan__search-card-heading darshan__search-card-heading--lite">
                     Book darshan &amp; travel
                   </h1>
@@ -375,13 +376,16 @@ export function HeroSection({ bookingTab, setBookingTab, navScrolled }: Props) {
                   </span>
                 </label>
                 <div className="darshan__field darshan__field--lite darshan__field--cta-lite">
-                  <span className="darshan__field-hint darshan__field-hint--lite">
-                    Planning mode: {BOOKING_TAB_LABELS[bookingTab]}
-                  </span>
-                  <button type="button" className="darshan__btn darshan__btn-hero-lite">
-                    <span>Book Your Darshan</span>
-                    <IconChevronRight className="darshan__btn-hero-lite-arrow" aria-hidden />
-                  </button>
+                  <div className="darshan__search-card-foot-lite">
+                    <span className="darshan__field-hint darshan__field-hint--lite">
+                      Selected flow ·{' '}
+                      <strong className="darshan__field-hint-strong">{BOOKING_TAB_LABELS[bookingTab]}</strong>
+                    </span>
+                    <button type="button" className="darshan__btn darshan__btn-hero-lite">
+                      <span>Book your darshan</span>
+                      <IconChevronRight className="darshan__btn-hero-lite-arrow" aria-hidden />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
