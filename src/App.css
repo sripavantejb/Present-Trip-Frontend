@@ -1,18 +1,18 @@
 /* Present Trip — homepage (reference layout) */
 
 .pt-home {
-  --pt-blue: #008cff;
-  --pt-blue-dark: #0070d2;
-  --pt-border: #e7e7e7;
-  --pt-text: #4a4a4a;
-  --pt-text-muted: #747474;
+  --pt-blue: #ff385c;
+  --pt-blue-dark: #e00b41;
+  --pt-border: #dddddd;
+  --pt-text: #222222;
+  --pt-text-muted: #6a6a6a;
   --pt-header-bg: #ffffff;
-  --pt-red: #e53935;
-  --pt-pink-tag: #e02070;
-  --pt-green-rating: #1faa59;
-  --pt-card-radius: 16px;
-  --pt-card-max: 920px;
-  font-family: Lato, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --pt-red: #ff385c;
+  --pt-pink-tag: #92174d;
+  --pt-green-rating: #222222;
+  --pt-card-radius: 14px;
+  --pt-card-max: 1080px;
+  font-family: 'Airbnb Cereal VF', Circular, -apple-system, system-ui, Roboto, 'Helvetica Neue', sans-serif;
   color: var(--pt-text);
   background: #ffffff;
   min-height: 100svh;
