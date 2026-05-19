@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import type { CategoryId } from '../../config/categoryThemes'
 import { CATEGORY_THEMES } from '../../config/categoryThemes'
+import { HERO_BACKGROUND_IMAGES } from '../../config/heroBackgrounds'
 
 type SlotPayload = { category: CategoryId }
 
@@ -55,6 +56,7 @@ function HeroBgLayer({
   payload: SlotPayload
 }) {
   const t = CATEGORY_THEMES[payload.category]
+  const bgImage = HERO_BACKGROUND_IMAGES[payload.category]
 
   return (
     <div
@@ -66,13 +68,27 @@ function HeroBgLayer({
       aria-hidden
       data-hero-category={payload.category}
     >
+      {bgImage ? (
+        <img
+          className="pt-home__heroBgLayer__img heroBackground__photo"
+          src={bgImage}
+          alt=""
+          decoding="async"
+          fetchPriority={visible ? 'high' : 'low'}
+        />
+      ) : (
+        <div
+          className="pt-home__heroBgLayer__gradient heroBackground__gradient"
+          style={{ backgroundImage: t.gradient }}
+        />
+      )}
       <div
-        className="pt-home__heroBgLayer__gradient heroBackground__gradient"
-        style={{ backgroundImage: t.gradient }}
-      />
-      <div
-        className="pt-home__heroBgLayer__overlay heroOverlay"
-        style={{ background: t.overlay }}
+        className={
+          bgImage
+            ? 'pt-home__heroBgLayer__overlay heroOverlay heroOverlay--photo'
+            : 'pt-home__heroBgLayer__overlay heroOverlay'
+        }
+        style={bgImage ? undefined : { background: t.overlay }}
       />
     </div>
   )

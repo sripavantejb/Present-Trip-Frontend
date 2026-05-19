@@ -1,6 +1,8 @@
+import { ArrowUpDown, CalendarDays, ChevronDown, MapPin, Users } from 'lucide-react'
 import { useState } from 'react'
 import type { CategoryId } from '../../config/categoryThemes'
 import { CATEGORY_THEMES } from '../../config/categoryThemes'
+import { AppIcon } from '../ui/AppIcon'
 import { ServiceLineIcon } from './ServiceTabLineIcons'
 
 type AirportLeg = { city: string; code: string; detail: string }
@@ -64,7 +66,9 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
         <div className="pt-home__grid pt-home__grid--mock">
           <div className="pt-home__routeRow">
             <button type="button" className="pt-home__cell pt-home__cell--from pt-home__cell--withIcon">
-              <IconPin className="pt-home__cellLeadIcon" />
+              <span className="pt-home__cellIconBadge">
+                <AppIcon icon={MapPin} size={18} className="pt-icon pt-icon--field" />
+              </span>
               <div className="pt-home__cellStack">
                 <span className="pt-home__cellLabel">From</span>
                 <span className="pt-home__cellMain">{from.city}</span>
@@ -79,10 +83,12 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
               onClick={swapRoute}
               aria-label="Swap from and to cities"
             >
-              <IconSwap />
+              <AppIcon icon={ArrowUpDown} size={18} className="pt-icon pt-icon--swap" />
             </button>
             <button type="button" className="pt-home__cell pt-home__cell--to pt-home__cell--withIcon">
-              <IconPin className="pt-home__cellLeadIcon" />
+              <span className="pt-home__cellIconBadge">
+                <AppIcon icon={MapPin} size={18} className="pt-icon pt-icon--field" />
+              </span>
               <div className="pt-home__cellStack">
                 <span className="pt-home__cellLabel">To</span>
                 <span className="pt-home__cellMain">{to.city}</span>
@@ -95,7 +101,9 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
 
           <div className="pt-home__metaRow pt-home__metaRow--mock">
             <button type="button" className="pt-home__cell pt-home__cell--withIcon">
-              <IconCalendar className="pt-home__cellLeadIcon" />
+              <span className="pt-home__cellIconBadge">
+                <AppIcon icon={CalendarDays} size={18} className="pt-icon pt-icon--field" />
+              </span>
               <div className="pt-home__cellStack">
                 <span className="pt-home__cellLabel">Dates</span>
                 <span className="pt-home__cellMain pt-home__cellMain--dates">
@@ -104,12 +112,14 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
               </div>
             </button>
             <button type="button" className="pt-home__cell pt-home__cell--withIcon pt-home__cell--travellers">
-              <IconPerson className="pt-home__cellLeadIcon" />
+              <span className="pt-home__cellIconBadge">
+                <AppIcon icon={Users} size={18} className="pt-icon pt-icon--field" />
+              </span>
               <div className="pt-home__cellStack">
                 <span className="pt-home__cellLabel">Travellers &amp; Class</span>
                 <span className="pt-home__cellMain">1 Traveller, Economy</span>
               </div>
-              <IconChevronDown className="pt-home__cellChevron" />
+              <AppIcon icon={ChevronDown} size={20} className="pt-home__cellChevron pt-icon" />
             </button>
           </div>
         </div>
@@ -130,79 +140,5 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
         </button>
       </div>
     </div>
-  )
-}
-
-function IconPin({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 21s7-4.35 7-10a7 7 0 10-14 0c0 5.65 7 10 7 10zM12 11a2 2 0 100-4 2 2 0 000 4z"
-      />
-    </svg>
-  )
-}
-
-function IconCalendar({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M8 7V5M16 7V5M5 11h14M7 7h10a2 2 0 012 2v9H5V9a2 2 0 012-2z"
-      />
-    </svg>
-  )
-}
-
-function IconPerson({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        d="M12 11a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM5 20a7 7 0 0114 0"
-      />
-    </svg>
-  )
-}
-
-function IconChevronDown({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M6 9l6 6 6-6"
-      />
-    </svg>
-  )
-}
-
-function IconSwap() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M7 16V4M7 4L4 7M7 4l3 3M17 8v12M17 20l3-3M17 20l-3-3"
-      />
-    </svg>
   )
 }

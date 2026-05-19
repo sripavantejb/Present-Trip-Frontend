@@ -1,9 +1,9 @@
 import { useState, type CSSProperties } from 'react'
 import type { CategoryId } from '../../config/categoryThemes'
 import { CATEGORY_THEMES } from '../../config/categoryThemes'
+import { SiteLayout } from '../layout/SiteLayout'
 import { HeroBackdrop } from './HeroBackdrop'
 import { HeroCategoryVisual } from './HeroCategoryVisual'
-import { SiteHeader } from './SiteHeader'
 import { SearchCard } from './SearchCard'
 import { SecondaryNav } from './SecondaryNav'
 import { OffersSection } from './OffersSection'
@@ -19,8 +19,7 @@ export default function HomePage() {
   } as CSSProperties
 
   return (
-    <div className="pt-home">
-      <SiteHeader />
+    <SiteLayout className="pt-home">
       <div
         className="pt-home__hero heroSection"
         style={heroVars}
@@ -45,6 +44,6 @@ export default function HomePage() {
           <div id="gifts" className="pt-home__scrollAnchor" aria-hidden="true" />
         </div>
       </div>
-    </div>
+    </SiteLayout>
   )
 }

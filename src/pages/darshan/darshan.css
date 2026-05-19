@@ -1,21 +1,21 @@
-/* presenttrip Darshan — luxury blue / white TRIPLLO-inspired */
+/* presenttrip Darshan — UI aligned with DESIGN.md (Airbnb tokens) */
 
 .darshan.darshan--breakout {
-  --dr-royal: #0f3d91;
-  --dr-sky: #2563eb;
-  --dr-cloud: #f8fafc;
-  --dr-navy-950: #0a1628;
-  --dr-navy-900: #0c1e42;
-  --dr-muted: #64748b;
-  --dr-gold: #d97706;
-  --dr-font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --dr-font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --dr-radius-lg: 24px;
-  --dr-radius: 16px;
-  --dr-radius-sm: 12px;
+  --dr-royal: var(--color-primary);
+  --dr-sky: var(--color-primary);
+  --dr-cloud: var(--color-surface-soft);
+  --dr-navy-950: var(--color-ink);
+  --dr-navy-900: var(--color-ink);
+  --dr-muted: var(--color-muted);
+  --dr-gold: var(--color-primary);
+  --dr-font-display: var(--font-sans);
+  --dr-font-ui: var(--font-sans);
+  --dr-radius-lg: var(--radius-lg);
+  --dr-radius: var(--radius-md);
+  --dr-radius-sm: var(--radius-sm);
   --dr-blur: 18px;
-  --dr-shadow: 0 24px 64px rgba(15, 61, 145, 0.08);
-  --dr-shadow-soft: 0 12px 40px rgba(15, 61, 145, 0.06);
+  --dr-shadow: var(--shadow-card);
+  --dr-shadow-soft: var(--shadow-card);
 
   box-sizing: border-box;
   width: 100vw;
@@ -80,15 +80,15 @@
 
 /* ----- Split hero: blue/white, white form left, gopuram right ----- */
 .darshan__hero--split {
-  --split-royal: #1e40af;
-  --split-accent: #2563eb;
-  --split-sky: #60a5fa;
-  --split-ice: #e0f2fe;
-  --split-mist: #f0f9ff;
-  --split-white: #ffffff;
-  --split-slate: #0f172a;
-  --split-font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  --split-font-ui: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --split-royal: var(--color-primary-active);
+  --split-accent: var(--color-primary);
+  --split-sky: #ff8fa3;
+  --split-ice: #fff5f7;
+  --split-mist: var(--color-surface-soft);
+  --split-white: var(--color-canvas);
+  --split-slate: var(--color-ink);
+  --split-font-display: var(--font-sans);
+  --split-font-ui: var(--font-sans);
   /* Fallback until JS sizes white land from the gopuram image bottom */
   --split-hero-land-start: 68%;
 }

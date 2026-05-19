@@ -2,9 +2,10 @@ import { useEffect, useState, type CSSProperties } from 'react'
 import type { BookingTab } from './darshanData'
 import { ASSISTANT_PROMPTS } from './darshanData'
 import './darshan.css'
+import '../../styles/darshan-airbnb.css'
+import { SiteLayout } from '../../components/layout/SiteLayout'
 import { CompareSection } from './CompareSection'
 import { ExperienceSection } from './ExperienceSection'
-import { FooterSection } from './FooterSection'
 import { HeroSection } from './HeroSection'
 import { InsightsSection } from './InsightsSection'
 import { LoginSection } from './LoginSection'
@@ -63,7 +64,8 @@ export default function DarshanLanding() {
   }, [])
 
   return (
-    <div className="darshan darshan--breakout" style={{ '--darshan-parallax': String(parallaxY) } as CSSProperties}>
+    <SiteLayout className="darshan-layout">
+      <div className="darshan darshan--breakout darshan--site-chrome" style={{ '--darshan-parallax': String(parallaxY) } as CSSProperties}>
       <HeroSection bookingTab={bookingTab} setBookingTab={setBookingTab} navScrolled={navScrolled} />
 
       <main id="darshan-main">
@@ -79,7 +81,6 @@ export default function DarshanLanding() {
         <LoginSection />
       </main>
 
-      <FooterSection />
 
       <div className="darshan__bottom-cta">
         <button
@@ -101,7 +102,7 @@ export default function DarshanLanding() {
         <a href="#darshan-search" className="darshan__bn-item darshan__bn-item--fab">
           Book
         </a>
-        <a href="#contact" className="darshan__bn-item">
+        <a href="/support" className="darshan__bn-item">
           Contact
         </a>
         <a href="#profile" className="darshan__bn-item">
@@ -139,6 +140,7 @@ export default function DarshanLanding() {
           </aside>
         </>
       ) : null}
-    </div>
+      </div>
+    </SiteLayout>
   )
 }

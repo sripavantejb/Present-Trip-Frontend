@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import type { CategoryId } from '../../config/categoryThemes'
+import { heroHasPhotoBackground } from '../../config/heroBackgrounds'
 import { BusVisual, DarshanVisual, FlightVisual, HotelVisual, TrainVisual } from './hero-visuals'
 
 type SlotPayload = { category: CategoryId }
@@ -58,6 +59,8 @@ export function HeroCategoryVisual({ category }: { category: CategoryId }) {
 }
 
 function VisualSlot({ visible, payload }: { visible: boolean; payload: SlotPayload }) {
+  if (heroHasPhotoBackground(payload.category)) return null
+
   return (
     <div
       className={

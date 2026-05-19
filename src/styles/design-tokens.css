@@ -1,0 +1,113 @@
+/**
+ * Present Trip design tokens — derived from frontend/DESIGN.md (Airbnb analysis).
+ * Airbnb Cereal VF is proprietary; Inter is the documented open substitute.
+ */
+
+:root {
+  /* Brand & accent */
+  --color-primary: #ff385c;
+  --color-primary-active: #e00b41;
+  --color-primary-disabled: #ffd1da;
+  --color-primary-error: #c13515;
+  --color-primary-error-hover: #b32505;
+  --color-luxe: #460479;
+  --color-plus: #92174d;
+
+  /* Text */
+  --color-ink: #222222;
+  --color-body: #3f3f3f;
+  --color-muted: #6a6a6a;
+  --color-muted-soft: #929292;
+  --color-on-primary: #ffffff;
+  --color-on-dark: #ffffff;
+  --color-legal-link: #428bff;
+  --color-star-rating: #222222;
+
+  /* Surfaces */
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f7f7f7;
+  --color-surface-card: #ffffff;
+  --color-surface-strong: #f2f2f2;
+
+  /* Borders */
+  --color-hairline: #dddddd;
+  --color-hairline-soft: #ebebeb;
+  --color-border-strong: #c1c1c1;
+  --color-scrim: #000000;
+
+  /* Typography — family */
+  --font-sans: 'Airbnb Cereal VF', Circular, Inter, -apple-system, system-ui, Roboto, 'Helvetica Neue',
+    sans-serif;
+
+  /* Typography — scale */
+  --text-display-xl: 28px;
+  --text-display-lg: 22px;
+  --text-display-md: 21px;
+  --text-display-sm: 20px;
+  --text-title-md: 16px;
+  --text-body-md: 16px;
+  --text-body-sm: 14px;
+  --text-caption: 14px;
+  --text-caption-sm: 13px;
+  --text-badge: 11px;
+  --text-micro: 12px;
+  --text-button-md: 16px;
+  --text-button-sm: 14px;
+  --text-nav: 16px;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --leading-tight: 1.18;
+  --leading-body: 1.5;
+  --leading-body-sm: 1.43;
+  --leading-display-xl: 1.43;
+
+  --tracking-display-lg: -0.44px;
+  --tracking-display-sm: -0.18px;
+  --tracking-uppercase-tag: 0.32px;
+
+  /* Radius */
+  --radius-none: 0;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --space-xxs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-base: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-section: 64px;
+
+  /* Elevation — single Airbnb shadow tier */
+  --shadow-card: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0,
+    rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+
+  /* Layout */
+  --layout-max-content: 1280px;
+  --layout-max-listing: 1080px;
+  --layout-header-height: 80px;
+
+  /* Legacy aliases (homepage) */
+  --pt-blue: var(--color-primary);
+  --pt-blue-dark: var(--color-primary-active);
+  --pt-border: var(--color-hairline);
+  --pt-text: var(--color-ink);
+  --pt-text-muted: var(--color-muted);
+  --pt-header-bg: var(--color-canvas);
+  --pt-red: var(--color-primary);
+  --pt-pink-tag: var(--color-plus);
+  --pt-green-rating: var(--color-star-rating);
+  --pt-card-radius: var(--radius-md);
+  --pt-card-max: var(--layout-max-listing);
+}

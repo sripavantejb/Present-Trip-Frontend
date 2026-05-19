@@ -1,11 +1,41 @@
+import { Briefcase, Building2, ChevronDown, CircleHelp, User } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+import { AppIcon } from '../ui/AppIcon'
+
+const PRODUCTS = [
+  { to: '/', label: 'Travel', end: true },
+  { to: '/darshan', label: 'Darshan', badge: 'New' as const },
+] as const
+
 export function SiteHeader() {
+  const { pathname } = useLocation()
+
   return (
-    <header className="pt-home__header">
-      <div className="pt-home__headerInner">
-        <a href="/" className="pt-home__logo" aria-label="Present Trip home">
+    <header className="pt-home__header pt-site-header">
+      <div className="pt-home__headerInner pt-site-header__inner">
+        <Link to="/" className="pt-home__logo" aria-label="Present Trip home">
           <span className="pt-home__logoText">Present</span>
           <span className="pt-home__logoMark">trip</span>
-        </a>
+        </Link>
+
+        <nav className="pt-site__productNav" aria-label="Products">
+          {PRODUCTS.map(({ to, label, ...rest }) => {
+            const end = 'end' in rest && rest.end
+            const active = end ? pathname === '/' : pathname.startsWith(to)
+            return (
+              <Link
+                key={to}
+                to={to}
+                className={`pt-site__productTab${active ? ' pt-site__productTab--active' : ''}`}
+              >
+                {label}
+                {'badge' in rest && rest.badge ? (
+                  <span className="pt-site__productTabBadge">{rest.badge}</span>
+                ) : null}
+              </Link>
+            )
+          })}
+        </nav>
 
         <nav className="pt-home__headerNav" aria-label="Account and tools">
           <button type="button" className="pt-home__localeBtn">
@@ -13,100 +43,26 @@ export function SiteHeader() {
               IN
             </span>
             <span>INR | English</span>
-            <IconChevronDown />
+            <AppIcon icon={ChevronDown} size={16} className="pt-home__chevron pt-icon" />
           </button>
-          <a href="#list" className="pt-home__navLink">
-            <IconBuilding />
+          <Link to="/list-property" className="pt-home__navLink">
+            <AppIcon icon={Building2} size={18} className="pt-home__navIcon pt-icon" />
             <span>List Your Property</span>
-          </a>
-          <a href="#support" className="pt-home__navLink">
-            <IconSupport />
+          </Link>
+          <Link to="/support" className="pt-home__navLink">
+            <AppIcon icon={CircleHelp} size={18} className="pt-home__navIcon pt-icon" />
             <span>Support</span>
-          </a>
-          <a href="#trips" className="pt-home__navLink">
-            <IconSuitcase />
+          </Link>
+          <Link to="/trips" className="pt-home__navLink">
+            <AppIcon icon={Briefcase} size={18} className="pt-home__navIcon pt-icon" />
             <span>My Trips</span>
-          </a>
+          </Link>
           <button type="button" className="pt-home__signInBtn">
-            <IconUser />
+            <AppIcon icon={User} size={18} className="pt-icon" />
             <span>Sign in</span>
           </button>
         </nav>
       </div>
     </header>
-  )
-}
-
-function IconBuilding() {
-  return (
-    <svg className="pt-home__navIcon" viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-6h4v6"
-      />
-    </svg>
-  )
-}
-
-function IconSupport() {
-  return (
-    <svg className="pt-home__navIcon" viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M8 10h.01M16 10h.01M7 16h10a5 5 0 005-5V9a5 5 0 10-10 0v2a5 5 0 005 5z"
-      />
-    </svg>
-  )
-}
-
-function IconSuitcase() {
-  return (
-    <svg className="pt-home__navIcon" viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2M8 8h8a2 2 0 012 2v9a2 2 0 01-2 2H8a2 2 0 01-2-2v-9a2 2 0 012-2zM10 12v2M14 12v2"
-      />
-    </svg>
-  )
-}
-
-function IconUser() {
-  return (
-    <svg className="pt-home__navIcon" viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        d="M12 12a3 3 0 100-6 3 3 0 000 6zM5 20a7 7 0 0114 0"
-      />
-    </svg>
-  )
-}
-
-function IconChevronDown() {
-  return (
-    <svg className="pt-home__chevron" viewBox="0 0 24 24" aria-hidden>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M6 9l6 6 6-6"
-      />
-    </svg>
   )
 }

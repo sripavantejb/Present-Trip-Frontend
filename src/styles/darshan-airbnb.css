@@ -1,0 +1,148 @@
+/**
+ * Darshan page — DESIGN.md alignment overrides (loads after darshan.css)
+ */
+
+.darshan.darshan--site-chrome .darshan__nav-split {
+  display: none !important;
+}
+
+.darshan.darshan--site-chrome .darshan__hero-stage--split {
+  padding-top: var(--layout-header-height);
+}
+
+.darshan.darshan--site-chrome {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+.darshan.darshan--site-chrome .darshan__hero-bg {
+  background: linear-gradient(
+    165deg,
+    var(--color-surface-soft) 0%,
+    var(--color-canvas) 42%,
+    #fff5f7 72%,
+    var(--color-canvas) 100%
+  );
+}
+
+.darshan.darshan--site-chrome .darshan__nav-split--raised {
+  border-bottom-color: var(--color-hairline);
+  box-shadow: var(--shadow-card);
+}
+
+.darshan.darshan--site-chrome .darshan__section--muted {
+  background: var(--color-surface-soft);
+}
+
+.darshan.darshan--site-chrome .darshan__section--gradient {
+  background: linear-gradient(180deg, var(--color-surface-soft) 0%, var(--color-canvas) 100%);
+}
+
+.darshan.darshan--site-chrome .darshan__btn {
+  border-radius: var(--radius-sm);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-button-md);
+}
+
+.darshan.darshan--site-chrome .darshan__btn--primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: none;
+}
+
+.darshan.darshan--site-chrome .darshan__btn--primary:hover {
+  background: var(--color-primary-active);
+}
+
+.darshan.darshan--site-chrome .darshan__btn--accent {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-weight: var(--weight-medium);
+}
+
+.darshan.darshan--site-chrome .darshan__btn--ghost {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+}
+
+.darshan.darshan--site-chrome .darshan__kicker {
+  color: var(--color-muted);
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-uppercase-tag);
+}
+
+.darshan.darshan--site-chrome .darshan__h2 {
+  font-family: var(--font-sans);
+  font-size: var(--text-display-xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-display-xl);
+}
+
+.darshan.darshan--site-chrome .darshan__h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-title-md);
+  font-weight: var(--weight-semibold);
+}
+
+.darshan.darshan--site-chrome .darshan__rating,
+.darshan.darshan--site-chrome .darshan__pkg-lux-stars {
+  color: var(--color-ink);
+}
+
+.darshan.darshan--site-chrome .darshan__live-pill,
+.darshan.darshan--site-chrome .darshan__pill {
+  border-radius: var(--radius-full);
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  border: 1px solid var(--color-hairline);
+  font-size: var(--text-badge);
+  font-weight: var(--weight-semibold);
+}
+
+.darshan.darshan--site-chrome .darshan__pkg-lux,
+.darshan.darshan--site-chrome .darshan__service-card,
+.darshan.darshan--site-chrome .darshan__why-card,
+.darshan.darshan--site-chrome .darshan__travel-card {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-hairline);
+  box-shadow: var(--shadow-card);
+}
+
+.darshan.darshan--site-chrome .darshan__input {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-hairline);
+  min-height: 56px;
+}
+
+.darshan.darshan--site-chrome .darshan__input:focus {
+  border-color: var(--color-ink);
+  border-width: 2px;
+  outline: none;
+}
+
+.darshan.darshan--site-chrome .darshan__footer--luxury {
+  display: none;
+}
+
+.darshan.darshan--site-chrome .darshan__nav-split-cta,
+.darshan.darshan--site-chrome .darshan__bottom-cta-btn {
+  background: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.darshan.darshan--site-chrome .darshan__nav-split-cta:hover,
+.darshan.darshan--site-chrome .darshan__bottom-cta-btn:hover {
+  background: var(--color-primary-active);
+}
+
+.darshan.darshan--site-chrome .darshan__fab {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: var(--shadow-card);
+}
+
+.darshan.darshan--site-chrome .darshan__bn-item--fab {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
