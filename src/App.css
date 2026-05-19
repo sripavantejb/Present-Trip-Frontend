@@ -356,11 +356,44 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+}
+
+.pt-home__heroBgLayer[data-hero-category='flights'] .pt-home__heroBgLayer__img {
+  object-position: 72% center;
+}
+
+.pt-home__heroBgLayer[data-hero-category='trains'] .pt-home__heroBgLayer__img {
+  object-position: 68% center;
+}
+
+.pt-home__heroBgLayer[data-hero-category='hotels'] .pt-home__heroBgLayer__img {
+  object-position: 78% center;
 }
 
 .pt-home__heroBgLayer__overlay {
   position: absolute;
   inset: 0;
+}
+
+.pt-home__heroBgLayer__overlay.heroOverlay--photo {
+  background: linear-gradient(
+    105deg,
+    rgba(2, 6, 23, 0.82) 0%,
+    rgba(2, 6, 23, 0.55) 38%,
+    rgba(15, 23, 42, 0.28) 58%,
+    rgba(15, 23, 42, 0.12) 100%
+  );
+}
+
+.pt-home__heroBgLayer[data-hero-category='hotels'] .heroOverlay--photo {
+  background: linear-gradient(
+    105deg,
+    rgba(15, 23, 42, 0.78) 0%,
+    rgba(69, 26, 3, 0.45) 40%,
+    rgba(254, 243, 199, 0.08) 62%,
+    transparent 100%
+  );
 }
 
 /* Right-side category visuals (z-index 1) */
