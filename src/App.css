@@ -19,215 +19,10 @@
   border: 0;
 }
 
-/* ----- Header (light mockup) ----- */
-.pt-home__header,
-.pt-site-header {
-  background: var(--pt-header-bg);
-  color: var(--color-ink);
-  position: sticky;
-  top: 0;
-  z-index: 120;
-  border-bottom: 1px solid var(--pt-border);
-  min-height: var(--layout-header-height);
-}
-
-.pt-home__headerInner,
-.pt-site-header__inner {
-  max-width: var(--layout-max-content);
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
-  min-height: var(--layout-header-height);
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: var(--space-lg);
-}
-
-.pt-site-header__inner .pt-home__logo {
-  justify-self: start;
-}
-
-.pt-site-header__inner .pt-site__productNav {
-  justify-self: center;
-}
-
-.pt-site-header__inner .pt-home__headerNav {
-  justify-self: end;
-}
-
-@media (max-width: 1080px) {
-  .pt-site-header__inner {
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-  }
-
-  .pt-site-header__inner .pt-site__productNav {
-    display: none;
-  }
-
-  .pt-site-header__inner .pt-home__headerNav {
-    grid-column: 2;
-    grid-row: 1;
-  }
-}
-
-@media (max-width: 1080px) {
-  .pt-home__headerInner {
-    flex-wrap: wrap;
-  }
-}
-
-.pt-home__logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  text-decoration: none;
-  color: var(--color-ink);
-  font-weight: var(--weight-semibold);
-  font-size: var(--text-display-lg);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-display-lg);
-  text-transform: none;
-}
-
-.pt-home__logoText {
-  font-weight: var(--weight-semibold);
-  color: var(--color-ink);
-}
-
-.pt-home__logoMark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 6px;
-  padding: 4px 10px 5px;
-  background: var(--pt-red);
-  color: var(--color-on-primary);
-  font-size: 0.58em;
-  font-weight: var(--weight-semibold);
-  border-radius: var(--radius-sm);
-  line-height: 1;
-  text-transform: lowercase;
-}
-
-.pt-home__headerNav {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: var(--space-xs) var(--space-md);
-  font-size: var(--text-nav);
-  font-weight: var(--weight-semibold);
-  line-height: 1.25;
-}
-
-@media (max-width: 1080px) {
-  .pt-home__headerNav {
-    flex-wrap: wrap;
-    row-gap: 8px;
-  }
-}
-
-.pt-home__navLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--color-ink);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.pt-home__navLink:hover {
-  color: var(--pt-blue);
-}
-
-.pt-home__navIcon {
-  flex-shrink: 0;
-  color: var(--color-ink);
-  opacity: 0.88;
-}
-
 /* ----- Icon system (Lucide + Airbnb surfaces) ----- */
 .pt-icon {
   flex-shrink: 0;
   color: currentColor;
-}
-
-.pt-icon--tab {
-  color: inherit;
-}
-
-.pt-icon--field {
-  color: var(--color-ink);
-}
-
-.pt-icon--swap {
-  color: var(--color-ink);
-}
-
-.pt-icon--secondary {
-  color: var(--color-ink);
-}
-
-.pt-icon--trust {
-  color: var(--color-ink);
-}
-
-.pt-home__signInBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: 13px 23px;
-  min-height: 48px;
-  border: 1px solid var(--color-ink);
-  border-radius: var(--radius-sm);
-  background: var(--color-canvas);
-  color: var(--color-ink);
-  font-weight: var(--weight-medium);
-  font-size: var(--text-button-md);
-  line-height: 1.25;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.pt-home__signInBtn:hover {
-  background: var(--color-surface-soft);
-}
-
-.pt-home__localeBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 8px;
-  border: none;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--color-ink);
-  font-size: var(--text-body-sm);
-  font-weight: var(--weight-semibold);
-  cursor: pointer;
-}
-
-.pt-home__localeBtn:hover {
-  background: var(--color-surface-soft);
-}
-
-.pt-home__localeFlag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 14px;
-  border-radius: 2px;
-  background: linear-gradient(#ff9933 33%, #fff 33% 66%, #138808 66%);
-  font-size: 0.55rem;
-  font-weight: 800;
-  color: #000080;
-}
-
-.pt-home__chevron {
-  width: 16px;
-  height: 16px;
-  opacity: 0.85;
 }
 
 /* ----- Hero / themed backdrop ----- */
@@ -269,10 +64,6 @@
   box-shadow: inset 0 0 120px rgba(180, 83, 9, 0.06);
 }
 
-.heroSection[data-hero-category='darshan'].pt-home__hero {
-  box-shadow: inset 0 0 100px rgba(127, 29, 29, 0.12);
-}
-
 .heroSection[data-hero-category='trains'].pt-home__hero {
   box-shadow: inset 0 0 110px rgba(99, 102, 241, 0.1);
 }
@@ -310,10 +101,6 @@
 
 .heroSection[data-hero-category='hotels'] .pt-home__heroBackdrop.heroBackground {
   background: linear-gradient(168deg, #fffbeb 0%, #fde68a 45%, #ca8a04 100%);
-}
-
-.heroSection[data-hero-category='darshan'] .pt-home__heroBackdrop.heroBackground {
-  background: linear-gradient(180deg, #0c0a09 0%, #431407 40%, #1c0707 100%);
 }
 
 .heroSection[data-hero-category='trains'] .pt-home__heroBackdrop.heroBackground {
@@ -360,15 +147,19 @@
 }
 
 .pt-home__heroBgLayer[data-hero-category='flights'] .pt-home__heroBgLayer__img {
-  object-position: 72% center;
+  object-position: 85% center;
 }
 
 .pt-home__heroBgLayer[data-hero-category='trains'] .pt-home__heroBgLayer__img {
-  object-position: 68% center;
+  object-position: 72% 58%;
+}
+
+.pt-home__heroBgLayer[data-hero-category='buses'] .pt-home__heroBgLayer__img {
+  object-position: 78% 55%;
 }
 
 .pt-home__heroBgLayer[data-hero-category='hotels'] .pt-home__heroBgLayer__img {
-  object-position: 78% center;
+  object-position: 82% center;
 }
 
 .pt-home__heroBgLayer__overlay {
@@ -379,19 +170,19 @@
 .pt-home__heroBgLayer__overlay.heroOverlay--photo {
   background: linear-gradient(
     105deg,
-    rgba(2, 6, 23, 0.82) 0%,
-    rgba(2, 6, 23, 0.55) 38%,
-    rgba(15, 23, 42, 0.28) 58%,
-    rgba(15, 23, 42, 0.12) 100%
+    rgba(26, 31, 54, 0.72) 0%,
+    rgba(26, 31, 54, 0.42) 42%,
+    rgba(26, 31, 54, 0.12) 62%,
+    transparent 100%
   );
 }
 
 .pt-home__heroBgLayer[data-hero-category='hotels'] .heroOverlay--photo {
   background: linear-gradient(
     105deg,
-    rgba(15, 23, 42, 0.78) 0%,
-    rgba(69, 26, 3, 0.45) 40%,
-    rgba(254, 243, 199, 0.08) 62%,
+    rgba(26, 31, 54, 0.68) 0%,
+    rgba(26, 31, 54, 0.35) 45%,
+    rgba(255, 255, 255, 0.05) 65%,
     transparent 100%
   );
 }
@@ -432,7 +223,7 @@
   perspective: 1200px;
 }
 
-/* ----- Premium hero scenes (Flights / Hotels / Darshan) ----- */
+/* ----- Premium hero scenes (Flights / Hotels) ----- */
 .heroScene {
   position: absolute;
   inset: 0;
@@ -452,10 +243,6 @@
 
 .heroScene__ambient--hotels {
   background: radial-gradient(ellipse 65% 50% at 82% 38%, var(--hero-glow, rgba(251, 191, 36, 0.4)) 0%, transparent 58%);
-}
-
-.heroScene__ambient--darshan {
-  background: radial-gradient(ellipse 60% 50% at 85% 35%, var(--hero-glow, rgba(251, 191, 36, 0.35)) 0%, transparent 55%);
 }
 
 .heroScene__ambient--trains {
@@ -535,40 +322,6 @@
   height: 12%;
   background: linear-gradient(180deg, #fde68a, #92400e);
   border-radius: 2px 2px 0 0;
-}
-
-.heroDarshanToran {
-  position: absolute;
-  top: 8%;
-  right: 12%;
-  width: min(48vw, 280px);
-  height: 24px;
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(251, 191, 36, 0.5) 0 10px,
-    transparent 10px 20px,
-    rgba(220, 38, 38, 0.35) 20px 24px,
-    transparent 24px 36px
-  );
-  border-radius: 4px;
-  opacity: 0.55;
-  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
-}
-
-.heroDarshanDiyaRow--secondary {
-  position: absolute;
-  right: 22%;
-  bottom: 22%;
-  display: flex;
-  gap: 20px;
-  align-items: flex-end;
-  transform: scale(0.85);
-  opacity: 0.9;
-}
-
-.heroDarshanDiya--small {
-  width: 10px;
-  height: 16px;
 }
 
 /* Flights: large SVG plane (background illustration) */
@@ -942,100 +695,6 @@
   bottom: 22%;
 }
 
-/* Darshan: mandala + temple silhouette + diyas */
-.heroDarshanMandala {
-  position: absolute;
-  right: -4%;
-  top: 4%;
-  width: min(52vw, 340px);
-  height: min(52vw, 340px);
-  border-radius: 50%;
-  background: repeating-conic-gradient(
-    from 0deg,
-    rgba(251, 191, 36, 0.14) 0deg 8deg,
-    transparent 8deg 16deg
-  );
-  opacity: 0.65;
-  mask-image: radial-gradient(circle, #000 25%, transparent 72%);
-  animation: pt-hero-mandala-spin 120s linear infinite;
-}
-
-@keyframes pt-hero-mandala-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.heroDarshanAura {
-  position: absolute;
-  right: 8%;
-  bottom: 12%;
-  width: min(44vw, 300px);
-  height: min(44vw, 300px);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, transparent 68%);
-  filter: blur(20px);
-}
-
-.heroDarshanTemple {
-  position: absolute;
-  right: 2%;
-  bottom: 6%;
-  width: min(48vw, 280px);
-  height: min(50vh, 320px);
-  transform: perspective(1000px) rotateY(-5deg);
-  filter: drop-shadow(0 0 24px rgba(251, 191, 36, 0.25));
-}
-
-.heroDarshanTemple__svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.heroDarshanDiyaRow {
-  position: absolute;
-  right: 18%;
-  bottom: 28%;
-  display: flex;
-  gap: 14px;
-  align-items: flex-end;
-}
-
-.heroDarshanDiya {
-  display: block;
-  width: 14px;
-  height: 22px;
-  border-radius: 50% 50% 40% 40%;
-  background: radial-gradient(circle at 50% 30%, #fef08a 0%, #f59e0b 45%, #b45309 100%);
-  box-shadow:
-    0 0 16px rgba(251, 191, 36, 0.8),
-    0 0 40px rgba(251, 146, 60, 0.35);
-}
-
-.heroDarshanDiya--wide {
-  width: 18px;
-  height: 28px;
-}
-
-.heroDarshanBell {
-  position: absolute;
-  right: 34%;
-  top: 22%;
-  opacity: 0.85;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
-}
-
-.heroDarshanPattern {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 35%;
-  background: linear-gradient(0deg, rgba(12, 10, 9, 0.35) 0%, transparent 100%);
-  pointer-events: none;
-}
-
 @media (max-width: 767px) {
   .heroFlightSvgBg {
     right: -12%;
@@ -1055,13 +714,6 @@
     transform: scale(0.9);
   }
 
-  .heroDarshanMandala {
-    opacity: 0.45;
-  }
-
-  .heroDarshanTemple {
-    width: min(58vw, 240px);
-  }
 }
 
 .heroVisual__float1 {
@@ -1092,10 +744,6 @@
     transition-duration: 0.01ms;
   }
 
-  .heroDarshanMandala {
-    animation: none;
-  }
-
   .heroVisual__float1,
   .heroVisual__float2,
   .heroVisual__float3,
@@ -1111,12 +759,14 @@
 .pt-home__heroInner {
   position: relative;
   z-index: 2;
-  max-width: 920px;
+  width: 100%;
+  max-width: var(--pt-card-max);
   margin: 0 auto;
+  padding: 0 var(--space-lg);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
+  align-items: stretch;
+  gap: 12px;
 }
 
 .pt-home__cardWrap.searchCardWrapper {
@@ -1128,8 +778,6 @@
   position: relative;
   z-index: 4;
   width: 100%;
-  max-width: var(--pt-card-max);
-  margin-top: 2px;
 }
 
 /* Full-width white band for offers (reference layout) */
@@ -1140,8 +788,16 @@
 }
 
 .pt-home__offersStripInner {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--grid-gap, 20px);
   max-width: var(--layout-max-content);
   margin: 0 auto;
+}
+
+.pt-home__offersStripInner > * {
+  grid-column: 1 / -1;
+  min-width: 0;
 }
 
 /* In-page targets for secondary nav hash links */
@@ -1153,9 +809,7 @@
 
 .pt-home__cardWrap {
   width: 100%;
-  max-width: var(--pt-card-max);
   position: relative;
-  padding-bottom: 44px;
   scroll-margin-top: 20px;
 }
 
@@ -1210,6 +864,7 @@
   cursor: pointer;
   position: relative;
   line-height: 1.29;
+  text-decoration: none;
 }
 
 @media (min-width: 1100px) {
@@ -1288,25 +943,38 @@
   color: var(--pt-pink-tag);
 }
 
-.pt-home__grid {
-  border-bottom: none;
+.pt-home__fieldsWrap {
+  position: relative;
 }
 
-.pt-home__routeRow {
+.pt-home__grid--mock {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  position: relative;
+  grid-template-rows: auto auto;
+}
+
+.pt-home__grid--mock .pt-home__cell--from {
+  grid-column: 1;
+  grid-row: 1;
+  border-right: 1px solid var(--pt-border);
   border-bottom: 1px solid var(--pt-border);
 }
 
-.pt-home__metaRow {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.pt-home__grid--mock .pt-home__cell--to {
+  grid-column: 2;
+  grid-row: 1;
+  border-bottom: 1px solid var(--pt-border);
 }
 
-.pt-home__metaRow--mock {
-  grid-template-columns: 1.2fr 1fr;
-  border-bottom: 1px solid var(--pt-border);
+.pt-home__grid--mock .pt-home__cell--dates {
+  grid-column: 1;
+  grid-row: 2;
+  border-right: 1px solid var(--pt-border);
+}
+
+.pt-home__grid--mock .pt-home__cell--travellers {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .pt-home__cell.pt-home__cell--withIcon {
@@ -1362,7 +1030,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 22px 18px;
+  padding: 14px 22px 4px;
+  border-top: 1px solid var(--pt-border);
   font-size: var(--text-body-sm);
   font-weight: var(--weight-medium);
   color: var(--color-ink);
@@ -1391,17 +1060,12 @@
   background: var(--color-surface-soft);
 }
 
-.pt-home__cell + .pt-home__cell {
-  border-left: 1px solid var(--pt-border);
+.pt-home__grid--mock .pt-home__cell--from {
+  padding-right: 32px;
 }
 
-.pt-home__cell--from {
-  padding-right: 28px;
-}
-
-.pt-home__cell--to {
-  padding-left: 28px;
-  border-left: 1px solid var(--pt-border);
+.pt-home__grid--mock .pt-home__cell--to {
+  padding-left: 32px;
 }
 
 .pt-home__cellLabel {
@@ -1443,10 +1107,10 @@
   white-space: nowrap;
 }
 
-.pt-home__swap {
+.pt-home__fieldsWrap .pt-home__swap {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 0;
   transform: translate(-50%, -50%);
   z-index: 2;
   width: 40px;
@@ -1475,23 +1139,15 @@
   height: 18px;
 }
 
-.pt-home__searchCtaWrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.pt-home__searchCtaInner {
+  padding: 16px 22px 22px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
-}
-
-.pt-home__searchCtaWrap > * {
-  pointer-events: auto;
+  justify-content: center;
 }
 
 .pt-home__searchBtn {
-  min-width: 200px;
+  width: 100%;
+  max-width: 320px;
   min-height: 48px;
   padding: 14px 24px;
   border: none;
@@ -1524,28 +1180,37 @@
 /* Secondary nav */
 .pt-home__secondaryNav {
   width: 100%;
-  max-width: var(--pt-card-max);
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-  gap: 6px 10px;
-  padding: 12px 14px;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   background: var(--color-canvas);
   border-radius: var(--pt-card-radius);
   border: 1px solid var(--color-hairline);
   box-shadow: var(--shadow-card);
 }
 
+.pt-home__secondaryNav::-webkit-scrollbar {
+  display: none;
+}
+
 .pt-home__secondaryLink {
   display: inline-flex;
+  flex: 1 1 0;
+  min-width: max-content;
+  justify-content: center;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
+  gap: 6px;
+  padding: 8px 10px;
   border-radius: var(--radius-sm);
   text-decoration: none;
   color: var(--color-ink);
-  font-size: var(--text-button-sm);
+  font-size: 13px;
   font-weight: var(--weight-medium);
   white-space: nowrap;
   transition: background-color 0.2s ease;
@@ -1560,8 +1225,8 @@
 }
 
 .pt-home__secondaryIconWrap {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -1622,24 +1287,15 @@
   background: transparent;
 }
 
-.pt-home__dealsTrack {
-  display: flex;
-  align-items: stretch;
-  gap: 10px;
-}
-
-.pt-home__dealsCards {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  flex: 1;
-  padding-bottom: 6px;
-  scrollbar-width: thin;
+.pt-home__dealsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--grid-gap, 20px);
 }
 
 .pt-home__dealCard {
-  flex: 0 0 220px;
   border: none;
+  min-width: 0;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--color-canvas);
@@ -1649,43 +1305,16 @@
 .pt-home__dealMedia {
   position: relative;
   height: 120px;
-  background-color: #e8ecf2;
-  background-image: linear-gradient(
-    148deg,
-    #f4f6fa 0%,
-    #e2e8f0 42%,
-    #c5d0e0 100%
-  );
+  overflow: hidden;
+  background: #e8ecf2;
 }
 
-.pt-home__dealCard--b .pt-home__dealMedia {
-  background-color: #ebe8e4;
-  background-image: linear-gradient(
-    148deg,
-    #f7f5f3 0%,
-    #e8e4df 45%,
-    #cfc7be 100%
-  );
-}
-
-.pt-home__dealCard--c .pt-home__dealMedia {
-  background-color: #e5eeec;
-  background-image: linear-gradient(
-    148deg,
-    #f2f7f5 0%,
-    #dce8e4 45%,
-    #b8ccc4 100%
-  );
-}
-
-.pt-home__dealCard--d .pt-home__dealMedia {
-  background-color: #e8eaf0;
-  background-image: linear-gradient(
-    148deg,
-    #f3f4f8 0%,
-    #dfe4ee 45%,
-    #b8c2d4 100%
-  );
+.pt-home__dealImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .pt-home__dealHeart {
@@ -1772,26 +1401,16 @@
   font-weight: var(--weight-semibold);
 }
 
-.pt-home__dealsScrollBtn {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: 1px solid var(--color-hairline);
-  border-radius: var(--radius-full);
-  background: var(--color-canvas);
-  color: var(--color-ink);
-  cursor: pointer;
-  align-self: center;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-card);
-  transition: background-color 0.2s ease;
+@media (max-width: 1024px) {
+  .pt-home__dealsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.pt-home__dealsScrollBtn:hover {
-  background: var(--color-surface-soft);
+@media (max-width: 520px) {
+  .pt-home__dealsGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .pt-home__trust {
@@ -1846,21 +1465,57 @@
     grid-template-columns: 1fr;
   }
 }
-@media (max-width: 900px) {
-  .pt-home__metaRow,
-  .pt-home__metaRow--mock {
+@media (max-width: 768px) {
+  .pt-home__heroInner {
+    padding: 0 var(--space-base);
+  }
+
+  .pt-home__grid--mock {
     grid-template-columns: 1fr;
   }
 
-  .pt-home__metaRow .pt-home__cell,
-  .pt-home__metaRow--mock .pt-home__cell {
-    border-left: none;
-    border-top: 1px solid var(--pt-border);
+  .pt-home__grid--mock .pt-home__cell--from,
+  .pt-home__grid--mock .pt-home__cell--to,
+  .pt-home__grid--mock .pt-home__cell--dates,
+  .pt-home__grid--mock .pt-home__cell--travellers {
+    grid-column: 1;
+    border-right: none;
   }
 
-  .pt-home__metaRow .pt-home__cell:first-child,
-  .pt-home__metaRow--mock .pt-home__cell:first-child {
-    border-top: none;
+  .pt-home__grid--mock .pt-home__cell--from {
+    grid-row: 1;
+    border-bottom: 1px solid var(--pt-border);
+  }
+
+  .pt-home__grid--mock .pt-home__cell--to {
+    grid-row: 2;
+    border-bottom: 1px solid var(--pt-border);
+    padding-left: 22px;
+  }
+
+  .pt-home__grid--mock .pt-home__cell--dates {
+    grid-row: 3;
+    border-bottom: 1px solid var(--pt-border);
+  }
+
+  .pt-home__grid--mock .pt-home__cell--travellers {
+    grid-row: 4;
+  }
+
+  .pt-home__fieldsWrap .pt-home__swap {
+    left: auto;
+    right: 24px;
+    top: clamp(76px, 22vw, 100px);
+    transform: translateY(-50%);
+  }
+
+  .pt-home__secondaryNav {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .pt-home__secondaryLink {
+    flex: 0 0 auto;
   }
 }
 
@@ -1872,22 +1527,5 @@
 
   .pt-home__cellMain {
     font-size: 1.1rem;
-  }
-
-  .pt-home__routeRow {
-    grid-template-columns: 1fr;
-  }
-
-  .pt-home__cell--to {
-    border-left: none;
-    border-top: 1px solid var(--pt-border);
-  }
-
-  .pt-home__swap {
-    left: auto;
-    right: 16px;
-    top: auto;
-    bottom: -18px;
-    transform: none;
   }
 }

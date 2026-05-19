@@ -30,20 +30,22 @@ export default function MyTripsPage() {
             <Link to="/">Search flights and stays</Link>
           </p>
         ) : (
-          TRIPS.map((trip) => (
-            <article key={trip.id} className="ds-tripCard">
-              <div className="ds-tripCard__media" aria-hidden />
-              <div>
-                <h2 className="ds-title-md">{trip.title}</h2>
-                <p className="ds-body-sm" style={{ marginTop: 'var(--space-xs)' }}>
-                  {trip.meta}
-                </p>
-                <p className="ds-caption" style={{ marginTop: 'var(--space-sm)' }}>
-                  {trip.status}
-                </p>
-              </div>
-            </article>
-          ))
+          <div className="ds-tripsGrid">
+            {TRIPS.map((trip) => (
+              <article key={trip.id} className="ds-tripCard">
+                <div className="ds-tripCard__media" aria-hidden />
+                <div>
+                  <h2 className="ds-title-md">{trip.title}</h2>
+                  <p className="ds-body-sm" style={{ marginTop: 'var(--space-xs)' }}>
+                    {trip.meta}
+                  </p>
+                  <p className="ds-caption" style={{ marginTop: 'var(--space-sm)' }}>
+                    {trip.status}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         )}
         <Link to="/support" className="ds-btn ds-btn--tertiary" style={{ marginTop: 'var(--space-lg)' }}>
           Need help with a trip?

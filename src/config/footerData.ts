@@ -19,7 +19,7 @@ export const FOOTER_COLUMNS = [
     title: 'Present Trip',
     links: [
       { label: 'About', href: '/' },
-      { label: 'Darshan', href: '/darshan' },
+      { label: 'My trips', href: '/trips' },
       { label: 'Gift cards', href: '/#gifts' },
     ],
   },

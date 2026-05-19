@@ -1,5 +1,5 @@
 /** Travel hero sections (tabs + theme). */
-export type CategoryId = 'flights' | 'trains' | 'buses' | 'hotels' | 'darshan'
+export type CategoryId = 'flights' | 'trains' | 'buses' | 'hotels'
 
 /** Hero intro glass + text contrast. */
 export type HeadingTone = 'onLight' | 'onDark'
@@ -103,26 +103,5 @@ export const CATEGORY_THEMES: Record<CategoryId, CategoryTheme> = {
     accentColor: '#B45309',
     glowColor: 'rgba(251, 191, 36, 0.5)',
     headingTone: 'onLight',
-  },
-  darshan: {
-    id: 'darshan',
-    label: 'Darshan',
-    badge: 'Spiritual Trips Simplified',
-    title: 'Plan Your Sacred Darshan',
-    subtitle: 'Book peaceful temple visits, spiritual trips, and devotional travel experiences.',
-    cta: 'Plan Darshan',
-    gradient: `
-      radial-gradient(ellipse 80% 70% at 50% -5%, rgba(254, 243, 199, 0.55) 0%, transparent 45%),
-      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(127, 29, 29, 0.45) 0%, transparent 55%),
-      radial-gradient(ellipse 55% 50% at 100% 90%, rgba(234, 88, 12, 0.25) 0%, transparent 50%),
-      linear-gradient(165deg, #431407 0%, #7f1d1d 28%, #9a3412 52%, #c2410c 78%, #1c1917 100%)
-    `
-      .trim()
-      .replace(/\s+/g, ' '),
-    overlay:
-      'linear-gradient(180deg, rgba(254, 243, 199, 0.15) 0%, rgba(69, 10, 10, 0.25) 50%, rgba(12, 10, 9, 0.55) 100%)',
-    accentColor: '#FBBF24',
-    glowColor: 'rgba(251, 191, 36, 0.4)',
-    headingTone: 'onDark',
   },
 }

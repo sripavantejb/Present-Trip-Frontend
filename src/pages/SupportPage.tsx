@@ -11,8 +11,8 @@ const FAQ = [
     a: 'Yes. We use industry-standard encryption and never store full card details on our servers.',
   },
   {
-    q: 'Who do I contact for Darshan packages?',
-    a: 'Visit our Darshan page or call the 24×7 desk listed on your confirmation email.',
+    q: 'How do I reach customer support?',
+    a: 'Use Help Centre on this page or call the 24×7 desk listed on your confirmation email.',
   },
 ]
 

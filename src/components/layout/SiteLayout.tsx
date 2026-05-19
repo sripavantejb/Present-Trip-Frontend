@@ -4,7 +4,7 @@ import { SiteHeader } from '../home/SiteHeader'
 
 type SiteLayoutProps = {
   children: ReactNode
-  /** Hide global footer (e.g. darshan has sticky mobile chrome) */
+  /** Hide global footer on specific layouts */
   hideFooter?: boolean
   className?: string
 }

@@ -96,7 +96,7 @@
   /* Layout */
   --layout-max-content: 1280px;
   --layout-max-listing: 1080px;
-  --layout-header-height: 80px;
+  --layout-header-height: 72px;
 
   /* Legacy aliases (homepage) */
   --pt-blue: var(--color-primary);
