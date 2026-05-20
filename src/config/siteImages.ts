@@ -45,6 +45,7 @@ export const SITE_IMAGES = {
     trains: '/hero-bg-trains.png',
     buses: '/hero-bg-buses.png',
     hotels: '/hero-bg-hotels.png',
+    darshan: '/images/darshan/temple-hero.png',
   },
   weekendDeals: [
     { image: img.deals.delhi, imageAlt: 'Luxury hotel room in New Delhi' },

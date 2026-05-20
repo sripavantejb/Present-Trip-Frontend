@@ -72,6 +72,10 @@
   box-shadow: inset 0 0 100px rgba(16, 185, 129, 0.08);
 }
 
+.heroSection[data-hero-category='darshan'].pt-home__hero {
+  box-shadow: inset 0 0 100px rgba(255, 56, 92, 0.08);
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .heroSection.pt-home__hero {
     min-height: 620px;
@@ -109,6 +113,10 @@
 
 .heroSection[data-hero-category='buses'] .pt-home__heroBackdrop.heroBackground {
   background: #021a14;
+}
+
+.heroSection[data-hero-category='darshan'] .pt-home__heroBackdrop.heroBackground {
+  background: #1c1917;
 }
 
 .pt-home__heroBgLayer {
@@ -160,6 +168,10 @@
 
 .pt-home__heroBgLayer[data-hero-category='hotels'] .pt-home__heroBgLayer__img {
   object-position: 82% center;
+}
+
+.pt-home__heroBgLayer[data-hero-category='darshan'] .pt-home__heroBgLayer__img {
+  object-position: 75% 40%;
 }
 
 .pt-home__heroBgLayer__overlay {
@@ -826,6 +838,41 @@
   box-shadow: var(--shadow-card);
   overflow: hidden;
   text-align: left;
+}
+
+.pt-home__card--darshan {
+  overflow: visible;
+}
+
+.pt-home__darshanEmbed {
+  width: 100%;
+}
+
+.pt-home__darshanCard.darshan__search-card--pro {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.pt-home__darshanCard.darshan__search-card--pro::before {
+  display: none;
+}
+
+.pt-home__darshanCard .darshan__search-card-heading--lite {
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+}
+
+@media (max-width: 767px) {
+  .pt-home__service {
+    min-width: 4.5rem;
+    padding: 12px 10px 14px;
+  }
+
+  .pt-home__serviceLabel {
+    font-size: 0.6875rem;
+  }
 }
 
 .pt-home__services {

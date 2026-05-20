@@ -3,11 +3,12 @@ import { useState } from 'react'
 import type { CategoryId } from '../../config/categoryThemes'
 import { CATEGORY_THEMES } from '../../config/categoryThemes'
 import { AppIcon } from '../ui/AppIcon'
+import { HomeDarshanSearchPanel } from './HomeDarshanSearchPanel'
 import { ServiceLineIcon } from './ServiceTabLineIcons'
 
 type AirportLeg = { city: string; code: string; detail: string }
 
-const SERVICES: CategoryId[] = ['flights', 'trains', 'buses', 'hotels']
+const SERVICES: CategoryId[] = ['flights', 'trains', 'buses', 'hotels', 'darshan']
 
 type SearchCardProps = {
   activeCategory: CategoryId
@@ -16,6 +17,7 @@ type SearchCardProps = {
 
 export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps) {
   const activeTheme = CATEGORY_THEMES[activeCategory]
+  const isDarshan = activeCategory === 'darshan'
 
   const [from, setFrom] = useState<AirportLeg>({
     city: 'Delhi',
@@ -36,7 +38,10 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
 
   return (
     <div id="card" className="pt-home__cardWrap searchCardWrapper">
-      <section className="pt-home__card" aria-labelledby="search-card-title">
+      <section
+        className={`pt-home__card${isDarshan ? ' pt-home__card--darshan' : ''}`}
+        aria-labelledby="search-card-title"
+      >
         <h2 id="search-card-title" className="visually-hidden">
           {activeTheme.title}. {activeTheme.subtitle}
         </h2>
@@ -63,78 +68,84 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
           ))}
         </div>
 
-        <div className="pt-home__fieldsWrap">
-          <div className="pt-home__grid pt-home__grid--mock">
-          <button type="button" className="pt-home__cell pt-home__cell--from pt-home__cell--withIcon">
-            <span className="pt-home__cellIconBadge">
-              <AppIcon icon={MapPin} size={18} className="pt-icon pt-icon--field" />
-            </span>
-            <div className="pt-home__cellStack">
-              <span className="pt-home__cellLabel">From</span>
-              <span className="pt-home__cellMain">{from.city}</span>
-              <span className="pt-home__cellSub">
-                {from.code}, {from.detail}
-              </span>
+        {isDarshan ? (
+          <HomeDarshanSearchPanel />
+        ) : (
+          <>
+            <div className="pt-home__fieldsWrap">
+              <div className="pt-home__grid pt-home__grid--mock">
+                <button type="button" className="pt-home__cell pt-home__cell--from pt-home__cell--withIcon">
+                  <span className="pt-home__cellIconBadge">
+                    <AppIcon icon={MapPin} size={18} className="pt-icon pt-icon--field" />
+                  </span>
+                  <div className="pt-home__cellStack">
+                    <span className="pt-home__cellLabel">From</span>
+                    <span className="pt-home__cellMain">{from.city}</span>
+                    <span className="pt-home__cellSub">
+                      {from.code}, {from.detail}
+                    </span>
+                  </div>
+                </button>
+                <button type="button" className="pt-home__cell pt-home__cell--to pt-home__cell--withIcon">
+                  <span className="pt-home__cellIconBadge">
+                    <AppIcon icon={MapPin} size={18} className="pt-icon pt-icon--field" />
+                  </span>
+                  <div className="pt-home__cellStack">
+                    <span className="pt-home__cellLabel">To</span>
+                    <span className="pt-home__cellMain">{to.city}</span>
+                    <span className="pt-home__cellSub">
+                      {to.code}, {to.detail}
+                    </span>
+                  </div>
+                </button>
+                <button type="button" className="pt-home__cell pt-home__cell--dates pt-home__cell--withIcon">
+                  <span className="pt-home__cellIconBadge">
+                    <AppIcon icon={CalendarDays} size={18} className="pt-icon pt-icon--field" />
+                  </span>
+                  <div className="pt-home__cellStack">
+                    <span className="pt-home__cellLabel">Dates</span>
+                    <span className="pt-home__cellMain pt-home__cellMain--dates">
+                      Thu 15 May – Fri 16 May
+                    </span>
+                  </div>
+                </button>
+                <button type="button" className="pt-home__cell pt-home__cell--travellers pt-home__cell--withIcon">
+                  <span className="pt-home__cellIconBadge">
+                    <AppIcon icon={Users} size={18} className="pt-icon pt-icon--field" />
+                  </span>
+                  <div className="pt-home__cellStack">
+                    <span className="pt-home__cellLabel">Travellers &amp; Class</span>
+                    <span className="pt-home__cellMain">1 Traveller, Economy</span>
+                  </div>
+                  <AppIcon icon={ChevronDown} size={20} className="pt-home__cellChevron pt-icon" />
+                </button>
+              </div>
+              <button
+                type="button"
+                className="pt-home__swap"
+                onClick={swapRoute}
+                aria-label="Swap from and to cities"
+              >
+                <AppIcon icon={ArrowUpDown} size={18} className="pt-icon pt-icon--swap" />
+              </button>
             </div>
-          </button>
-          <button type="button" className="pt-home__cell pt-home__cell--to pt-home__cell--withIcon">
-            <span className="pt-home__cellIconBadge">
-              <AppIcon icon={MapPin} size={18} className="pt-icon pt-icon--field" />
-            </span>
-            <div className="pt-home__cellStack">
-              <span className="pt-home__cellLabel">To</span>
-              <span className="pt-home__cellMain">{to.city}</span>
-              <span className="pt-home__cellSub">
-                {to.code}, {to.detail}
-              </span>
-            </div>
-          </button>
-          <button type="button" className="pt-home__cell pt-home__cell--dates pt-home__cell--withIcon">
-            <span className="pt-home__cellIconBadge">
-              <AppIcon icon={CalendarDays} size={18} className="pt-icon pt-icon--field" />
-            </span>
-            <div className="pt-home__cellStack">
-              <span className="pt-home__cellLabel">Dates</span>
-              <span className="pt-home__cellMain pt-home__cellMain--dates">
-                Thu 15 May – Fri 16 May
-              </span>
-            </div>
-          </button>
-          <button type="button" className="pt-home__cell pt-home__cell--travellers pt-home__cell--withIcon">
-            <span className="pt-home__cellIconBadge">
-              <AppIcon icon={Users} size={18} className="pt-icon pt-icon--field" />
-            </span>
-            <div className="pt-home__cellStack">
-              <span className="pt-home__cellLabel">Travellers &amp; Class</span>
-              <span className="pt-home__cellMain">1 Traveller, Economy</span>
-            </div>
-            <AppIcon icon={ChevronDown} size={20} className="pt-home__cellChevron pt-icon" />
-          </button>
-          </div>
-          <button
-            type="button"
-            className="pt-home__swap"
-            onClick={swapRoute}
-            aria-label="Swap from and to cities"
-          >
-            <AppIcon icon={ArrowUpDown} size={18} className="pt-icon pt-icon--swap" />
-          </button>
-        </div>
 
-        <label className="pt-home__returnCheck">
-          <input
-            type="checkbox"
-            checked={addReturn}
-            onChange={(e) => setAddReturn(e.target.checked)}
-          />
-          <span>Add a return date for bigger discounts</span>
-        </label>
+            <label className="pt-home__returnCheck">
+              <input
+                type="checkbox"
+                checked={addReturn}
+                onChange={(e) => setAddReturn(e.target.checked)}
+              />
+              <span>Add a return date for bigger discounts</span>
+            </label>
 
-        <div className="pt-home__searchCtaInner">
-          <button type="button" className="pt-home__searchBtn">
-            {activeTheme.cta}
-          </button>
-        </div>
+            <div className="pt-home__searchCtaInner">
+              <button type="button" className="pt-home__searchBtn">
+                {activeTheme.cta}
+              </button>
+            </div>
+          </>
+        )}
       </section>
     </div>
   )

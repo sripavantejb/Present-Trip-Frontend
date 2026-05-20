@@ -1,5 +1,5 @@
 /** Travel hero sections (tabs + theme). */
-export type CategoryId = 'flights' | 'trains' | 'buses' | 'hotels'
+export type CategoryId = 'flights' | 'trains' | 'buses' | 'hotels' | 'darshan'
 
 /** Hero intro glass + text contrast. */
 export type HeadingTone = 'onLight' | 'onDark'
@@ -103,5 +103,26 @@ export const CATEGORY_THEMES: Record<CategoryId, CategoryTheme> = {
     accentColor: '#B45309',
     glowColor: 'rgba(251, 191, 36, 0.5)',
     headingTone: 'onLight',
+  },
+  darshan: {
+    id: 'darshan',
+    label: 'Darshan',
+    badge: 'Pilgrimage Booking',
+    title: 'Book Darshan & Travel',
+    subtitle: 'Temple darshan, stay, and transport to Tirumala — planned in one place.',
+    cta: 'Check Availability',
+    gradient: `
+      radial-gradient(ellipse 90% 70% at 88% 20%, rgba(255, 56, 92, 0.22) 0%, transparent 52%),
+      radial-gradient(ellipse 65% 55% at 8% 85%, rgba(180, 83, 9, 0.2) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 50% 0%, rgba(255, 255, 255, 0.1) 0%, transparent 42%),
+      linear-gradient(168deg, #1c1917 0%, #44403c 28%, #78716c 52%, #292524 78%, #0c0a09 100%)
+    `
+      .trim()
+      .replace(/\s+/g, ' '),
+    overlay:
+      'linear-gradient(200deg, rgba(28, 25, 23, 0.45) 0%, transparent 38%, rgba(255, 56, 92, 0.08) 55%, rgba(12, 10, 9, 0.5) 100%)',
+    accentColor: '#FF385C',
+    glowColor: 'rgba(255, 56, 92, 0.4)',
+    headingTone: 'onDark',
   },
 }

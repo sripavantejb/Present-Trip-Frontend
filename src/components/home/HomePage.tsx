@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react'
+import '../../pages/darshan/darshan.css'
 import type { CategoryId } from '../../config/categoryThemes'
 import { CATEGORY_THEMES } from '../../config/categoryThemes'
 import { SiteLayout } from '../layout/SiteLayout'

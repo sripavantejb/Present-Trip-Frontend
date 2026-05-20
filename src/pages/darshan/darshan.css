@@ -32,6 +32,37 @@
   text-align: start;
 }
 
+/* Embedded in homepage search card — no full-page breakout */
+.darshan.darshan--embed {
+  --dr-royal: var(--color-primary);
+  --dr-sky: var(--color-primary);
+  --dr-cloud: var(--color-surface-soft);
+  --dr-navy-950: var(--color-ink);
+  --dr-navy-900: var(--color-ink);
+  --dr-muted: var(--color-muted);
+  --dr-gold: var(--color-primary);
+  --dr-font-display: var(--font-sans);
+  --dr-font-ui: var(--font-sans);
+  --dr-radius-lg: var(--radius-lg);
+  --dr-radius: var(--radius-md);
+  --dr-radius-sm: var(--radius-sm);
+  --dr-blur: 18px;
+  --dr-shadow: var(--shadow-card);
+  --dr-shadow-soft: var(--shadow-card);
+
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  min-height: 0;
+  overflow: visible;
+  background: transparent;
+  font-family: var(--dr-font-ui);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--dr-navy-900);
+  text-align: start;
+}
+
 .darshan *,
 .darshan *::before,
 .darshan *::after {

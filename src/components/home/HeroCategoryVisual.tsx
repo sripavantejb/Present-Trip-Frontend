@@ -25,6 +25,8 @@ function renderVisual(category: CategoryId) {
       return <BusVisual />
     case 'hotels':
       return <HotelVisual />
+    case 'darshan':
+      return <FlightVisual />
     default:
       return <FlightVisual />
   }

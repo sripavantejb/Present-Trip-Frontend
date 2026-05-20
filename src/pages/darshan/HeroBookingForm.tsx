@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import type { HeroBookingTab } from './darshanData'
 import {
   HERO_BOOKING_TABS,
@@ -20,9 +21,12 @@ import {
   IconUsers,
 } from './DarshanIcons'
 
+type NavigateMode = 'hash' | 'route'
+
 type Props = {
   tab: HeroBookingTab
   onTabChange: (tab: HeroBookingTab) => void
+  navigateMode?: NavigateMode
 }
 
 function todayIso(): string {
@@ -59,7 +63,8 @@ const TAB_ICONS: Record<HeroBookingTab, typeof IconTemple> = {
 
 type FieldErrors = Record<string, string>
 
-export function HeroBookingForm({ tab, onTabChange }: Props) {
+export function HeroBookingForm({ tab, onTabChange, navigateMode = 'hash' }: Props) {
+  const navigate = useNavigate()
   const today = todayIso()
   const maxDarshanDate = addDaysIso(30)
 
@@ -115,19 +120,27 @@ export function HeroBookingForm({ tab, onTabChange }: Props) {
     return Object.keys(next).length === 0
   }
 
+  const goToSection = (hash: string) => {
+    if (navigateMode === 'route') {
+      navigate(`/darshan${hash}`)
+      return
+    }
+    scrollToHash(hash)
+  }
+
   const ctaDarshan = () => {
     if (!validateDarshan()) return
-    scrollToHash('#packages')
+    goToSection('#packages')
   }
 
   const ctaStay = () => {
     if (!validateStay()) return
-    scrollToHash('#accommodation')
+    goToSection('#accommodation')
   }
 
   const ctaTransport = () => {
     if (!validateTransport()) return
-    scrollToHash('#transport')
+    goToSection('#transport')
   }
 
   return (
