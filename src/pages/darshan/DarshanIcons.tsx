@@ -30,6 +30,15 @@ export function IconShield({ className }: { className?: string }) {
   )
 }
 
+export function IconInfo({ className }: { className?: string }) {
+  return (
+    <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="9" stroke={stroke} strokeWidth="1.2" />
+      <path d="M12 10v6M12 8h.01" stroke={stroke} strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 export function IconClock({ className }: { className?: string }) {
   return (
     <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -215,6 +224,20 @@ export function IconBed({ className }: { className?: string }) {
         strokeLinejoin="round"
       />
       <path d="M8 10V7a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3" stroke={stroke} strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+export function IconMapPin({ className }: { className?: string }) {
+  return (
+    <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M12 21s6-5.15 6-10a6 6 0 1 0-12 0c0 4.85 6 10 6 10Z"
+        stroke={stroke}
+        strokeWidth="1.2"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="11" r="2.5" stroke={stroke} strokeWidth="1.2" />
     </svg>
   )
 }

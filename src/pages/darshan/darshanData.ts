@@ -112,9 +112,73 @@ export const HERO_NAV_LINKS = [
   { href: '#packages', label: 'Packages' },
   { href: '#sevas', label: 'Sevas' },
   { href: '#accommodation', label: 'Accommodation' },
-  { href: '#temple-tours', label: 'Temple Tours' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#darshan-types', label: 'Darshan Types' },
+  { href: '/support', label: 'Contact' },
 ] as const
+
+/** Hero booking card tabs (Darshan / Stay / Transport) */
+export type HeroBookingTab = 'darshan' | 'stay' | 'transport'
+
+export const HERO_BOOKING_TABS: HeroBookingTab[] = ['darshan', 'stay', 'transport']
+
+export const HERO_BOOKING_TAB_LABELS: Record<HeroBookingTab, string> = {
+  darshan: 'Darshan',
+  stay: 'Stay',
+  transport: 'Transport',
+}
+
+export const HERO_TEMPLE_DESTINATIONS = [
+  { value: 'tirupati', label: 'Tirupati — Sri Venkateswara Temple' },
+  { value: 'vaishno-devi', label: 'Vaishno Devi — Katra, J&K' },
+  { value: 'shirdi', label: 'Shirdi — Sai Baba Temple' },
+  { value: 'puri', label: 'Puri — Jagannath Temple' },
+  { value: 'guruvayur', label: 'Guruvayur — Kerala' },
+  { value: 'kedarnath', label: 'Kedarnath — Uttarakhand' },
+  { value: 'mahakaleshwar', label: 'Mahakaleshwar — Ujjain' },
+  { value: 'kashi', label: 'Kashi Vishwanath — Varanasi' },
+] as const
+
+export const HERO_DARSHAN_TYPES = [
+  'Sarva Darshan — Free',
+  'Slotted Sarva Darshan — Free (Time Slot)',
+  'Special Entry Darshan — ₹300/person',
+  'VIP Break Darshan — ₹10,500/person',
+  'Seva / Arjitha Darshan — ₹200–₹1,000',
+] as const
+
+export const HERO_TRANSPORT_TYPES = [
+  'Private Cab (up to 4 pax)',
+  'Tempo Traveller (up to 12 pax)',
+  'Luxury SUV (up to 6 pax)',
+  'Mini Coach (up to 30 pax)',
+  'TSRTC / State Bus',
+  'Train',
+] as const
+
+export const HERO_CITY_SUGGESTIONS = [
+  'Mumbai',
+  'Delhi',
+  'Bengaluru',
+  'Hyderabad',
+  'Chennai',
+  'Kolkata',
+  'Pune',
+  'Ahmedabad',
+  'Jaipur',
+  'Lucknow',
+  'Kochi',
+  'Visakhapatnam',
+  'Bhubaneswar',
+  'Chandigarh',
+  'Indore',
+  'Nagpur',
+  'Coimbatore',
+  'Vijayawada',
+  'Thiruvananthapuram',
+  'Mysuru',
+] as const
+
+export * from './postHeroData'
 
 export const ACCOMMODATION_OPTIONS = [
   'Not required',
