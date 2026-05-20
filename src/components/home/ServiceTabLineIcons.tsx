@@ -1,11 +1,4 @@
-import {
-  BedDouble,
-  Bus,
-  Landmark,
-  Plane,
-  TrainFront,
-  type LucideIcon,
-} from 'lucide-react'
+import { BedDouble, Bus, Plane, TrainFront, type LucideIcon } from 'lucide-react'
 import type { CategoryId } from '../../config/categoryThemes'
 import { AppIcon } from '../ui/AppIcon'
 
@@ -14,7 +7,6 @@ const TAB_ICONS: Record<CategoryId, LucideIcon> = {
   trains: TrainFront,
   buses: Bus,
   hotels: BedDouble,
-  darshan: Landmark,
 }
 
 export function ServiceLineIcon({ id }: { id: CategoryId }) {

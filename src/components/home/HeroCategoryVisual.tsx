@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import type { CategoryId } from '../../config/categoryThemes'
 import { heroHasPhotoBackground } from '../../config/heroBackgrounds'
-import { BusVisual, DarshanVisual, FlightVisual, HotelVisual, TrainVisual } from './hero-visuals'
+import { BusVisual, FlightVisual, HotelVisual, TrainVisual } from './hero-visuals'
 
 type SlotPayload = { category: CategoryId }
 
@@ -25,8 +25,6 @@ function renderVisual(category: CategoryId) {
       return <BusVisual />
     case 'hotels':
       return <HotelVisual />
-    case 'darshan':
-      return <DarshanVisual />
     default:
       return <FlightVisual />
   }

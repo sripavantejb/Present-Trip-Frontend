@@ -8,6 +8,7 @@ import { SearchCard } from './SearchCard'
 import { SecondaryNav } from './SecondaryNav'
 import { OffersSection } from './OffersSection'
 import { TrustBar } from './TrustBar'
+import { HomeContentSections } from './sections/HomeContentSections'
 
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState<CategoryId>('flights')
@@ -44,6 +45,7 @@ export default function HomePage() {
           <div id="gifts" className="pt-home__scrollAnchor" aria-hidden="true" />
         </div>
       </div>
+      <HomeContentSections />
     </SiteLayout>
   )
 }

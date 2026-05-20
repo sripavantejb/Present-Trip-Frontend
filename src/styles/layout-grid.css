@@ -1,0 +1,78 @@
+/**
+ * Site-wide grid layout — 12-column page grid + card grids for sections.
+ */
+
+:root {
+  --grid-max: 1200px;
+  --grid-gap: 20px;
+  --grid-gap-sm: 16px;
+  --grid-cols: 12;
+}
+
+/* 12-column section wrapper (aligns with max content width) */
+.pt-section-grid,
+.ds-section-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
+  gap: var(--grid-gap);
+  width: 100%;
+  max-width: var(--grid-max);
+  margin-inline: auto;
+}
+
+.pt-section-grid > *,
+.ds-section-grid > * {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+/* Reusable card grids */
+.pt-card-grid,
+.ds-card-grid {
+  display: grid;
+  gap: var(--grid-gap);
+  width: 100%;
+}
+
+.pt-card-grid--4,
+.ds-card-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.pt-card-grid--3,
+.ds-card-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pt-card-grid--2,
+.ds-card-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pt-card-grid--auto,
+.ds-card-grid--auto {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .pt-card-grid--4,
+  .ds-card-grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pt-card-grid--3,
+  .ds-card-grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .pt-card-grid--4,
+  .pt-card-grid--3,
+  .pt-card-grid--2,
+  .ds-card-grid--4,
+  .ds-card-grid--3,
+  .ds-card-grid--2 {
+    grid-template-columns: 1fr;
+  }
+}

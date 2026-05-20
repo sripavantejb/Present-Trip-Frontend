@@ -5,6 +5,8 @@ import ListPropertyPage from './pages/ListPropertyPage'
 import MyTripsPage from './pages/MyTripsPage'
 import SupportPage from './pages/SupportPage'
 import './App.css'
+import './styles/layout-grid.css'
+import './styles/home-sections.css'
 
 export default function App() {
   return (

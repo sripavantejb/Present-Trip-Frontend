@@ -1,67 +1,222 @@
-import { Briefcase, Building2, ChevronDown, CircleHelp, User } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { Globe, Menu, UserCircle2 } from 'lucide-react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AppIcon } from '../ui/AppIcon'
 
-const PRODUCTS = [
-  { to: '/', label: 'Travel', end: true },
-  { to: '/darshan', label: 'Darshan', badge: 'New' as const },
+const ACCOUNT_LINKS = [
+  { to: '/trips', label: 'My trips' },
+  { to: '/list-property', label: 'List your property' },
+  { to: '/support', label: 'Help Centre' },
 ] as const
+
+const LOCALE_OPTIONS = [
+  { id: 'en-IN', label: 'English (India)', currency: 'INR ₹' },
+  { id: 'hi-IN', label: 'हिन्दी (India)', currency: 'INR ₹' },
+  { id: 'en-US', label: 'English (US)', currency: 'USD $' },
+] as const
+
+type LocaleId = (typeof LOCALE_OPTIONS)[number]['id']
+
+const LOCALE_STORAGE_KEY = 'pt-locale'
+
+function readStoredLocale(): LocaleId {
+  try {
+    const v = localStorage.getItem(LOCALE_STORAGE_KEY)
+    if (LOCALE_OPTIONS.some((o) => o.id === v)) return v as LocaleId
+  } catch {
+    /* ignore */
+  }
+  return 'en-IN'
+}
 
 export function SiteHeader() {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const localeMenuId = useId()
+  const accountMenuId = useId()
+
+  const [localeOpen, setLocaleOpen] = useState(false)
+  const [accountOpen, setAccountOpen] = useState(false)
+  const [locale, setLocale] = useState<LocaleId>(readStoredLocale)
+  const [signedIn, setSignedIn] = useState(false)
+
+  const localeRef = useRef<HTMLDivElement>(null)
+  const accountRef = useRef<HTMLDivElement>(null)
+
+  const closeAll = useCallback(() => {
+    setLocaleOpen(false)
+    setAccountOpen(false)
+  }, [])
+
+  useEffect(() => {
+    closeAll()
+  }, [pathname, closeAll])
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeAll()
+    }
+    const onPointer = (e: MouseEvent) => {
+      const t = e.target as Node
+      if (localeRef.current?.contains(t) || accountRef.current?.contains(t)) return
+      closeAll()
+    }
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('mousedown', onPointer)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('mousedown', onPointer)
+    }
+  }, [closeAll])
+
+  const selectLocale = (id: LocaleId) => {
+    setLocale(id)
+    try {
+      localStorage.setItem(LOCALE_STORAGE_KEY, id)
+    } catch {
+      /* ignore */
+    }
+    setLocaleOpen(false)
+  }
+
+  const handleSignIn = () => {
+    setSignedIn(true)
+    setAccountOpen(false)
+    navigate('/trips')
+  }
+
+  const handleSignOut = () => {
+    setSignedIn(false)
+    setAccountOpen(false)
+  }
+
+  const activeLocale = LOCALE_OPTIONS.find((o) => o.id === locale) ?? LOCALE_OPTIONS[0]
 
   return (
-    <header className="pt-home__header pt-site-header">
-      <div className="pt-home__headerInner pt-site-header__inner">
+    <header className="pt-site-header">
+      <div className="pt-site-header__inner">
         <Link to="/" className="pt-home__logo" aria-label="Present Trip home">
           <span className="pt-home__logoText">Present</span>
           <span className="pt-home__logoMark">trip</span>
         </Link>
 
-        <nav className="pt-site__productNav" aria-label="Products">
-          {PRODUCTS.map(({ to, label, ...rest }) => {
-            const end = 'end' in rest && rest.end
-            const active = end ? pathname === '/' : pathname.startsWith(to)
-            return (
-              <Link
-                key={to}
-                to={to}
-                className={`pt-site__productTab${active ? ' pt-site__productTab--active' : ''}`}
-              >
-                {label}
-                {'badge' in rest && rest.badge ? (
-                  <span className="pt-site__productTabBadge">{rest.badge}</span>
-                ) : null}
-              </Link>
-            )
-          })}
-        </nav>
+        <div className="pt-site-header__actions">
+          <Link to="/list-property" className="pt-site-header__hostLink">
+            List your property
+          </Link>
 
-        <nav className="pt-home__headerNav" aria-label="Account and tools">
-          <button type="button" className="pt-home__localeBtn">
-            <span className="pt-home__localeFlag" aria-hidden>
-              IN
-            </span>
-            <span>INR | English</span>
-            <AppIcon icon={ChevronDown} size={16} className="pt-home__chevron pt-icon" />
-          </button>
-          <Link to="/list-property" className="pt-home__navLink">
-            <AppIcon icon={Building2} size={18} className="pt-home__navIcon pt-icon" />
-            <span>List Your Property</span>
-          </Link>
-          <Link to="/support" className="pt-home__navLink">
-            <AppIcon icon={CircleHelp} size={18} className="pt-home__navIcon pt-icon" />
-            <span>Support</span>
-          </Link>
-          <Link to="/trips" className="pt-home__navLink">
-            <AppIcon icon={Briefcase} size={18} className="pt-home__navIcon pt-icon" />
-            <span>My Trips</span>
-          </Link>
-          <button type="button" className="pt-home__signInBtn">
-            <AppIcon icon={User} size={18} className="pt-icon" />
-            <span>Sign in</span>
-          </button>
-        </nav>
+          <div className="pt-site-header__menuWrap" ref={localeRef}>
+            <button
+              type="button"
+              className={`pt-site-header__localeBtn${localeOpen ? ' pt-site-header__localeBtn--open' : ''}`}
+              aria-label="Choose language and currency"
+              aria-haspopup="menu"
+              aria-expanded={localeOpen}
+              aria-controls={localeMenuId}
+              onClick={() => {
+                setAccountOpen(false)
+                setLocaleOpen((o) => !o)
+              }}
+            >
+              <AppIcon icon={Globe} size={18} />
+            </button>
+            {localeOpen ? (
+              <div
+                id={localeMenuId}
+                className="pt-site-header__dropdown"
+                role="menu"
+                aria-label="Language and currency"
+              >
+                <p className="pt-site-header__dropdownTitle">Language &amp; region</p>
+                <ul className="pt-site-header__dropdownList">
+                  {LOCALE_OPTIONS.map((opt) => (
+                    <li key={opt.id} role="none">
+                      <button
+                        type="button"
+                        role="menuitemradio"
+                        aria-checked={locale === opt.id}
+                        className={`pt-site-header__dropdownItem${locale === opt.id ? ' pt-site-header__dropdownItem--active' : ''}`}
+                        onClick={() => selectLocale(opt.id)}
+                      >
+                        <span>{opt.label}</span>
+                        <span className="pt-site-header__dropdownMeta">{opt.currency}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <p className="pt-site-header__dropdownFoot">
+                  Showing prices in {activeLocale.currency}
+                </p>
+              </div>
+            ) : null}
+          </div>
+
+          <div className="pt-site-header__menuWrap" ref={accountRef}>
+            <button
+              type="button"
+              className={`pt-site-header__profileMenu${accountOpen ? ' pt-site-header__profileMenu--open' : ''}`}
+              aria-label="Account menu"
+              aria-haspopup="menu"
+              aria-expanded={accountOpen}
+              aria-controls={accountMenuId}
+              onClick={() => {
+                setLocaleOpen(false)
+                setAccountOpen((o) => !o)
+              }}
+            >
+              <AppIcon icon={Menu} size={18} className="pt-site-header__menuIcon" />
+              <AppIcon icon={UserCircle2} size={30} className="pt-site-header__userIcon" />
+            </button>
+            {accountOpen ? (
+              <div
+                id={accountMenuId}
+                className="pt-site-header__dropdown pt-site-header__dropdown--account"
+                role="menu"
+                aria-label="Account"
+              >
+                {signedIn ? (
+                  <p className="pt-site-header__dropdownTitle">Your account</p>
+                ) : (
+                  <p className="pt-site-header__dropdownTitle">Welcome to Present Trip</p>
+                )}
+                <ul className="pt-site-header__dropdownList">
+                  {ACCOUNT_LINKS.map((item) => (
+                    <li key={item.to + item.label} role="none">
+                      <Link
+                        role="menuitem"
+                        to={item.to}
+                        className="pt-site-header__dropdownItem pt-site-header__dropdownItem--link"
+                        onClick={() => setAccountOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-site-header__dropdownDivider" role="separator" />
+                {signedIn ? (
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className="pt-site-header__dropdownItem pt-site-header__dropdownItem--cta"
+                    onClick={handleSignOut}
+                  >
+                    Sign out
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className="pt-site-header__dropdownItem pt-site-header__dropdownItem--cta"
+                    onClick={handleSignIn}
+                  >
+                    Sign in
+                  </button>
+                )}
+              </div>
+            ) : null}
+          </div>
+        </div>
       </div>
     </header>
   )
