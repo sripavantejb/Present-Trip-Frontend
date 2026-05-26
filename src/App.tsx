@@ -4,6 +4,12 @@ import DarshanPage from './pages/DarshanPage'
 import ListPropertyPage from './pages/ListPropertyPage'
 import MyTripsPage from './pages/MyTripsPage'
 import SupportPage from './pages/SupportPage'
+import TempleExplorerPage from './pages/TempleExplorerPage'
+import TourPackagesPage from './pages/TourPackagesPage'
+import EventsPage from './pages/EventsPage'
+import NearbyPage from './pages/NearbyPage'
+import DealsPage from './pages/DealsPage'
+import PlanPage from './pages/PlanPage'
 import './App.css'
 import './styles/layout-grid.css'
 import './styles/home-sections.css'
@@ -16,6 +22,12 @@ export default function App() {
       <Route path="/list-property" element={<ListPropertyPage />} />
       <Route path="/support" element={<SupportPage />} />
       <Route path="/trips" element={<MyTripsPage />} />
+      <Route path="/temples" element={<TempleExplorerPage />} />
+      <Route path="/packages" element={<TourPackagesPage />} />
+      <Route path="/events" element={<EventsPage />} />
+      <Route path="/nearby" element={<NearbyPage />} />
+      <Route path="/deals" element={<DealsPage />} />
+      <Route path="/plan" element={<PlanPage />} />
     </Routes>
   )
 }

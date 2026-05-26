@@ -1,25 +1,16 @@
 import { useEffect, useState, type CSSProperties } from 'react'
-import type { HeroBookingTab } from './darshanData'
 import { ASSISTANT_PROMPTS } from './darshanData'
 import './darshan.css'
 import './darshan-post-hero.css'
+import './pilgrimage-sections.css'
 import '../../styles/darshan-airbnb.css'
+import '../../styles/pilgrimage-theme.css'
 import { SiteLayout } from '../../components/layout/SiteLayout'
-import { AccommodationSection } from './AccommodationSection'
-import { CuratedPackagesSection } from './CuratedPackagesSection'
-import { DarshanTypesSection } from './DarshanTypesSection'
-import { FaqSection } from './FaqSection'
+import { DarshanPostHeroContent } from './DarshanPostHeroContent'
 import { HeroSection } from './HeroSection'
-import { HeroTrustStrip } from './HeroTrustStrip'
-import { PilgrimInfoSection } from './PilgrimInfoSection'
-import { ReviewsSection } from './ReviewsSection'
-import { SevaBookingSection } from './SevaBookingSection'
-import { TransportSection } from './TransportSection'
-import { WhyBookSection } from './WhyBookSection'
 import { IconChat } from './DarshanIcons'
 
 export default function DarshanLanding() {
-  const [bookingTab, setBookingTab] = useState<HeroBookingTab>('darshan')
   const [assistantOpen, setAssistantOpen] = useState(false)
   const [parallaxY, setParallaxY] = useState(0)
   const [navScrolled, setNavScrolled] = useState(false)
@@ -41,17 +32,17 @@ export default function DarshanLanding() {
   useEffect(() => {
     const root = document.querySelector('.darshan')
     if (!root) return
-    const sections = root.querySelectorAll('.darshan__section')
+    const sections = root.querySelectorAll('.darshan__section, .pil-section')
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) entry.target.classList.add('darshan__reveal--visible')
         })
       },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.05 },
+      { rootMargin: '0px 0px -5% 0px', threshold: 0.01 },
     )
     sections.forEach((s) => {
-      s.classList.add('darshan__reveal')
+      s.classList.add('darshan__reveal', 'darshan__reveal--visible')
       io.observe(s)
     })
     return () => io.disconnect()
@@ -60,19 +51,10 @@ export default function DarshanLanding() {
   return (
     <SiteLayout className="darshan-layout">
       <div className="darshan darshan--breakout darshan--site-chrome" style={{ '--darshan-parallax': String(parallaxY) } as CSSProperties}>
-        <HeroSection bookingTab={bookingTab} setBookingTab={setBookingTab} navScrolled={navScrolled} />
+        <HeroSection navScrolled={navScrolled} />
 
         <main id="darshan-main">
-          <HeroTrustStrip />
-          <DarshanTypesSection />
-          <CuratedPackagesSection />
-          <AccommodationSection />
-          <TransportSection />
-          <PilgrimInfoSection />
-          <SevaBookingSection />
-          <ReviewsSection />
-          <WhyBookSection />
-          <FaqSection />
+          <DarshanPostHeroContent />
         </main>
 
         <div className="darshan__bottom-cta">
@@ -84,24 +66,6 @@ export default function DarshanLanding() {
             Book Darshan
           </button>
         </div>
-
-        <nav className="darshan__bottom-nav" aria-label="Mobile primary">
-          <a href="/" className="darshan__bn-item">
-            Home
-          </a>
-          <a href="#packages" className="darshan__bn-item">
-            Packages
-          </a>
-          <a href="#darshan-search" className="darshan__bn-item darshan__bn-item--fab">
-            Book
-          </a>
-          <a href="/support" className="darshan__bn-item">
-            Contact
-          </a>
-          <a href="#profile" className="darshan__bn-item">
-            Profile
-          </a>
-        </nav>
 
         <button type="button" className="darshan__fab" aria-label="Open darshan assistant" onClick={() => setAssistantOpen(true)}>
           <IconChat />

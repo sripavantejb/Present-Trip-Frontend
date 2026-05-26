@@ -99,6 +99,16 @@
   transition: color 0.2s ease;
 }
 
+.pt-home-link--seeAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.pt-home-link--seeAll:hover {
+  color: var(--home-red);
+}
+
 .pt-home-link:hover {
   color: var(--home-red);
   text-decoration: underline;
@@ -854,4 +864,176 @@
   .pt-home-hotelsGrid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Pilgrimage home — horizontal scroll rows */
+.pt-home-hScroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pt-home-hScroll > * {
+  flex: 0 0 min(280px, 85vw);
+  scroll-snap-align: start;
+}
+
+.pt-home-suggestPill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--home-border);
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--home-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pt-home-suggestPill:hover {
+  border-color: var(--home-red);
+  box-shadow: var(--home-card-shadow);
+}
+
+.pt-home-miniCard {
+  background: #fff;
+  border-radius: var(--home-radius-card);
+  box-shadow: var(--home-card-shadow);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.pt-home-miniCard img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.pt-home-miniCard__body {
+  padding: 14px 16px;
+}
+
+.pt-home-miniCard__title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.pt-home-miniCard__sub {
+  margin: 0;
+  font-size: 13px;
+  color: var(--home-muted);
+}
+
+.pt-home-trendRank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--home-red);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.pt-home-trendRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: var(--home-radius-card);
+  box-shadow: var(--home-card-shadow);
+  text-decoration: none;
+  color: inherit;
+  flex: 0 0 min(320px, 90vw);
+}
+
+.pt-home-trendRow img {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.pt-home-offerCard {
+  flex: 0 0 min(260px, 80vw);
+  padding: 16px;
+  background: var(--home-bg-offers);
+  border: 1px solid var(--home-border);
+  border-radius: var(--home-radius-card);
+}
+
+.pt-home-offerCard__discount {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--home-red);
+}
+
+.pt-home-planCta {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.pt-home-planCta .pt-home-btn {
+  margin-top: 20px;
+}
+
+.pt-home-quickLinks {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.pt-home-quickLinks__label {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--home-muted);
+}
+
+.pt-home-hScroll--fade {
+  mask-image: linear-gradient(to right, #000 92%, transparent 100%);
+}
+
+.pt-home-trendRow__text {
+  min-width: 0;
+  flex: 1;
+}
+
+.pt-home-trendRow__text .pt-home-miniCard__title {
+  margin: 0 0 4px;
+}
+
+.pt-home-storyCard {
+  flex: 0 0 min(300px, 85vw);
+  padding: 20px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pt-home-storyCard__quote {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--home-text);
+  flex: 1;
 }

@@ -116,17 +116,6 @@ export const HERO_NAV_LINKS = [
   { href: '/support', label: 'Contact' },
 ] as const
 
-/** Hero booking card tabs (Darshan / Stay / Transport) */
-export type HeroBookingTab = 'darshan' | 'stay' | 'transport'
-
-export const HERO_BOOKING_TABS: HeroBookingTab[] = ['darshan', 'stay', 'transport']
-
-export const HERO_BOOKING_TAB_LABELS: Record<HeroBookingTab, string> = {
-  darshan: 'Darshan',
-  stay: 'Stay',
-  transport: 'Transport',
-}
-
 export const HERO_TEMPLE_DESTINATIONS = [
   { value: 'tirupati', label: 'Tirupati — Sri Venkateswara Temple' },
   { value: 'vaishno-devi', label: 'Vaishno Devi — Katra, J&K' },

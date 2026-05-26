@@ -1,10 +1,6 @@
-import { useState } from 'react'
-import type { HeroBookingTab } from '../../pages/darshan/darshanData'
 import { HeroBookingForm } from '../../pages/darshan/HeroBookingForm'
 
 export function HomeDarshanSearchPanel() {
-  const [bookingTab, setBookingTab] = useState<HeroBookingTab>('darshan')
-
   return (
     <div className="darshan darshan--embed pt-home__darshanEmbed">
       <div className="darshan__search-card darshan__search-card--lite darshan__search-card--pro pt-home__darshanCard">
@@ -14,7 +10,7 @@ export function HomeDarshanSearchPanel() {
             Book darshan &amp; travel
           </h2>
         </div>
-        <HeroBookingForm tab={bookingTab} onTabChange={setBookingTab} navigateMode="route" />
+        <HeroBookingForm navigateMode="route" />
       </div>
     </div>
   )

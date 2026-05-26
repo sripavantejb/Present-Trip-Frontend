@@ -1,0 +1,146 @@
+.pil-trips {
+  background: var(--color-canvas);
+  min-height: 50vh;
+  padding-bottom: var(--space-xxl);
+  font-family: var(--font-sans);
+}
+
+.pil-trips__hero {
+  padding: 0;
+  background: var(--color-surface-soft);
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.pil-trips__content {
+  width: min(800px, 100% - 32px);
+  margin: var(--space-xl) auto 0;
+}
+
+.pil-trips__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.pil-booking-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  align-items: start;
+}
+
+.pil-booking-card__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-hairline);
+}
+
+.pil-booking-card__title {
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+  margin: 0 0 var(--space-xs);
+}
+
+.pil-booking-card__meta {
+  font-size: var(--text-body-sm);
+  color: var(--color-muted);
+  margin: 0 0 var(--space-xs);
+}
+
+.pil-booking-card__ref {
+  font-size: var(--text-caption-sm);
+  color: var(--color-muted-soft);
+  font-family: monospace;
+  margin: 0;
+}
+
+.pil-booking-card__right {
+  text-align: right;
+}
+
+.pil-booking-card__price {
+  font-weight: var(--weight-bold);
+  color: var(--color-ink);
+  margin: 0 0 var(--space-sm);
+}
+
+.pil-booking-card__details {
+  font-size: var(--text-body-sm);
+  color: var(--color-primary);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+}
+
+.pil-booking-card__details:hover {
+  color: var(--color-primary-active);
+  text-decoration: underline;
+}
+
+.pil-booking-card__refund {
+  font-size: var(--text-caption-sm);
+  color: var(--color-primary-error);
+  margin-top: var(--space-xs);
+}
+
+.pil-trips__group {
+  margin-bottom: var(--space-xl);
+}
+
+.pil-trips__group-title {
+  margin: 0 0 var(--space-md);
+  font-size: var(--text-display-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-muted);
+}
+
+.pil-booking-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.pil-trips__empty {
+  text-align: center;
+  padding: var(--space-xxl) var(--space-lg);
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-hairline);
+}
+
+.pil-trips__empty-svg {
+  width: 120px;
+  height: 100px;
+  margin: 0 auto var(--space-lg);
+}
+
+.pil-trips__empty h2 {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--text-display-md);
+}
+
+.pil-trips__empty p {
+  margin: 0 0 var(--space-lg);
+  color: var(--color-muted);
+  max-width: 28rem;
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  .pil-booking-card {
+    grid-template-columns: 1fr;
+  }
+
+  .pil-booking-card__right {
+    text-align: left;
+  }
+}

@@ -1,0 +1,304 @@
+.pil-explorer {
+  padding-bottom: var(--space-xxl);
+}
+
+.pil-explorer__hero {
+  padding: var(--space-xl) 0 var(--space-lg);
+  background: var(--color-surface-soft);
+  border-bottom: 1px solid var(--color-hairline);
+  margin-bottom: 0;
+}
+
+.pil-explorer__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.pil-explorer__count {
+  margin-left: auto;
+  font-size: var(--text-body-sm);
+}
+
+.pil-explorer__content {
+  width: min(1180px, 100% - clamp(32px, 6vw, 64px));
+  margin-inline: auto;
+  padding-top: var(--space-xl);
+}
+
+.pil-explorer__region {
+  margin-bottom: var(--space-lg);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.pil-explorer__region-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  font-family: var(--font-sans);
+  font-size: var(--text-display-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+  background: var(--color-canvas);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.pil-explorer__region-trigger:hover {
+  background: var(--color-surface-soft);
+}
+
+.pil-explorer__region-body {
+  padding: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  background: var(--color-surface-soft);
+}
+
+.pil-temple-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pil-temple-card__img-wrap {
+  position: relative;
+  height: 160px;
+}
+
+.pil-temple-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pil-temple-card__must {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+}
+
+.pil-temple-card__body {
+  padding: var(--space-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.pil-temple-card__name {
+  font-family: var(--font-sans);
+  font-size: var(--text-title-md);
+  font-weight: var(--weight-semibold);
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.pil-temple-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  font-size: var(--text-caption-sm);
+  color: var(--color-muted);
+}
+
+.pil-temple-card__crowd--low {
+  color: var(--pil-success);
+}
+
+.pil-temple-card__crowd--moderate {
+  color: var(--color-body);
+}
+
+.pil-temple-card__crowd--high,
+.pil-temple-card__crowd--very-high {
+  color: var(--color-primary);
+}
+
+.pil-temple-card__cta {
+  margin-top: auto;
+  width: 100%;
+}
+
+.pil-explorer__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.pil-explorer__count-badge {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.pil-explorer__sticky-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--color-canvas);
+  border-bottom: 1px solid var(--color-hairline);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.pil-explorer__sticky-inner {
+  width: min(1180px, 100% - clamp(32px, 6vw, 64px));
+  margin: 0 auto;
+  padding: var(--space-md) 0;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.pil-explorer__region-block {
+  margin-bottom: var(--space-xl);
+}
+
+.pil-explorer__region-title {
+  margin: 0 0 var(--space-lg);
+  font-size: var(--text-display-md);
+  font-weight: var(--weight-semibold);
+}
+
+.pil-explorer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.pil-explorer__plan-strip {
+  position: sticky;
+  bottom: var(--space-md);
+  z-index: 15;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin: var(--space-xl) 0;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.pil-explorer__plan-strip p {
+  margin: 0;
+  font-weight: var(--weight-semibold);
+}
+
+.pil-temple-card--enhanced {
+  cursor: pointer;
+}
+
+.pil-temple-card__img-wrap--wide {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+.pil-temple-card__badge {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-caption-sm);
+  font-weight: var(--weight-semibold);
+  color: #fff;
+}
+
+.pil-temple-card__badge--must-visit {
+  background: var(--color-primary);
+}
+
+.pil-temple-card__badge--popular {
+  background: var(--color-body);
+}
+
+.pil-temple-card__badge--sacred {
+  background: var(--color-muted);
+}
+
+.pil-temple-card__rating {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.95);
+  font-size: var(--text-caption-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+}
+
+.pil-temple-card__crowd-pill {
+  position: absolute;
+  bottom: var(--space-sm);
+  left: var(--space-sm);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-caption-sm);
+  font-weight: var(--weight-medium);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.pil-temple-card__crowd-pill--low {
+  color: var(--pil-success, #16a34a);
+}
+
+.pil-temple-card__crowd-pill--moderate {
+  color: #d97706;
+}
+
+.pil-temple-card__crowd-pill--high,
+.pil-temple-card__crowd-pill--very-high {
+  color: var(--color-primary);
+}
+
+.pil-temple-card__loc,
+.pil-temple-card__dist {
+  margin: 0;
+  font-size: var(--text-body-sm);
+  color: var(--color-muted);
+}
+
+.pil-temple-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pil-temple-card__tag {
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-soft);
+  font-size: var(--text-caption-sm);
+  color: var(--color-muted);
+}
+
+.pil-temple-card__icons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pil-temple-card__icons .ds-btn {
+  min-width: 36px;
+  padding: 8px;
+}

@@ -1,0 +1,386 @@
+/* Pilgrimage feature sections — Present Trip theme */
+
+.darshan.darshan--home-posthero {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  min-height: 0;
+  background: var(--color-canvas);
+}
+
+.darshan.darshan--home-posthero #darshan-main {
+  background: var(--color-canvas);
+}
+
+.darshan.darshan--home-posthero .pil-section,
+.darshan.darshan--home-posthero .darshan__section {
+  opacity: 1;
+  transform: none;
+}
+
+.pil-trending__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.pil-trending__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--pil-bg);
+  border: 1px solid var(--pil-border);
+  border-radius: var(--pil-radius);
+  box-shadow: var(--pil-shadow);
+  transition: border-color var(--pil-transition), transform var(--pil-transition);
+}
+
+.pil-trending__row:hover {
+  border-color: var(--pil-border-strong);
+}
+
+.pil-trending__rank {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-bold);
+  color: var(--pil-on-accent);
+  background: var(--pil-accent);
+  border-radius: var(--radius-full);
+}
+
+.pil-trending__thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--pil-radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.pil-trending__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pil-trending__name {
+  font-weight: var(--weight-semibold);
+  color: var(--pil-text);
+  margin: 0 0 2px;
+}
+
+.pil-trending__location {
+  font-size: var(--text-caption-sm);
+  color: var(--pil-text-muted);
+  margin: 0;
+}
+
+.pil-trending__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+}
+
+.pil-trending__bookings {
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-medium);
+  color: var(--pil-text);
+}
+
+.pil-trending__change {
+  font-size: var(--text-caption-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.pil-trending__change--up {
+  color: var(--pil-success);
+}
+
+.pil-trending__change--down {
+  color: var(--pil-warning);
+}
+
+.pil-offer-card {
+  width: min(320px, 85vw);
+  padding: var(--space-lg);
+  background: var(--pil-bg);
+  border: 1px solid var(--pil-border);
+}
+
+.pil-offer-card__discount {
+  font-size: var(--text-display-sm);
+  font-weight: var(--weight-bold);
+  color: var(--pil-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.pil-offer-card__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-display-md);
+  font-weight: var(--weight-semibold);
+  color: var(--pil-text);
+  margin: 0 0 var(--space-md);
+}
+
+.pil-offer-card__code {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px 12px;
+  font-family: monospace;
+  font-size: var(--text-caption-sm);
+  color: var(--pil-accent-hover);
+  background: var(--pil-bg-soft);
+  border: 1px dashed var(--pil-border-strong);
+  border-radius: var(--pil-radius-sm);
+  cursor: pointer;
+}
+
+.pil-offer-card__code:hover {
+  background: var(--pil-accent-soft);
+  border-color: var(--pil-accent);
+}
+
+.pil-event-card {
+  width: min(300px, 80vw);
+  padding: var(--space-lg);
+}
+
+.pil-event-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.pil-event-card__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-title-md);
+  font-weight: var(--weight-semibold);
+  color: var(--pil-text);
+  margin: 0 0 var(--space-sm);
+}
+
+.pil-event-card__datetime {
+  font-size: var(--text-caption-sm);
+  color: var(--pil-text-muted);
+  margin: 0 0 var(--space-xs);
+}
+
+.pil-event-card__attendees {
+  font-size: var(--text-caption-sm);
+  color: var(--pil-text-muted);
+  margin: 0 0 var(--space-md);
+}
+
+.pil-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 8px 14px;
+  font-family: var(--font-sans);
+  font-size: var(--text-caption-sm);
+  font-weight: var(--weight-medium);
+  color: var(--pil-text-muted);
+  background: var(--pil-bg);
+  border: 1px solid var(--pil-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--pil-transition);
+}
+
+.pil-toggle--on {
+  color: var(--pil-on-accent);
+  background: var(--pil-accent);
+  border-color: var(--pil-accent);
+}
+
+.pil-nearby__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: flex-end;
+  margin-bottom: var(--space-xl);
+}
+
+.pil-nearby__field {
+  flex: 1;
+  min-width: 200px;
+}
+
+.pil-nearby__label {
+  display: block;
+  font-size: var(--text-caption-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--pil-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-uppercase-tag);
+  margin-bottom: var(--space-xs);
+}
+
+.pil-nearby__input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-sans);
+  font-size: var(--text-body-sm);
+  color: var(--pil-text);
+  background: var(--pil-bg);
+  border: 1px solid var(--pil-border);
+  border-radius: var(--pil-radius-sm);
+}
+
+.pil-nearby__input:focus {
+  outline: none;
+  border-color: var(--pil-text);
+  border-width: 2px;
+  padding: 11px 15px;
+}
+
+.pil-nearby__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.pil-nearby__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-lg);
+}
+
+.pil-nearby__temple-card {
+  padding: var(--space-md);
+  overflow: hidden;
+}
+
+.pil-nearby__temple-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--pil-radius-sm);
+  margin-bottom: var(--space-md);
+}
+
+.pil-nearby__temple-name {
+  font-weight: var(--weight-semibold);
+  color: var(--pil-text);
+  margin: 0 0 var(--space-xs);
+}
+
+.pil-nearby__temple-dist {
+  font-size: var(--text-caption-sm);
+  color: var(--pil-accent);
+  font-weight: var(--weight-medium);
+  margin: 0;
+}
+
+.pil-stories__card {
+  width: min(300px, 85vw);
+  padding: var(--space-lg);
+}
+
+.pil-stories__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--pil-accent-soft);
+  color: var(--pil-accent-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--weight-bold);
+  font-size: var(--text-body-sm);
+  margin-bottom: var(--space-md);
+}
+
+.pil-stories__stars {
+  color: var(--color-star-rating);
+  letter-spacing: 2px;
+  margin-bottom: var(--space-sm);
+}
+
+.pil-stories__quote {
+  font-size: var(--text-body-sm);
+  color: var(--pil-text);
+  line-height: var(--leading-body-sm);
+  margin: 0 0 var(--space-md);
+}
+
+.pil-stories__tag {
+  font-size: var(--text-caption-sm);
+  color: var(--pil-text-muted);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--pil-border-soft);
+}
+
+.pil-app-banner {
+  padding: var(--space-xxl) var(--space-lg);
+  text-align: center;
+  background: var(--pil-bg-soft);
+  border-top: 1px solid var(--pil-border);
+}
+
+.pil-app-banner__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-display-xl);
+  font-weight: var(--weight-bold);
+  color: var(--pil-text);
+  margin: 0 0 var(--space-sm);
+}
+
+.pil-app-banner__tagline {
+  font-size: var(--text-body-sm);
+  color: var(--pil-text-muted);
+  margin: 0 0 var(--space-xl);
+  max-width: 40ch;
+  margin-inline: auto;
+}
+
+.pil-app-banner__stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.pil-app-banner__store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 24px;
+  font-family: var(--font-sans);
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--pil-text);
+  background: var(--pil-bg);
+  border: 1px solid var(--pil-border);
+  border-radius: var(--pil-radius-sm);
+  text-decoration: none;
+  box-shadow: var(--pil-shadow);
+  transition: border-color var(--pil-transition), background var(--pil-transition);
+}
+
+.pil-app-banner__store-btn:hover {
+  border-color: var(--pil-text);
+  background: var(--pil-bg-soft);
+}
+
+@media (max-width: 640px) {
+  .pil-trending__row {
+    flex-wrap: wrap;
+  }
+
+  .pil-trending__meta {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

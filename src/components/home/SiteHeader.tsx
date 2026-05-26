@@ -19,6 +19,17 @@ type LocaleId = (typeof LOCALE_OPTIONS)[number]['id']
 
 const LOCALE_STORAGE_KEY = 'pt-locale'
 
+const MAIN_NAV = [
+  { to: '/temples', label: 'Explore' },
+  { to: '/packages', label: 'Packages' },
+  { to: '/trips', label: 'My Trips' },
+] as const
+
+function isNavActive(pathname: string, to: string): boolean {
+  if (to === '/trips') return pathname === '/trips' || pathname.startsWith('/trips/')
+  return pathname === to || pathname.startsWith(`${to}/`)
+}
+
 function readStoredLocale(): LocaleId {
   try {
     const v = localStorage.getItem(LOCALE_STORAGE_KEY)
@@ -99,6 +110,22 @@ export function SiteHeader() {
           <span className="pt-home__logoText">Present</span>
           <span className="pt-home__logoMark">trip</span>
         </Link>
+
+        <nav className="pt-site-header__nav" aria-label="Main">
+          {MAIN_NAV.map((item) => {
+            const active = isNavActive(pathname, item.to)
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`pt-site-header__navLink${active ? ' pt-site-header__navLink--active' : ''}`}
+                aria-current={active ? 'page' : undefined}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
+        </nav>
 
         <div className="pt-site-header__actions">
           <Link to="/list-property" className="pt-site-header__hostLink">

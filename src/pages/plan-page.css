@@ -1,0 +1,28 @@
+.pil-plan-page {
+  min-height: 100vh;
+  background: var(--color-canvas);
+}
+
+.pil-wizard--fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+}
+
+.pil-wizard--fullscreen .pil-wizard__stepper {
+  background: var(--color-surface-soft);
+}
+
+.pil-wizard--fullscreen .pil-wizard__step {
+  font-size: var(--text-caption-sm);
+  white-space: nowrap;
+}
+
+.pil-wizard--fullscreen .pil-wizard__foot {
+  background: var(--color-canvas);
+}

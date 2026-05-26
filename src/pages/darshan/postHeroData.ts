@@ -605,3 +605,57 @@ export const SLOT_STATUS_LABELS: Record<SlotStatus, string> = {
   filling: 'Filling Fast',
   full: 'Full',
 }
+
+export type TrendingTemple = {
+  rank: number
+  id: string
+  name: string
+  location: string
+  bookings: number
+  changePercent: number
+  imageUrl: string
+  imageAlt: string
+}
+
+export const TRENDING_TEMPLES: TrendingTemple[] = [
+  {
+    rank: 1,
+    id: 'tt1',
+    name: 'Sri Venkateswara Temple',
+    location: 'Tirumala, Andhra Pradesh',
+    bookings: 12480,
+    changePercent: 18,
+    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4a00b9bd4d81?w=120&h=120&fit=crop',
+    imageAlt: 'Tirumala temple gopuram',
+  },
+  {
+    rank: 2,
+    id: 'tt2',
+    name: 'Sai Baba Temple',
+    location: 'Shirdi, Maharashtra',
+    bookings: 8920,
+    changePercent: 12,
+    imageUrl: 'https://images.unsplash.com/photo-1605647540924-852290f6b0a5?w=120&h=120&fit=crop',
+    imageAlt: 'Shirdi temple',
+  },
+  {
+    rank: 3,
+    id: 'tt3',
+    name: 'Vaishno Devi Shrine',
+    location: 'Katra, Jammu & Kashmir',
+    bookings: 7650,
+    changePercent: -4,
+    imageUrl: 'https://images.unsplash.com/photo-1548013146-7249f0bb9e9f?w=120&h=120&fit=crop',
+    imageAlt: 'Vaishno Devi hills',
+  },
+  {
+    rank: 4,
+    id: 'tt4',
+    name: 'Jagannath Temple',
+    location: 'Puri, Odisha',
+    bookings: 5420,
+    changePercent: 8,
+    imageUrl: 'https://images.unsplash.com/photo-1569163139394-de4798aa62b4?w=120&h=120&fit=crop',
+    imageAlt: 'Jagannath temple',
+  },
+]

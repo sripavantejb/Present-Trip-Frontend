@@ -1577,16 +1577,25 @@ select.darshan__input--lite:focus-visible {
 }
 
 .darshan__reveal {
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: none;
   transition:
     opacity 0.65s ease,
     transform 0.65s ease;
 }
 
+.darshan__reveal:not(.darshan__reveal--visible) {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
 .darshan__reveal--visible {
   opacity: 1;
   transform: none;
+}
+
+.pil-section.darshan__reveal:not(.darshan__reveal--visible) {
+  opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

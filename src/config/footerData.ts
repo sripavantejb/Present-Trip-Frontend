@@ -23,4 +23,15 @@ export const FOOTER_COLUMNS = [
       { label: 'Gift cards', href: '/#gifts' },
     ],
   },
+  {
+    title: 'Pilgrimage',
+    links: [
+      { label: 'Temple Explorer', href: '/temples' },
+      { label: 'Tour Packages', href: '/packages' },
+      { label: 'Upcoming Events', href: '/events' },
+      { label: 'Nearby Temples', href: '/nearby' },
+      { label: 'Offers & Deals', href: '/deals' },
+      { label: 'Plan My Pilgrimage', href: '/plan' },
+    ],
+  },
 ] as const

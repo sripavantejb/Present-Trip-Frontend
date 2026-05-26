@@ -1,0 +1,97 @@
+.pil-nearby__controls {
+  margin-bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.pil-nearby__geo {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pil-nearby__search {
+  position: relative;
+}
+
+.pil-nearby__search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-muted);
+}
+
+.pil-nearby__input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--text-body-sm);
+  background: var(--color-surface-soft);
+}
+
+.pil-nearby__radius {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.pil-nearby__count {
+  margin-bottom: var(--space-md);
+  font-size: var(--text-body-sm);
+  color: var(--color-muted);
+}
+
+.pil-nearby__view-tabs {
+  margin-bottom: var(--space-md);
+}
+
+.pil-nearby__map-placeholder {
+  margin-bottom: var(--space-lg);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.pil-nearby__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.pil-nearby__row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: var(--space-md);
+  align-items: center;
+  padding: var(--space-md);
+  text-decoration: none;
+  color: inherit;
+}
+
+.pil-nearby__row img {
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.pil-nearby__row p {
+  margin: 4px 0 0;
+  font-size: var(--text-body-sm);
+  color: var(--color-muted);
+}
+
+.pil-nearby__km {
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+  white-space: nowrap;
+}

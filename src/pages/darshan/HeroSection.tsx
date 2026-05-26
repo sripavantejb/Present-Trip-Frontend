@@ -1,5 +1,4 @@
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
-import type { HeroBookingTab } from './darshanData'
 import { HERO_NAV_LINKS, HERO_SPLIT_TEMPLE_IMAGE } from './darshanData'
 import { HeroBookingForm } from './HeroBookingForm'
 import { IconMenu, IconSparkle, IconTirumalaMark, IconUser } from './DarshanIcons'
@@ -107,12 +106,10 @@ function getGopuramOpaqueBottomOffsetPx(
 }
 
 type Props = {
-  bookingTab: HeroBookingTab
-  setBookingTab: (t: HeroBookingTab) => void
   navScrolled: boolean
 }
 
-export function HeroSection({ bookingTab, setBookingTab, navScrolled }: Props) {
+export function HeroSection({ navScrolled }: Props) {
   const [menuOpen, setMenuOpen] = useState(false)
   const heroRef = useRef<HTMLElement | null>(null)
   const gopuramRef = useRef<HTMLImageElement | null>(null)
@@ -269,7 +266,7 @@ export function HeroSection({ bookingTab, setBookingTab, navScrolled }: Props) {
                   </h1>
                 </div>
 
-                <HeroBookingForm tab={bookingTab} onTabChange={setBookingTab} />
+                <HeroBookingForm />
               </div>
             </div>
           </div>
