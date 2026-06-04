@@ -4,6 +4,7 @@ import type { CategoryId } from '../../config/categoryThemes'
 import { CATEGORY_THEMES } from '../../config/categoryThemes'
 import { AppIcon } from '../ui/AppIcon'
 import { HomeDarshanSearchPanel } from './HomeDarshanSearchPanel'
+import { HotelSearchPanel } from './HotelSearchPanel'
 import { ServiceLineIcon } from './ServiceTabLineIcons'
 
 type AirportLeg = { city: string; code: string; detail: string }
@@ -18,6 +19,7 @@ type SearchCardProps = {
 export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps) {
   const activeTheme = CATEGORY_THEMES[activeCategory]
   const isDarshan = activeCategory === 'darshan'
+  const isHotels = activeCategory === 'hotels'
 
   const [from, setFrom] = useState<AirportLeg>({
     city: 'Delhi',
@@ -70,6 +72,8 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
 
         {isDarshan ? (
           <HomeDarshanSearchPanel />
+        ) : isHotels ? (
+          <HotelSearchPanel />
         ) : (
           <>
             <div className="pt-home__fieldsWrap">

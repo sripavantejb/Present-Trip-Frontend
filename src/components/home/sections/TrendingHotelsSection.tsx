@@ -10,7 +10,7 @@ export function TrendingHotelsSection() {
         <HomeSectionHeader
           title="Trending Hotels in India"
           subtitle="Handpicked stays with the best ratings and deals"
-          seeAllHref="#hotels"
+          seeAllHref="/hotels/search"
           seeAllLabel="See all hotels"
         />
         <div className="pt-home-hotelsGrid" role="list">
