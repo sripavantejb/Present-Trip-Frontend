@@ -40,7 +40,18 @@ function HotelResultCard({
   }
 
   return (
-    <article className="pt-home-card pt-home-hotelCard pt-hotels-resultCard">
+    <article
+      className="pt-home-card pt-home-hotelCard pt-hotels-resultCard pt-hotels-resultCard--clickable"
+      role="button"
+      tabIndex={0}
+      onClick={openDetail}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          openDetail()
+        }
+      }}
+    >
       <div className="pt-home-hotelMedia">
         <img
           className="pt-home-hotelImg"
@@ -51,7 +62,12 @@ function HotelResultCard({
             e.currentTarget.src = 'https://placehold.co/600x400/f7f7f7/929292?text=Hotel'
           }}
         />
-        <button type="button" className="pt-home-hotelHeart" aria-label="Save hotel">
+        <button
+          type="button"
+          className="pt-home-hotelHeart"
+          aria-label="Save hotel"
+          onClick={(e) => e.stopPropagation()}
+        >
           <AppIcon icon={Heart} size={18} />
         </button>
       </div>
@@ -74,7 +90,14 @@ function HotelResultCard({
           From <strong>{formatPrice(hotel.displayPrice, hotel.price.currencyCode || 'INR')}</strong>{' '}
           / night
         </p>
-        <button type="button" className="pt-hotels-viewBtn" onClick={openDetail}>
+        <button
+          type="button"
+          className="pt-hotels-viewBtn"
+          onClick={(e) => {
+            e.stopPropagation()
+            openDetail()
+          }}
+        >
           View details
         </button>
       </div>

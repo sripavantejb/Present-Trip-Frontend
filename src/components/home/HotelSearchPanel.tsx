@@ -50,7 +50,9 @@ export function HotelSearchPanel() {
       const result = await searchHotels({
         CheckInDate: checkIn,
         CheckOutDate: checkOut,
+        CountryCode: selectedCity.countryCode ?? 'IN',
         CityId: cityId,
+        RequestType: 'International',
         NoOfRooms: String(rooms),
         RoomGuests: roomGuests,
       })

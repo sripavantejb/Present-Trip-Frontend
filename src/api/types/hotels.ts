@@ -13,6 +13,8 @@ export type HotelSearchRequest = {
   PreferredCurrency?: string
   GuestNationality?: string
   RequestType?: string
+  /** SRDV Hotels-v2 docs label; mapped to RequestType on the backend for v8 REST */
+  PropertyType?: string
   NoOfRooms: string
   RoomGuests: RoomGuest[]
   PreferredHotel?: string
@@ -72,6 +74,13 @@ export type HotelFacility = {
   IcoFont?: string
 }
 
+export type HotelAttraction = {
+  key?: string
+  value?: string
+  Name?: string
+  Detail?: string[]
+}
+
 export type HotelDetail = {
   hotelCode: string
   hotelName: string
@@ -81,7 +90,7 @@ export type HotelDetail = {
   gallery: string[]
   description: HotelDescriptionSection[]
   otherDetails: string
-  attractions: unknown[]
+  attractions: HotelAttraction[]
   facilities: HotelFacility[]
   policy: string
   specialInstructions: string
@@ -109,6 +118,81 @@ export type HotelInfoResponse = {
   srdvIndex: string
   resultIndex: string
   hotel: HotelDetail
+}
+
+export type HotelRoomsRequest = HotelInfoRequest
+
+export type HotelRoomCancellationPolicy = {
+  Charge: number
+  ChargeType: number
+  Currency: string
+  FromDate: string
+  ToDate: string
+}
+
+export type HotelRoomAmenity = {
+  Name: string
+  FontAwesome?: string
+  IcoFont?: string
+}
+
+export type HotelRoomPrice = {
+  currencyCode: string
+  roomPrice: number
+  tax: number
+  offeredPrice: number
+  offeredPriceRoundedOff: number
+  publishedPrice: number
+  publishedPriceRoundedOff: number
+}
+
+export type HotelRoomItem = {
+  categoryName: string
+  roomIndex: string
+  roomId: string
+  roomTypeName: string
+  roomTypeCode: string
+  roomTypeCategory: string
+  roomStatus: string
+  ratePlanCode: string
+  ratePlan: string
+  mealPlan: string
+  description: string
+  displayPrice: number
+  price: HotelRoomPrice
+  amenities: HotelRoomAmenity[]
+  images: string[]
+  cancellationPolicies: HotelRoomCancellationPolicy[]
+  lastCancellationDate: string
+  fullRefundAllowed: boolean
+  isPanMandatory: boolean
+  childCount: number
+  dayRates: { Date: string; Amount: number }[]
+}
+
+export type HotelRoomCategory = {
+  categoryName: string
+  rooms: HotelRoomItem[]
+}
+
+export type HotelRoomsResponse = {
+  traceId: string
+  srdvType: string
+  srdvIndex: string
+  resultIndex: string
+  isPolicyPerStay: boolean
+  isUnderCancellationAllowed: boolean
+  categories: HotelRoomCategory[]
+  count: number
+}
+
+export type SelectedHotelRoom = {
+  hotelCode: string
+  traceId: string
+  srdvType: string
+  srdvIndex: string
+  resultIndex: string
+  room: HotelRoomItem
 }
 
 export type ApiSuccess<T> = {
