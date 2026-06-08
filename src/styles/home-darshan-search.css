@@ -1,0 +1,361 @@
+/**
+ * Homepage — Darshan search tab (extends shared pt-home__grid--mock)
+ */
+
+.pt-home__darshanSections {
+  width: 100%;
+  background: var(--color-canvas);
+  border-top: 1px solid var(--color-hairline-soft);
+}
+
+.pt-home--darshan-active .pt-home__hero {
+  padding-bottom: 0;
+}
+
+.pt-home__darshanSections .darshan__section--post {
+  padding-top: clamp(48px, 7vw, 72px);
+  padding-bottom: clamp(48px, 7vw, 72px);
+}
+
+.pt-home__card--darshan {
+  overflow: hidden;
+}
+
+.pt-home__card--darshan:has(.pt-home__darshanPanel--open) {
+  overflow: visible;
+}
+
+.pt-home__cardWrap.searchCardWrapper:has(.pt-home__darshanPanel--open) {
+  z-index: 30;
+}
+
+.pt-home__darshanPanel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.pt-home__darshanSearchBody {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Plan pilgrimage — subtle utility row */
+.pt-home__darshanPromo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 14px 22px;
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid var(--color-hairline);
+  text-decoration: none;
+  color: inherit;
+  background: var(--color-surface-soft);
+  transition: background-color 0.2s ease;
+}
+
+.pt-home__darshanPromo:hover {
+  background: #fff5f7;
+}
+
+.pt-home__darshanPromoText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding-left: 10px;
+  border-left: 3px solid var(--color-primary);
+}
+
+.pt-home__darshanPromoText strong {
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+}
+
+.pt-home__darshanPromoText span {
+  font-size: var(--text-caption-sm);
+  color: var(--color-muted);
+}
+
+.pt-home__darshanPromoIcon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+/* Grid placement (layout matches Flights/Hotels mock) */
+.pt-home__darshanFields {
+  position: relative;
+  overflow: visible;
+}
+
+.pt-home__grid--darshan {
+  overflow: visible;
+}
+
+.pt-home__grid--darshan .pt-home__cell--darshan-temple {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  border-right: none;
+  border-bottom: 1px solid var(--pt-border);
+  align-items: center;
+}
+
+.pt-home__grid--darshan .pt-home__cell--darshan-date {
+  grid-column: 1;
+  grid-row: 2;
+  border-right: 1px solid var(--pt-border);
+  align-items: center;
+}
+
+.pt-home__grid--darshan .pt-home__cell--darshan-devotees {
+  grid-column: 2;
+  grid-row: 2;
+  align-items: center;
+}
+
+.pt-home__grid--darshan .pt-home__cell--active {
+  background: var(--color-surface-soft);
+  z-index: 3;
+}
+
+.pt-home__grid--darshan .dv2-cell__input {
+  display: block;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: var(--text-title-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+  line-height: 1.25;
+  outline: none;
+}
+
+.pt-home__grid--darshan .dv2-cell__input::placeholder {
+  color: var(--color-muted-soft);
+  font-weight: var(--weight-regular);
+}
+
+.pt-home__grid--darshan .pt-home__cellMain--placeholder {
+  color: var(--color-muted-soft);
+}
+
+.pt-home__grid--darshan .pt-home__cell:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Errors */
+.pt-home__darshanErrors {
+  padding: 10px 22px 0;
+  margin: 0;
+}
+
+.pt-home__darshanErrors p {
+  margin: 0 0 4px;
+  font-size: var(--text-caption-sm);
+  color: var(--color-primary-error);
+}
+
+/* Popovers */
+.pt-home__darshanPopover {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 6px);
+  background: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.pt-home__darshanPopover--list {
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.pt-home__darshanPopover--list .dv2-combobox__option {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.pt-home__darshanPopover--calendar {
+  left: 0;
+  width: min(300px, calc(100vw - 48px));
+}
+
+.pt-home__cell--darshan-devotees .pt-home__darshanPopover--devotees {
+  left: auto;
+  right: 0;
+  width: min(280px, calc(100vw - 48px));
+}
+
+.pt-home__darshanPopover--devotees .dv2-panel,
+.pt-home__darshanPopover--calendar .dv2-cal.dv2-panel {
+  position: static;
+  width: 100%;
+  margin: 0;
+  padding: 14px 16px;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Popular row */
+.pt-home__darshanPopular {
+  padding: 16px 22px;
+  border-top: 1px solid var(--color-hairline-soft);
+}
+
+.pt-home__darshanPopularLabel {
+  display: block;
+  margin: 0 0 10px;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pt-home__darshanChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pt-home__darshanChip {
+  padding: 8px 16px;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-full);
+  background: var(--color-canvas);
+  font-family: inherit;
+  font-size: var(--text-caption-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.pt-home__darshanChip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: #fff5f7;
+}
+
+/* CTA — same rhythm as other tabs, brand color when active */
+.pt-home__darshanCta.pt-home__searchCtaInner {
+  padding: 16px 22px 20px;
+}
+
+.pt-home--darshan-active .pt-home__darshanCta .pt-home__searchBtn {
+  width: 100%;
+  max-width: none;
+  min-height: 48px;
+  background: var(--color-primary);
+  font-weight: var(--weight-semibold);
+}
+
+.pt-home--darshan-active .pt-home__darshanCta .pt-home__searchBtn:hover {
+  background: var(--color-primary-active);
+}
+
+/* Disclaimer */
+.pt-home__darshanNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 14px 22px 20px;
+  font-size: var(--text-caption-sm);
+  line-height: 1.45;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-hairline-soft);
+  background: var(--color-surface-soft);
+}
+
+.pt-home__darshanNote svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-muted-soft);
+}
+
+/* Quick links when Darshan tab is active */
+.pt-home--darshan-active .pt-home__featureStripWrap .pt-home__secondaryNav--darshan {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 0;
+  padding: 6px 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.pt-home--darshan-active .pt-home__featureStripWrap .pt-home__secondaryNav--darshan::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .pt-home--darshan-active .pt-home__featureStripWrap .pt-home__secondaryNav--darshan .pt-home__secondaryLink {
+    flex: 1 1 0;
+    min-width: 0;
+    flex-direction: column;
+    padding: 10px 8px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .pt-home--darshan-active .pt-home__featureStripWrap .pt-home__secondaryNav--darshan .pt-home__secondaryLinkText {
+    white-space: normal;
+    max-width: 9rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .pt-home__grid--darshan {
+    grid-template-columns: 1fr;
+  }
+
+  .pt-home__grid--darshan .pt-home__cell--darshan-temple,
+  .pt-home__grid--darshan .pt-home__cell--darshan-date,
+  .pt-home__grid--darshan .pt-home__cell--darshan-devotees {
+    grid-column: 1;
+    border-right: none;
+  }
+
+  .pt-home__grid--darshan .pt-home__cell--darshan-temple {
+    grid-row: 1;
+    border-bottom: 1px solid var(--pt-border);
+  }
+
+  .pt-home__grid--darshan .pt-home__cell--darshan-date {
+    grid-row: 2;
+    border-bottom: 1px solid var(--pt-border);
+  }
+
+  .pt-home__grid--darshan .pt-home__cell--darshan-devotees {
+    grid-row: 3;
+  }
+
+  .pt-home__darshanPopover--calendar,
+  .pt-home__cell--darshan-devotees .pt-home__darshanPopover--devotees {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}

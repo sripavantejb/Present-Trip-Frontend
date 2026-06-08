@@ -17,8 +17,12 @@
 }
 
 .darshan__type-scroll {
-  overflow: visible;
-  padding-bottom: 12px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 14px 4px 16px;
+  margin: 0 -4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 .darshan__type-grid {
@@ -26,6 +30,7 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 24px;
   align-items: stretch;
+  min-width: 0;
 }
 
 .darshan__type-card {
@@ -60,11 +65,10 @@
   box-shadow:
     0 2px 4px rgba(15, 23, 42, 0.05),
     0 20px 48px rgba(255, 56, 92, 0.14);
-  transform: translateY(-4px);
 }
 
 .darshan__type-card--featured:hover {
-  transform: translateY(-6px);
+  transform: translateY(-3px);
   box-shadow:
     0 4px 8px rgba(15, 23, 42, 0.06),
     0 24px 56px rgba(255, 56, 92, 0.18);
@@ -339,11 +343,10 @@
   box-shadow:
     0 2px 4px rgba(15, 23, 42, 0.05),
     0 20px 48px rgba(255, 56, 92, 0.14);
-  transform: translateY(-4px);
 }
 
 .darshan__pkg-tier--popular:hover {
-  transform: translateY(-6px);
+  transform: translateY(-3px);
   box-shadow:
     0 4px 8px rgba(15, 23, 42, 0.06),
     0 24px 56px rgba(255, 56, 92, 0.18);
@@ -657,9 +660,9 @@
 }
 
 .darshan__section--stay .darshan__filter-bar {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(10px);
+  background: var(--color-canvas, #fff);
   border-bottom: 1px solid #eef2f6;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
 }
 
 .darshan__section--stay .darshan__filter-chip {
@@ -693,6 +696,8 @@
   margin-bottom: 8px;
   background: var(--color-canvas, #fff);
   border-bottom: 1px solid var(--color-hairline-soft, #ebebeb);
+  /* Opaque bar only — backdrop-filter blurs content scrolling underneath */
+  isolation: isolate;
 }
 
 .darshan__section--muted .darshan__filter-bar {
@@ -1633,16 +1638,21 @@
   margin-top: 28px;
 }
 
+@media (max-width: 1200px) {
+  .darshan__type-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1024px) {
   .darshan__type-grid {
-    grid-template-columns: repeat(5, minmax(260px, 1fr));
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    width: max(100%, min(240px * 5 + 24px * 4, 100%));
   }
 
   .darshan__type-card {
     scroll-snap-align: start;
+    min-width: 240px;
   }
 
   .darshan__pkg-tier-grid {
@@ -1680,7 +1690,7 @@
   }
 
   .darshan__filter-bar {
-    top: calc(var(--layout-header-height, 80px) - 8px);
+    top: var(--layout-header-height, 72px);
   }
 
   .darshan__tab-pills {

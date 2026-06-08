@@ -1,0 +1,150 @@
+.flight-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.flight-page__header {
+  margin-bottom: 24px;
+}
+
+.flight-page__title {
+  font-size: var(--text-display-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+  margin: 0 0 8px;
+}
+
+.flight-page__lead {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.flight-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-hairline-soft);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+}
+
+.flight-card + .flight-card {
+  margin-top: 16px;
+}
+
+.flight-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.flight-card__airline {
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+}
+
+.flight-card__meta {
+  color: var(--color-muted);
+  font-size: var(--text-body-sm);
+}
+
+.flight-card__price {
+  font-size: var(--text-display-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink);
+}
+
+.flight-btn {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 18px;
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
+.flight-btn--primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.flight-btn--secondary {
+  background: var(--color-surface-soft);
+  color: var(--color-ink);
+}
+
+.flight-form {
+  display: grid;
+  gap: 16px;
+}
+
+.flight-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.flight-field label {
+  display: block;
+  font-size: var(--text-caption-sm);
+  color: var(--color-muted);
+  margin-bottom: 6px;
+}
+
+.flight-field input,
+.flight-field select {
+  width: 100%;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font: inherit;
+}
+
+.flight-alert {
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.flight-alert--error {
+  background: #fff1f0;
+  color: var(--color-primary-error);
+}
+
+.flight-alert--info {
+  background: #f7f7ff;
+  color: var(--color-ink);
+}
+
+.flight-summary {
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.flight-steps {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.flight-step {
+  padding: 8px 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-soft);
+  color: var(--color-muted);
+  font-size: var(--text-caption-sm);
+}
+
+.flight-step--active {
+  background: rgba(255, 56, 92, 0.12);
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .flight-form__grid {
+    grid-template-columns: 1fr;
+  }
+}

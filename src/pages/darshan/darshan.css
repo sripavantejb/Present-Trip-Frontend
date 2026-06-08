@@ -88,8 +88,11 @@
 }
 
 .darshan__container {
-  width: min(1180px, 100% - clamp(32px, 6vw, 64px));
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--layout-max-content);
   margin-inline: auto;
+  padding-inline: var(--page-gutter, clamp(16px, 4vw, 40px));
 }
 
 /* Skip */
@@ -189,6 +192,83 @@
   z-index: 1;
   pointer-events: none;
   background: #ffffff;
+}
+
+/* Full-bleed temple illustration hero */
+.darshan__hero--photo {
+  min-height: clamp(520px, 72vh, 720px);
+}
+
+.darshan__hero--photo .darshan__hero-media--split {
+  inset: 0;
+  height: 100%;
+}
+
+.darshan__hero-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% center;
+}
+
+.darshan__hero--photo .darshan__hero-bg {
+  background: transparent;
+}
+
+.darshan__hero--photo .darshan__hero-bg-shine {
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(255, 255, 255, 0.82) 34%,
+    rgba(255, 255, 255, 0.35) 52%,
+    transparent 68%
+  );
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+.darshan__hero--photo .darshan__hero-bg-lines {
+  display: none;
+}
+
+.darshan__hero--photo .darshan__hero-white-land {
+  display: none;
+}
+
+.darshan__hero--photo .darshan__hero-core--split {
+  grid-template-columns: minmax(0, min(520px, 100%));
+}
+
+.darshan__hero--photo .darshan__hero-left {
+  margin-bottom: clamp(28px, 5vh, 56px);
+}
+
+@media (min-width: 1025px) {
+  .darshan__hero--photo .darshan__hero-core--split .darshan__hero-left {
+    margin-bottom: clamp(48px, 6vh, 88px);
+  }
+}
+
+@media (max-width: 768px) {
+  .darshan__hero--photo {
+    min-height: clamp(480px, 78vh, 640px);
+  }
+
+  .darshan__hero-photo-img {
+    object-position: 62% 42%;
+  }
+
+  .darshan__hero--photo .darshan__hero-bg-shine {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.78) 42%,
+      rgba(255, 255, 255, 0.45) 58%,
+      transparent 72%
+    );
+  }
 }
 
 .darshan__skip--split {
@@ -1431,6 +1511,13 @@ select.darshan__input--lite:focus-visible {
 @media (max-width: 1024px) {
   .darshan__hero-core--split {
     grid-template-columns: 1fr;
+    gap: clamp(24px, 4vw, 40px);
+    align-items: stretch;
+  }
+
+  .darshan__hero-core--split .darshan__hero-left {
+    margin-bottom: 0;
+    align-self: stretch;
   }
 
   .darshan__hero-left {
@@ -1445,10 +1532,12 @@ select.darshan__input--lite:focus-visible {
   .darshan__hero-right {
     order: 2;
     min-height: 0;
+    justify-content: center;
   }
 
   .darshan__hero-temple-wrap {
     min-height: 0;
+    transform: none;
   }
 
   .darshan__search-tabs-lite {
@@ -1559,7 +1648,7 @@ select.darshan__input--lite:focus-visible {
 /* Sections */
 #darshan-main {
   background-color: #fff;
-  overflow-x: visible;
+  overflow-x: clip;
 }
 
 .darshan__section {
@@ -1938,11 +2027,11 @@ select.darshan__input--lite:focus-visible {
   display: none;
 }
 
-.darshan__packages-pin {
-  position: sticky;
-  top: clamp(72px, 10vh, 96px);
-  z-index: 2;
-}
+  .darshan__packages-pin {
+    position: sticky;
+    top: calc(var(--layout-header-height, 72px) + 12px);
+    z-index: 2;
+  }
 
 .darshan__packages-viewport {
   overflow: hidden;

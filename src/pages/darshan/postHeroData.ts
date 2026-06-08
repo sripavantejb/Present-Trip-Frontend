@@ -1,5 +1,7 @@
 /** Mock content for post-hero Darshan sections (sections 1–9) */
 
+import { STAY_IMAGES, TRANSPORT_IMAGES, TRENDING_IMAGES } from '../../features/darshan/data/images'
+
 export type SlotStatus = 'available' | 'filling' | 'full'
 export type WaitLevel = 'short' | 'moderate' | 'long'
 
@@ -218,8 +220,8 @@ export const ACCOMMODATION_LISTINGS: AccommodationListing[] = [
     amenities: ['AC', 'Parking', 'Veg meals', 'Hot water'],
     pricePerNight: '₹1,850',
     availability: '3 rooms left',
-    imageUrl: '/darshan/stays/a1.jpg',
-    imageAlt: 'Clean hotel bedroom with AC',
+    imageUrl: STAY_IMAGES.a1.url,
+    imageAlt: STAY_IMAGES.a1.alt,
   },
   {
     id: 'a2',
@@ -234,8 +236,8 @@ export const ACCOMMODATION_LISTINGS: AccommodationListing[] = [
     amenities: ['Non-AC', 'Veg meals', 'Locker assist'],
     pricePerNight: '₹350',
     availability: 'Quota release weekly',
-    imageUrl: '/darshan/stays/a2.jpg',
-    imageAlt: 'South Indian temple architecture near Tirumala',
+    imageUrl: STAY_IMAGES.a2.url,
+    imageAlt: STAY_IMAGES.a2.alt,
   },
   {
     id: 'a3',
@@ -250,8 +252,8 @@ export const ACCOMMODATION_LISTINGS: AccommodationListing[] = [
     amenities: ['Non-AC', 'Veg meals', '24hr hot water'],
     pricePerNight: '₹450',
     availability: 'Available',
-    imageUrl: '/darshan/stays/a3.jpg',
-    imageAlt: 'Bright simple dharamshala room',
+    imageUrl: STAY_IMAGES.a3.url,
+    imageAlt: STAY_IMAGES.a3.alt,
   },
   {
     id: 'a4',
@@ -266,8 +268,8 @@ export const ACCOMMODATION_LISTINGS: AccommodationListing[] = [
     amenities: ['AC', 'Parking', 'Veg meals', 'Hot water'],
     pricePerNight: '₹4,200',
     availability: '5 rooms left',
-    imageUrl: '/darshan/stays/a4.jpg',
-    imageAlt: 'Upscale hotel suite interior',
+    imageUrl: STAY_IMAGES.a4.url,
+    imageAlt: STAY_IMAGES.a4.alt,
   },
   {
     id: 'a5',
@@ -282,8 +284,8 @@ export const ACCOMMODATION_LISTINGS: AccommodationListing[] = [
     amenities: ['AC', 'Parking', 'Veg meals', 'Hot water'],
     pricePerNight: '₹5,800',
     availability: 'Weekend filling fast',
-    imageUrl: '/darshan/stays/a5.jpg',
-    imageAlt: 'Hillside resort pool and lounge',
+    imageUrl: STAY_IMAGES.a5.url,
+    imageAlt: STAY_IMAGES.a5.alt,
   },
   {
     id: 'a6',
@@ -298,8 +300,8 @@ export const ACCOMMODATION_LISTINGS: AccommodationListing[] = [
     amenities: ['AC', 'Veg meals', 'Hot water'],
     pricePerNight: '₹1,200',
     availability: 'Available',
-    imageUrl: '/darshan/stays/a6.jpg',
-    imageAlt: 'Comfortable mid-range hotel room',
+    imageUrl: STAY_IMAGES.a6.url,
+    imageAlt: STAY_IMAGES.a6.alt,
   },
 ]
 
@@ -311,8 +313,8 @@ export const PRIVATE_VEHICLES: PrivateVehicleOption[] = [
     ac: true,
     priceRange: '₹12–₹15/km',
     idealFor: 'Families',
-    imageUrl: '/darshan/transport/v1.jpg',
-    imageAlt: 'White sedan cab for Tirupati trips',
+    imageUrl: TRANSPORT_IMAGES.v1.url,
+    imageAlt: TRANSPORT_IMAGES.v1.alt,
   },
   {
     id: 'v2',
@@ -321,8 +323,8 @@ export const PRIVATE_VEHICLES: PrivateVehicleOption[] = [
     ac: true,
     priceRange: '₹18–₹22/km',
     idealFor: 'Group pilgrimages',
-    imageUrl: '/darshan/transport/v2.jpg',
-    imageAlt: 'Tempo traveller van for group pilgrimage',
+    imageUrl: TRANSPORT_IMAGES.v2.url,
+    imageAlt: TRANSPORT_IMAGES.v2.alt,
   },
   {
     id: 'v3',
@@ -331,8 +333,8 @@ export const PRIVATE_VEHICLES: PrivateVehicleOption[] = [
     ac: true,
     priceRange: '₹20–₹25/km',
     idealFor: 'VIP trips',
-    imageUrl: '/darshan/transport/v3.jpg',
-    imageAlt: 'Luxury SUV for VIP temple travel',
+    imageUrl: TRANSPORT_IMAGES.v3.url,
+    imageAlt: TRANSPORT_IMAGES.v3.alt,
   },
   {
     id: 'v4',
@@ -341,8 +343,8 @@ export const PRIVATE_VEHICLES: PrivateVehicleOption[] = [
     ac: true,
     priceRange: '₹28–₹35/km',
     idealFor: 'Large group pilgrimages',
-    imageUrl: '/darshan/transport/v4.jpg',
-    imageAlt: 'Mini coach bus for large pilgrim groups',
+    imageUrl: TRANSPORT_IMAGES.v4.url,
+    imageAlt: TRANSPORT_IMAGES.v4.alt,
   },
 ]
 
@@ -625,8 +627,8 @@ export const TRENDING_TEMPLES: TrendingTemple[] = [
     location: 'Tirumala, Andhra Pradesh',
     bookings: 12480,
     changePercent: 18,
-    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4a00b9bd4d81?w=120&h=120&fit=crop',
-    imageAlt: 'Tirumala temple gopuram',
+    imageUrl: TRENDING_IMAGES.tirupati.url,
+    imageAlt: TRENDING_IMAGES.tirupati.alt,
   },
   {
     rank: 2,
@@ -635,8 +637,8 @@ export const TRENDING_TEMPLES: TrendingTemple[] = [
     location: 'Shirdi, Maharashtra',
     bookings: 8920,
     changePercent: 12,
-    imageUrl: 'https://images.unsplash.com/photo-1605647540924-852290f6b0a5?w=120&h=120&fit=crop',
-    imageAlt: 'Shirdi temple',
+    imageUrl: TRENDING_IMAGES.shirdi.url,
+    imageAlt: TRENDING_IMAGES.shirdi.alt,
   },
   {
     rank: 3,
@@ -645,8 +647,8 @@ export const TRENDING_TEMPLES: TrendingTemple[] = [
     location: 'Katra, Jammu & Kashmir',
     bookings: 7650,
     changePercent: -4,
-    imageUrl: 'https://images.unsplash.com/photo-1548013146-7249f0bb9e9f?w=120&h=120&fit=crop',
-    imageAlt: 'Vaishno Devi hills',
+    imageUrl: TRENDING_IMAGES.vaishnoDevi.url,
+    imageAlt: TRENDING_IMAGES.vaishnoDevi.alt,
   },
   {
     rank: 4,
@@ -655,7 +657,7 @@ export const TRENDING_TEMPLES: TrendingTemple[] = [
     location: 'Puri, Odisha',
     bookings: 5420,
     changePercent: 8,
-    imageUrl: 'https://images.unsplash.com/photo-1569163139394-de4798aa62b4?w=120&h=120&fit=crop',
-    imageAlt: 'Jagannath temple',
+    imageUrl: TRENDING_IMAGES.puri.url,
+    imageAlt: TRENDING_IMAGES.puri.alt,
   },
 ]

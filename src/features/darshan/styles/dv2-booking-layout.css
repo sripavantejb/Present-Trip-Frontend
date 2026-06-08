@@ -1,0 +1,341 @@
+/* Darshan booking / confirmation / search — grid-aligned flow */
+
+.dv2-flow {
+  width: 100%;
+  padding-block: var(--space-lg) var(--space-xl);
+  background: var(--color-canvas);
+}
+
+.dv2-flow__shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.dv2-flow__top {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--space-md) var(--space-lg);
+}
+
+.dv2-flow__top .dv2-back-btn {
+  margin: 0;
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+
+.dv2-flow__top .dv2-progress {
+  grid-column: 2;
+  width: 100%;
+  margin: 0;
+}
+
+.dv2-flow__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  min-width: 0;
+}
+
+.dv2-flow__title {
+  margin: 0;
+}
+
+.dv2-flow__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.dv2-flow__actions .ds-btn--block {
+  min-height: 48px;
+}
+
+/* Progress — full width of content column */
+.dv2-flow .dv2-progress {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(32px, 56px) minmax(0, 1fr) minmax(32px, 56px) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+.dv2-flow .dv2-progress__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  max-width: none;
+}
+
+.dv2-flow .dv2-progress__line {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  align-self: center;
+}
+
+.dv2-flow .dv2-progress__label {
+  font-size: var(--text-caption-sm);
+  white-space: nowrap;
+}
+
+/* Summary card */
+.dv2-flow .dv2-summary-card {
+  margin: 0;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  background: var(--color-canvas);
+}
+
+.dv2-summary-card__temple {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--text-title-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+  line-height: 1.3;
+}
+
+.dv2-summary-card__loc {
+  margin: 0 0 var(--space-md);
+  font-size: var(--text-body-sm);
+  color: var(--color-muted);
+}
+
+.dv2-flow .dv2-summary-card__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-md) var(--space-lg);
+  align-items: baseline;
+  padding: var(--space-sm) 0;
+  font-size: var(--text-body-sm);
+}
+
+.dv2-flow .dv2-summary-card__row > span:first-child {
+  color: var(--color-muted);
+}
+
+.dv2-flow .dv2-summary-card__row > span:last-child {
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+  text-align: right;
+}
+
+.dv2-summary-card__row--total > span:last-child {
+  font-size: var(--text-display-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+}
+
+.dv2-flow .dv2-summary-card__divider {
+  margin: var(--space-md) 0;
+  border-top: 1px dashed var(--color-hairline);
+}
+
+/* Cards in flow */
+.dv2-flow .dv2-card {
+  margin: 0;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.dv2-flow .dv2-card__title {
+  margin: 0 0 var(--space-md);
+  font-size: var(--text-title-md);
+  font-weight: var(--weight-semibold);
+}
+
+.dv2-flow .dv2-field {
+  margin-bottom: var(--space-md);
+}
+
+.dv2-flow .dv2-field:last-child {
+  margin-bottom: 0;
+}
+
+.dv2-flow .dv2-field__input-wrap {
+  height: auto;
+  min-height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  align-items: stretch;
+}
+
+.dv2-field__required {
+  color: var(--color-primary-error);
+}
+
+.dv2-flow .dv2-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.dv2-flow .dv2-field__input,
+.dv2-flow .dv2-field__input-wrap > input,
+.dv2-flow .dv2-field__input-wrap > select,
+.dv2-flow .dv2-field__input-wrap > textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-md) var(--space-base);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body-sm);
+  background: var(--color-canvas);
+}
+
+.dv2-flow .dv2-coupon-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.dv2-flow .dv2-coupon-input {
+  width: 100%;
+  padding: var(--space-md) var(--space-base);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body-sm);
+}
+
+.dv2-flow .dv2-contact-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-sm);
+  align-items: start;
+}
+
+.dv2-flow .dv2-check-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 44px;
+  font-size: var(--text-body-sm);
+}
+
+.dv2-flow .dv2-error-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: var(--text-caption-sm);
+  color: var(--color-primary-error);
+}
+
+.dv2-flow .dv2-payment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.dv2-flow .dv2-pay-toggle {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  background: var(--color-canvas);
+  padding: var(--space-md) var(--space-lg);
+  font: inherit;
+  box-shadow: var(--shadow-card);
+}
+
+.dv2-flow .dv2-secure-note {
+  text-align: center;
+  font-size: var(--text-caption-sm);
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* Confirmation */
+.dv2-flow--confirm .dv2-flow__shell {
+  align-items: center;
+  text-align: center;
+  padding-block: var(--space-xl);
+}
+
+.dv2-flow--confirm .dv2-confirm__icon {
+  color: var(--color-ink);
+  margin-bottom: var(--space-md);
+}
+
+.dv2-flow--confirm .dv2-flow__title {
+  margin-bottom: var(--space-lg);
+}
+
+.dv2-flow--confirm .dv2-confirm__ref {
+  font-weight: var(--weight-bold);
+  margin: 0 0 var(--space-lg);
+  font-size: var(--text-body-sm);
+}
+
+.dv2-flow--confirm .dv2-summary-card {
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+}
+
+.dv2-flow--confirm .dv2-confirm__actions {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.dv2-flow--confirm .dv2__body {
+  margin: 0 0 var(--space-xs);
+  max-width: 400px;
+}
+
+.dv2-flow--confirm .dv2-confirm__actions a.ds-btn {
+  text-decoration: none;
+  text-align: center;
+}
+
+.dv2-flow--search .dv2-flow__shell {
+  gap: var(--space-xl);
+}
+
+.dv2-flow--search .dv2-page__head {
+  margin: 0;
+}
+
+.dv2-flow--search .dv2-page__head .ds-display-lg {
+  margin: 0 0 var(--space-sm);
+}
+
+.dv2-flow--search .dv2-page__head .ds-body-sm {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--color-muted);
+}
+
+@media (max-width: 639px) {
+  .dv2-flow__top {
+    grid-template-columns: 1fr;
+  }
+
+  .dv2-flow__top .dv2-back-btn {
+    grid-row: auto;
+  }
+
+  .dv2-flow__top .dv2-progress {
+    grid-column: 1;
+  }
+
+  .dv2-flow .dv2-progress__label {
+    font-size: 10px;
+  }
+
+  .dv2-flow .dv2-payment-grid {
+    grid-template-columns: 1fr;
+  }
+}

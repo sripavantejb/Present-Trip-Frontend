@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
+import { HUB_IMAGES } from '../../features/darshan/data/images'
 import './pilgrimage-wizard.css'
 
 const STEPS = ['Choose Hub', 'Select Temples', 'Plan Schedule', 'Summary'] as const
 
 const HUBS = [
-  { id: 'tirupati', name: 'Tirupati', state: 'Andhra Pradesh', temples: 12, image: 'https://images.unsplash.com/photo-1582510003544-4a00b9bd4d81?w=280&h=160&fit=crop' },
-  { id: 'shirdi', name: 'Shirdi', state: 'Maharashtra', temples: 6, image: 'https://images.unsplash.com/photo-1605647540924-852290f6b0a5?w=280&h=160&fit=crop' },
-  { id: 'varanasi', name: 'Varanasi', state: 'Uttar Pradesh', temples: 18, image: 'https://images.unsplash.com/photo-1548013146-7249f0bb9e9f?w=280&h=160&fit=crop' },
-  { id: 'puri', name: 'Puri', state: 'Odisha', temples: 8, image: 'https://images.unsplash.com/photo-1569163139394-de4798aa62b4?w=280&h=160&fit=crop' },
+  { id: 'tirupati', name: 'Tirupati', state: 'Andhra Pradesh', temples: 12, image: HUB_IMAGES.tirupati },
+  { id: 'shirdi', name: 'Shirdi', state: 'Maharashtra', temples: 6, image: HUB_IMAGES.shirdi },
+  { id: 'varanasi', name: 'Varanasi', state: 'Uttar Pradesh', temples: 18, image: HUB_IMAGES.varanasi },
+  { id: 'puri', name: 'Puri', state: 'Odisha', temples: 8, image: HUB_IMAGES.puri },
 ] as const
 
 const TEMPLE_GROUPS = [
@@ -31,47 +32,50 @@ const TEMPLE_GROUPS = [
   },
 ] as const
 
-const EXTEND_CITIES = [
-  { name: 'Chennai', km: 135 },
-  { name: 'Bangalore', km: 250 },
-  { name: 'Hyderabad', km: 550 },
-]
+const DEFAULT_ITINERARY = [
+  { time: '5:00 AM', label: 'Depart stay — Alipiri / Tirumala route' },
+  { time: '6:30 AM', label: 'Sarva Darshan queue entry (mock slot)' },
+  { time: '11:00 AM', label: 'Prasadam & rest break' },
+  { time: '2:00 PM', label: 'Padmavathi Ammavari (if selected)' },
+  { time: '6:00 PM', label: 'Return to Tirupati town' },
+] as const
 
 type Props = {
   onClose: () => void
-  /** Full-screen page mode — no scrim overlay */
+  /** Full-page flow inside SiteLayout (keeps site header / mobile nav) */
+  embedded?: boolean
+  /** @deprecated Use `embedded` — kept for any legacy callers */
   fullscreen?: boolean
 }
 
-export function PilgrimageWizardModal({ onClose, fullscreen = false }: Props) {
+export function PilgrimageWizardModal({ onClose, embedded, fullscreen }: Props) {
+  const isEmbedded = embedded ?? fullscreen ?? false
   const [step, setStep] = useState(0)
-  const [hubId, setHubId] = useState<string | null>(null)
-  const [selectedTemples, setSelectedTemples] = useState<Set<string>>(new Set(['wt1', 'sd1']))
+  const [hubId, setHubId] = useState<string | null>('tirupati')
+  const [selected, setSelected] = useState<Set<string>>(() => new Set(['wt1', 'sd1']))
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+    if (isEmbedded) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
     }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [onClose])
+  }, [isEmbedded])
 
-  const templeCount = selectedTemples.size
-  const estDays = Math.max(1, Math.ceil(templeCount / 2))
-
-  const itinerary = useMemo(
-    () => [
-      { time: '5:00 AM', title: 'Depart hotel', detail: 'Light breakfast recommended' },
-      { time: '6:30 AM', title: 'Special Entry Darshan', detail: 'Pre-booked slot at Tirumala' },
-      { time: '10:00 AM', title: 'Prasadam & Laddu counter', detail: 'Collect at specified counter' },
-      { time: '2:00 PM', title: 'Padmavathi Temple', detail: 'Tiruchanur — separate queue' },
-      { time: '6:00 PM', title: 'Return to hotel', detail: 'Rest before evening aarti' },
-    ],
-    [],
-  )
+  const hub = HUBS.find((h) => h.id === hubId)
+  const selectedNames = useMemo(() => {
+    const names: string[] = []
+    for (const group of TEMPLE_GROUPS) {
+      for (const t of group.temples) {
+        if (selected.has(t.id)) names.push(t.name)
+      }
+    }
+    return names
+  }, [selected])
 
   const toggleTemple = (id: string) => {
-    setSelectedTemples((prev) => {
+    setSelected((prev) => {
       const next = new Set(prev)
       if (next.has(id)) next.delete(id)
       else next.add(id)
@@ -79,182 +83,194 @@ export function PilgrimageWizardModal({ onClose, fullscreen = false }: Props) {
     })
   }
 
-  const canNext = step === 0 ? hubId !== null : step === 1 ? templeCount > 0 : true
+  const canNext =
+    step === 0 ? Boolean(hubId) : step === 1 ? selected.size > 0 : true
+
+  const goNext = () => {
+    if (step < STEPS.length - 1 && canNext) setStep((s) => s + 1)
+  }
+
+  const goBack = () => {
+    if (step > 0) setStep((s) => s - 1)
+  }
+
+  const wizardClass = `pil-wizard${isEmbedded ? ' pil-wizard--embedded' : ''}`
 
   return (
     <>
-      {!fullscreen ? (
+      {!isEmbedded ? (
         <button type="button" className="pil-wizard__scrim" aria-label="Close wizard" onClick={onClose} />
       ) : null}
       <div
-        className={`pil-wizard${fullscreen ? ' pil-wizard--fullscreen' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="wizard-title"
+        className={wizardClass}
+        role={isEmbedded ? undefined : 'dialog'}
+        aria-modal={isEmbedded ? undefined : true}
+        aria-labelledby="pil-wizard-title"
       >
         <header className="pil-wizard__head">
-          <h2 id="wizard-title" className="pil-section__title" style={{ margin: 0, fontSize: '1.25rem' }}>
-            Plan My Pilgrimage
-          </h2>
-          <button type="button" className="pil-wizard__close" onClick={onClose} aria-label="Close">
-            ×
-          </button>
+          <div className="pil-wizard__head-inner">
+            <h2 id="pil-wizard-title" className="pil-wizard__title">
+              Plan My Pilgrimage
+            </h2>
+            <button type="button" className="pil-wizard__close" onClick={onClose} aria-label="Close">
+              ×
+            </button>
+          </div>
         </header>
 
-        <div className="pil-wizard__stepper" aria-label="Progress">
-          {STEPS.map((label, i) => (
-            <div
-              key={label}
-              className={`pil-wizard__step${i === step ? ' pil-wizard__step--active' : ''}${i < step ? ' pil-wizard__step--done' : ''}`}
-            >
-              {i + 1}. {label}
-            </div>
-          ))}
-        </div>
+        <nav className="pil-wizard__stepper" aria-label="Wizard steps">
+          <div className="pil-wizard__stepper-inner">
+            <ol className="pil-wizard__stepper-list">
+              {STEPS.map((label, i) => (
+                <li
+                  key={label}
+                  className={`pil-wizard__step-item${i === step ? ' pil-wizard__step-item--active' : ''}${i < step ? ' pil-wizard__step-item--done' : ''}`}
+                  aria-current={i === step ? 'step' : undefined}
+                >
+                  <span className="pil-wizard__step-index">{i + 1}</span>
+                  <span className="pil-wizard__step-label">{label}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </nav>
 
         <div className="pil-wizard__body">
-          {step === 0 && (
-            <div className="pil-wizard__hub-grid">
-              {HUBS.map((h) => (
-                <button
-                  key={h.id}
-                  type="button"
-                  className={`pil-wizard__hub-card pil-card${hubId === h.id ? ' pil-wizard__hub-card--selected' : ''}`}
-                  onClick={() => setHubId(h.id)}
-                >
-                  <img className="pil-wizard__hub-img" src={h.image} alt="" />
-                  <div className="pil-wizard__hub-info">
-                    <p className="pil-wizard__hub-name">{h.name}</p>
-                    <p className="pil-wizard__hub-meta">
-                      {h.state} · {h.temples} temples
-                    </p>
-                  </div>
-                </button>
-              ))}
-            </div>
-          )}
-
-          {step === 1 && (
-            <>
-              {TEMPLE_GROUPS.map((g) => (
-                <div key={g.label} className="pil-wizard__group">
-                  <h3 className="pil-wizard__group-title">{g.label}</h3>
-                  {g.temples.map((t) => (
-                    <label key={t.id} className="pil-wizard__temple-row">
-                      <input
-                        type="checkbox"
-                        checked={selectedTemples.has(t.id)}
-                        onChange={() => toggleTemple(t.id)}
-                      />
-                      <div>
-                        <strong>
-                          {t.name}
-                          {'mustVisit' in t && t.mustVisit ? (
-                            <span className="pil-badge pil-badge--brand" style={{ marginLeft: 8 }}>
-                              Must Visit
-                            </span>
-                          ) : null}
-                        </strong>
-                        <p className="pil-wizard__hub-meta" style={{ margin: '4px 0 0' }}>
-                          {t.desc}
+          <div className="pil-wizard__content">
+            {step === 0 ? (
+              <>
+                <p className="pil-wizard__step-intro">Choose a pilgrimage hub to plan temples, schedule, and travel.</p>
+                <div className="pil-wizard__hub-grid">
+                  {HUBS.map((h) => (
+                    <button
+                      key={h.id}
+                      type="button"
+                      className={`pil-wizard__hub-card${hubId === h.id ? ' pil-wizard__hub-card--selected' : ''}`}
+                      onClick={() => setHubId(h.id)}
+                      aria-pressed={hubId === h.id}
+                    >
+                      <img src={h.image} alt="" className="pil-wizard__hub-img" loading="lazy" decoding="async" />
+                      <div className="pil-wizard__hub-info">
+                        <p className="pil-wizard__hub-name">{h.name}</p>
+                        <p className="pil-wizard__hub-meta">
+                          {h.state} · {h.temples} temples
                         </p>
                       </div>
-                    </label>
+                    </button>
                   ))}
                 </div>
-              ))}
-              <div className="pil-wizard__sticky-bar">
-                {templeCount} temples · ~{estDays} days
-              </div>
-            </>
-          )}
+              </>
+            ) : null}
 
-          {step === 2 && (
-            <>
-              <p className="pil-wizard__hub-meta" style={{ marginTop: 0 }}>
-                Auto-generated itinerary for your selection
-              </p>
-              {itinerary.map((item) => (
-                <div key={item.time} className="pil-wizard__itinerary-item">
-                  <span className="pil-wizard__itinerary-time">{item.time}</span>
-                  <div>
-                    <strong>{item.title}</strong>
-                    <p className="pil-wizard__hub-meta" style={{ margin: '4px 0 0' }}>
-                      {item.detail}
-                    </p>
+            {step === 1 ? (
+              <>
+                <p className="pil-wizard__step-intro">
+                  Select temples near {hub?.name ?? 'your hub'} for your itinerary.
+                </p>
+                {TEMPLE_GROUPS.map((group) => (
+                  <div key={group.label} className="pil-wizard__group">
+                    <h3 className="pil-wizard__group-title">{group.label}</h3>
+                    <div className="pil-wizard__temple-list">
+                      {group.temples.map((t) => (
+                        <label key={t.id} className="pil-wizard__temple-row">
+                          <input
+                            type="checkbox"
+                            checked={selected.has(t.id)}
+                            onChange={() => toggleTemple(t.id)}
+                          />
+                          <span>
+                            <span className="pil-wizard__temple-name">
+                              {t.name}
+                              {'mustVisit' in t && t.mustVisit ? ' · Must visit' : ''}
+                            </span>
+                            <span className="pil-wizard__hub-meta">{t.desc}</span>
+                          </span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
-              <aside className="pil-wizard__tips">
-                <h4>Smart Tips</h4>
-                <ul>
-                  <li>Carry original ID matching your darshan booking</li>
-                  <li>Mobile phones are not allowed inside the main temple</li>
-                  <li>Book hill transport in advance on peak festival days</li>
-                </ul>
-              </aside>
-            </>
-          )}
-
-          {step === 3 && (
-            <>
-              <h3 className="pil-section__title" style={{ fontSize: 'var(--text-display-md)', marginTop: 0 }}>
-                Your pilgrimage overview
-              </h3>
-              <p>
-                <strong>{HUBS.find((h) => h.id === hubId)?.name ?? 'Tirupati'}</strong> · {templeCount} temples · ~{estDays}{' '}
-                days
-              </p>
-              <ul className="pil-wizard__hub-meta" style={{ paddingLeft: '1.25rem' }}>
-                {Array.from(selectedTemples).map((id) => {
-                  const allTemples = TEMPLE_GROUPS.flatMap((g) => [...g.temples])
-                  const t = allTemples.find((x) => x.id === id)
-                  return t ? <li key={id}>{t.name}</li> : null
-                })}
-              </ul>
-              <h4 style={{ marginTop: 'var(--space-lg)', fontWeight: 'var(--weight-semibold)' }}>Extend Your Trip?</h4>
-              <div className="pil-wizard__extend-chips">
-                {EXTEND_CITIES.map((c) => (
-                  <span key={c.name} className="pil-wizard__chip">
-                    {c.name} · {c.km} km
-                  </span>
                 ))}
+                <div className="pil-wizard__selection-bar">{selected.size} temples selected</div>
+              </>
+            ) : null}
+
+            {step === 2 ? (
+              <>
+                <p className="pil-wizard__step-intro">
+                  Suggested day plan for {hub?.name ?? 'your hub'} (illustrative).
+                </p>
+                <div className="pil-wizard__itinerary">
+                  {DEFAULT_ITINERARY.map((item) => (
+                    <div key={item.time} className="pil-wizard__itinerary-item">
+                      <span className="pil-wizard__itinerary-time">{item.time}</span>
+                      <span>{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="pil-wizard__extend-chips">
+                  {['+ Half day buffer', '+ Annadanam slot', '+ Tonsure booking'].map((chip) => (
+                    <span key={chip} className="pil-wizard__chip">
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+                <div className="pil-wizard__tips">
+                  <h4>Pilgrim tips</h4>
+                  <ul>
+                    <li>Carry valid ID and darshan token if pre-booked.</li>
+                    <li>Plan hill route timing around crowd forecasts.</li>
+                    <li>Keep phones on silent inside the temple complex.</li>
+                  </ul>
+                </div>
+              </>
+            ) : null}
+
+            {step === 3 ? (
+              <div className="pil-wizard__summary">
+                <p className="pil-wizard__step-intro">Review your pilgrimage plan before booking.</p>
+                <p>
+                  <strong>Hub:</strong> {hub?.name}, {hub?.state}
+                </p>
+                <p>
+                  <strong>Temples ({selectedNames.length}):</strong> {selectedNames.join(' · ')}
+                </p>
+                <p className="pil-wizard__hub-meta">
+                  This is a planning preview. Book darshan slots from the temple detail pages when you are ready.
+                </p>
+                <div className="pil-wizard__tips">
+                  <h4>Next steps</h4>
+                  <ul>
+                    <li>Search dates on the Darshan tab and pick a temple.</li>
+                    <li>Add stays and transport from package sections.</li>
+                    <li>Share this itinerary with your group coordinator.</li>
+                  </ul>
+                </div>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', marginTop: 'var(--space-lg)' }}>
-                <button type="button" className="pil-btn pil-btn--outline">
-                  Save &amp; Share Itinerary
-                </button>
-                <button type="button" className="pil-btn pil-btn--gold">
-                  Book This Pilgrimage
-                </button>
-              </div>
-            </>
-          )}
+            ) : null}
+          </div>
         </div>
 
         <footer className="pil-wizard__foot">
-          {step > 0 ? (
-            <button type="button" className="pil-btn pil-btn--outline" onClick={() => setStep((s) => s - 1)}>
-              Back
-            </button>
-          ) : (
-            <span />
-          )}
-          {step < 3 ? (
-            <button
-              type="button"
-              className="pil-btn pil-btn--gold"
-              style={{ marginLeft: 'auto' }}
-              disabled={!canNext}
-              onClick={() => setStep((s) => s + 1)}
-            >
-              Continue
-            </button>
-          ) : (
-            <button type="button" className="pil-btn pil-btn--gold" style={{ marginLeft: 'auto' }} onClick={onClose}>
-              Done
-            </button>
-          )}
+          <div className="pil-wizard__foot-inner">
+            {step > 0 ? (
+              <button type="button" className="ds-btn ds-btn--secondary" onClick={goBack}>
+                Back
+              </button>
+            ) : (
+              <span aria-hidden />
+            )}
+            <div className="pil-wizard__foot-end">
+              {step < STEPS.length - 1 ? (
+                <button type="button" className="ds-btn ds-btn--primary" disabled={!canNext} onClick={goNext}>
+                  Continue
+                </button>
+              ) : (
+                <button type="button" className="ds-btn ds-btn--primary" onClick={onClose}>
+                  Done
+                </button>
+              )}
+            </div>
+          </div>
         </footer>
       </div>
     </>

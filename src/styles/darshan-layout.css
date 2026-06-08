@@ -1,0 +1,51 @@
+/**
+ * Darshan page inside global SiteLayout — prevents double chrome and horizontal bleed.
+ */
+
+.ds-page.darshan-layout {
+  overflow-x: clip;
+}
+
+.ds-page.darshan-layout .ds-main {
+  padding: 0;
+  overflow-x: clip;
+}
+
+/* Full-bleed darshan inside site shell (no duplicate fixed nav) */
+.darshan.darshan--breakout.darshan--site-chrome {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  overflow-x: clip;
+}
+
+.darshan.darshan--site-chrome #darshan-main {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+}
+
+/* Section anchors clear fixed site header */
+.darshan.darshan--site-chrome .darshan__section,
+.darshan.darshan--site-chrome .darshan__anchor {
+  scroll-margin-top: calc(var(--layout-header-height, 72px) + 16px);
+}
+
+/* Mobile: global tab bar handles navigation — hide duplicate darshan CTAs */
+@media (max-width: 768px) {
+  .darshan.darshan--site-chrome .darshan__fab,
+  .darshan.darshan--site-chrome .darshan__bottom-cta {
+    display: none !important;
+  }
+
+  .darshan.darshan--site-chrome {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .darshan.darshan--site-chrome .darshan__bottom-cta {
+    display: none !important;
+  }
+}

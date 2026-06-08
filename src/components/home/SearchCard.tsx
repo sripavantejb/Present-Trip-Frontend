@@ -1,10 +1,11 @@
 import { ArrowUpDown, CalendarDays, ChevronDown, MapPin, Users } from 'lucide-react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import type { CategoryId } from '../../config/categoryThemes'
 import { CATEGORY_THEMES } from '../../config/categoryThemes'
+import { useFlightBooking } from '../../context/FlightBookingContext'
 import { AppIcon } from '../ui/AppIcon'
 import { HomeDarshanSearchPanel } from './HomeDarshanSearchPanel'
-import { HotelSearchPanel } from './HotelSearchPanel'
 import { ServiceLineIcon } from './ServiceTabLineIcons'
 
 type AirportLeg = { city: string; code: string; detail: string }
@@ -17,20 +18,25 @@ type SearchCardProps = {
 }
 
 export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps) {
+  const navigate = useNavigate()
+  const { setSearchInput } = useFlightBooking()
   const activeTheme = CATEGORY_THEMES[activeCategory]
   const isDarshan = activeCategory === 'darshan'
-  const isHotels = activeCategory === 'hotels'
+  const isFlights = activeCategory === 'flights'
 
   const [from, setFrom] = useState<AirportLeg>({
-    city: 'Delhi',
-    code: 'DEL',
-    detail: 'Delhi Airport India',
+    city: 'Hyderabad',
+    code: 'HYD',
+    detail: 'Rajiv Gandhi International',
   })
   const [to, setTo] = useState<AirportLeg>({
-    city: 'Bengaluru',
-    code: 'BLR',
-    detail: 'Bengaluru International Airport',
+    city: 'Delhi',
+    code: 'DEL',
+    detail: 'Indira Gandhi International',
   })
+  const [departureDate, setDepartureDate] = useState('2026-06-10')
+  const [returnDate, setReturnDate] = useState('2026-06-15')
+  const [adults, setAdults] = useState(1)
   const [addReturn, setAddReturn] = useState(false)
 
   function swapRoute() {
@@ -38,8 +44,31 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
     setTo(from)
   }
 
+  function handleSearch() {
+    if (!isFlights) return
+
+    setSearchInput({
+      from: from.code,
+      to: to.code,
+      departureDate,
+      returnDate: addReturn ? returnDate : null,
+      adults,
+      children: 0,
+      infants: 0,
+      journeyType: addReturn ? 2 : 1,
+      cabinClass: 1,
+      directFlight: false,
+      oneStopFlight: false,
+      fareType: 1,
+    })
+    navigate('/flights/results')
+  }
+
   return (
-    <div id="card" className="pt-home__cardWrap searchCardWrapper">
+    <div
+      id={isDarshan ? 'darshan-search' : 'card'}
+      className="pt-home__cardWrap searchCardWrapper"
+    >
       <section
         className={`pt-home__card${isDarshan ? ' pt-home__card--darshan' : ''}`}
         aria-labelledby="search-card-title"
@@ -72,57 +101,107 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
 
         {isDarshan ? (
           <HomeDarshanSearchPanel />
-        ) : isHotels ? (
-          <HotelSearchPanel />
         ) : (
           <>
             <div className="pt-home__fieldsWrap">
               <div className="pt-home__grid pt-home__grid--mock">
-                <button type="button" className="pt-home__cell pt-home__cell--from pt-home__cell--withIcon">
+                <label className="pt-home__cell pt-home__cell--from pt-home__cell--withIcon">
                   <span className="pt-home__cellIconBadge">
                     <AppIcon icon={MapPin} size={18} className="pt-icon pt-icon--field" />
                   </span>
                   <div className="pt-home__cellStack">
                     <span className="pt-home__cellLabel">From</span>
-                    <span className="pt-home__cellMain">{from.city}</span>
-                    <span className="pt-home__cellSub">
-                      {from.code}, {from.detail}
-                    </span>
+                    {isFlights ? (
+                      <input
+                        className="pt-home__fieldInput"
+                        value={from.code}
+                        onChange={(event) =>
+                          setFrom({ ...from, code: event.target.value.toUpperCase(), city: event.target.value.toUpperCase() })
+                        }
+                        aria-label="From airport code"
+                        placeholder="City or airport"
+                        autoComplete="off"
+                      />
+                    ) : (
+                      <>
+                        <span className="pt-home__cellMain">{from.city}</span>
+                        <span className="pt-home__cellSub">
+                          {from.code}, {from.detail}
+                        </span>
+                      </>
+                    )}
                   </div>
-                </button>
-                <button type="button" className="pt-home__cell pt-home__cell--to pt-home__cell--withIcon">
+                </label>
+                <label className="pt-home__cell pt-home__cell--to pt-home__cell--withIcon">
                   <span className="pt-home__cellIconBadge">
                     <AppIcon icon={MapPin} size={18} className="pt-icon pt-icon--field" />
                   </span>
                   <div className="pt-home__cellStack">
                     <span className="pt-home__cellLabel">To</span>
-                    <span className="pt-home__cellMain">{to.city}</span>
-                    <span className="pt-home__cellSub">
-                      {to.code}, {to.detail}
-                    </span>
+                    {isFlights ? (
+                      <input
+                        className="pt-home__fieldInput"
+                        value={to.code}
+                        onChange={(event) =>
+                          setTo({ ...to, code: event.target.value.toUpperCase(), city: event.target.value.toUpperCase() })
+                        }
+                        aria-label="To airport code"
+                        placeholder="City or airport"
+                        autoComplete="off"
+                      />
+                    ) : (
+                      <>
+                        <span className="pt-home__cellMain">{to.city}</span>
+                        <span className="pt-home__cellSub">
+                          {to.code}, {to.detail}
+                        </span>
+                      </>
+                    )}
                   </div>
-                </button>
-                <button type="button" className="pt-home__cell pt-home__cell--dates pt-home__cell--withIcon">
+                </label>
+                <label className="pt-home__cell pt-home__cell--dates pt-home__cell--withIcon">
                   <span className="pt-home__cellIconBadge">
                     <AppIcon icon={CalendarDays} size={18} className="pt-icon pt-icon--field" />
                   </span>
                   <div className="pt-home__cellStack">
                     <span className="pt-home__cellLabel">Dates</span>
-                    <span className="pt-home__cellMain pt-home__cellMain--dates">
-                      Thu 15 May – Fri 16 May
-                    </span>
+                    {isFlights ? (
+                      <input
+                        type="date"
+                        className="pt-home__fieldInput pt-home__fieldInput--date"
+                        value={departureDate}
+                        onChange={(event) => setDepartureDate(event.target.value)}
+                        aria-label="Departure date"
+                      />
+                    ) : (
+                      <span className="pt-home__cellMain pt-home__cellMain--dates">
+                        Thu 15 May – Fri 16 May
+                      </span>
+                    )}
                   </div>
-                </button>
-                <button type="button" className="pt-home__cell pt-home__cell--travellers pt-home__cell--withIcon">
+                </label>
+                <label className="pt-home__cell pt-home__cell--travellers pt-home__cell--withIcon">
                   <span className="pt-home__cellIconBadge">
                     <AppIcon icon={Users} size={18} className="pt-icon pt-icon--field" />
                   </span>
                   <div className="pt-home__cellStack">
                     <span className="pt-home__cellLabel">Travellers &amp; Class</span>
-                    <span className="pt-home__cellMain">1 Traveller, Economy</span>
+                    {isFlights ? (
+                      <input
+                        type="number"
+                        min={1}
+                        max={9}
+                        className="pt-home__fieldInput pt-home__fieldInput--number"
+                        value={adults}
+                        onChange={(event) => setAdults(Number(event.target.value))}
+                        aria-label="Number of travellers"
+                      />
+                    ) : (
+                      <span className="pt-home__cellMain">1 Traveller, Economy</span>
+                    )}
                   </div>
                   <AppIcon icon={ChevronDown} size={20} className="pt-home__cellChevron pt-icon" />
-                </button>
+                </label>
               </div>
               <button
                 type="button"
@@ -143,8 +222,20 @@ export function SearchCard({ activeCategory, onCategoryChange }: SearchCardProps
               <span>Add a return date for bigger discounts</span>
             </label>
 
+            {isFlights && addReturn ? (
+              <label className="pt-home__returnCheck pt-home__returnCheck--date">
+                <span>Return date</span>
+                <input
+                  type="date"
+                  className="pt-home__fieldInput pt-home__fieldInput--date"
+                  value={returnDate}
+                  onChange={(event) => setReturnDate(event.target.value)}
+                />
+              </label>
+            ) : null}
+
             <div className="pt-home__searchCtaInner">
-              <button type="button" className="pt-home__searchBtn">
+              <button type="button" className="pt-home__searchBtn" onClick={handleSearch}>
                 {activeTheme.cta}
               </button>
             </div>

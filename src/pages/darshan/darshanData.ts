@@ -1,5 +1,7 @@
 /** Illustrative mock data for the Darshan landing page until APIs are wired */
 
+import { EXPERIENCE_IMAGES, LEGACY_PACKAGE_IMAGES, MISC_IMAGES } from '../../features/darshan/data/images'
+
 export type ServiceItem = {
   id: string
   title: string
@@ -90,17 +92,16 @@ export type BookingTab =
   | 'stay'
   | 'travel'
 
-/** Hero backdrop — cinematic pilgrimage mood; illustrative stock only (not official TTD photography) */
+/** Hero backdrop — local asset under /public/darshan/misc/ */
 export const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1596120236222-fb4350be68bf?auto=format&fit=crop&w=2400&q=85',
-  alt:
-    'Illustrative South Indian temple gopuram against soft dawn sky and misty hills — stock photograph, not Tirumala Tirupati Devasthanams',
+  src: MISC_IMAGES.heroBackdrop,
+  alt: 'Illustration of a South Indian temple at sunrise — decorative hero artwork',
 } as const
 
-/** Split hero right column — gopuram illustration (local SVG) */
+/** Legacy split-hero asset (same URL as full-bleed hero in photo mode) */
 export const HERO_SPLIT_TEMPLE_IMAGE = {
-  src: '/Untitled%20design.svg',
-  alt: 'Architectural illustration of a South Indian temple tower (gopuram)',
+  src: MISC_IMAGES.heroGopuram,
+  alt: HERO_IMAGE.alt,
 } as const
 
 /** Hero booking tabs only (maps `packages` label to “Temple Tours” in UI) */
@@ -233,9 +234,8 @@ export const PACKAGES: PackageItem[] = [
     reviews: 612,
     priceDisplay: 'From ₹4,999 / pilgrim',
     imageGradient: 'linear-gradient(145deg, #0f3d91 0%, #2563eb 55%, #93c5fd 100%)',
-    imageUrl:
-      'https://images.unsplash.com/photo-1596120236222-fb4350be68bf?auto=format&fit=crop&w=900&q=80',
-    imageAlt: 'Illustrative carved South Indian temple gopuram against sky (stock)',
+    imageUrl: LEGACY_PACKAGE_IMAGES.p1,
+    imageAlt: 'Tirupati darshan package — temple gopuram',
   },
   {
     id: 'p2',
@@ -250,9 +250,8 @@ export const PACKAGES: PackageItem[] = [
     reviews: 204,
     priceDisplay: 'From ₹18,500 / pilgrim',
     imageGradient: 'linear-gradient(145deg, #0c1e42 0%, #0f3d91 50%, #fcd34d 100%)',
-    imageUrl:
-      'https://images.unsplash.com/photo-1606293926075-69a00a890143?auto=format&fit=crop&w=900&q=80',
-    imageAlt: 'Rows of traditional oil lamps glowing for a festival evening (illustrative)',
+    imageUrl: LEGACY_PACKAGE_IMAGES.p2,
+    imageAlt: 'VIP Srivani package — festival lamps',
   },
   {
     id: 'p3',
@@ -267,9 +266,8 @@ export const PACKAGES: PackageItem[] = [
     reviews: 438,
     priceDisplay: 'From ₹9,200 / pilgrim',
     imageGradient: 'linear-gradient(145deg, #1e40af 0%, #60a5fa 100%)',
-    imageUrl:
-      'https://images.unsplash.com/photo-1512813190700-8910ed350d65?auto=format&fit=crop&w=900&q=80',
-    imageAlt: 'Ornate temple doorway and carved stone archway (illustrative stock)',
+    imageUrl: LEGACY_PACKAGE_IMAGES.p3,
+    imageAlt: 'Family comfort package — temple courtyard',
   },
   {
     id: 'p4',
@@ -284,9 +282,8 @@ export const PACKAGES: PackageItem[] = [
     reviews: 311,
     priceDisplay: 'From ₹11,800 / pilgrim',
     imageGradient: 'linear-gradient(145deg, #0f3d91 0%, #e2e8f0 100%)',
-    imageUrl:
-      'https://images.unsplash.com/photo-1577896851231-70ef833cec04?auto=format&fit=crop&w=900&q=80',
-    imageAlt: 'Quiet temple courtyard with columns and warm stone (illustrative stock)',
+    imageUrl: LEGACY_PACKAGE_IMAGES.p4,
+    imageAlt: 'Senior citizen package — accessible temple route',
   },
   {
     id: 'p5',
@@ -301,9 +298,8 @@ export const PACKAGES: PackageItem[] = [
     reviews: 189,
     priceDisplay: 'From ₹22,000 / pilgrim',
     imageGradient: 'linear-gradient(145deg, #1e3a5f 0%, #2563eb 100%)',
-    imageUrl:
-      'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80',
-    imageAlt: 'Intricately carved historic temple stone facade (illustrative)',
+    imageUrl: LEGACY_PACKAGE_IMAGES.p5,
+    imageAlt: 'Tirumala and nearby temples circuit',
   },
   {
     id: 'p6',
@@ -318,9 +314,8 @@ export const PACKAGES: PackageItem[] = [
     reviews: 520,
     priceDisplay: 'From ₹10,499 / pilgrim',
     imageGradient: 'linear-gradient(145deg, #2563eb 0%, #bfdbfe 100%)',
-    imageUrl:
-      'https://images.unsplash.com/photo-1580919474247-068123d2b17c?auto=format&fit=crop&w=900&q=80',
-    imageAlt: 'Pilgrims walking together along a tree-lined approach (illustrative)',
+    imageUrl: LEGACY_PACKAGE_IMAGES.p6,
+    imageAlt: 'Hyderabad to Tirupati package — pilgrimage route',
   },
   {
     id: 'p7',
@@ -335,9 +330,8 @@ export const PACKAGES: PackageItem[] = [
     reviews: 401,
     priceDisplay: 'From ₹8,750 / pilgrim',
     imageGradient: 'linear-gradient(145deg, #0f3d91 0%, #fef3c7 100%)',
-    imageUrl:
-      'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=900&q=80',
-    imageAlt: 'Temple bell and ritual metalwork in soft light (illustrative stock)',
+    imageUrl: LEGACY_PACKAGE_IMAGES.p7,
+    imageAlt: 'Bangalore weekend darshan — temple bells',
   },
 ]
 
@@ -418,54 +412,48 @@ export const EXPERIENCE_BLOCKS: ExperienceBlock[] = [
     title: 'Walking through Tirumala',
     body: 'Every step is shared with millions of stories — we help you plan rest, hydration, and darshan timing so the climb feels intentional, not rushed.',
     accent: 'walk',
-    imageUrl:
-      'https://images.unsplash.com/photo-1580919474247-068123d2b17c?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Pilgrims walking on a broad approach path with trees (illustrative stock)',
+    imageUrl: EXPERIENCE_IMAGES.walk,
+    imageAlt: 'Pilgrims walking on a broad approach path with trees',
   },
   {
     id: 'e2',
     title: 'Temple lights at dawn',
     body: 'The sanctum reads differently in first light. We align stays and transport so you catch the stillness before the corridors swell.',
     accent: 'night',
-    imageUrl:
-      'https://images.unsplash.com/photo-1606293926075-69a00a890143?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Warm rows of traditional oil lamps at dusk (illustrative)',
+    imageUrl: EXPERIENCE_IMAGES.night,
+    imageAlt: 'Temple lights and oil lamps at dusk',
   },
   {
     id: 'e3',
     title: 'Laddu prasadam',
     body: 'Sacred sweets, neatly planned — counters, combos, and hand-carry guidance for elders and flyers.',
     accent: 'prasadam',
-    imageUrl:
-      'https://images.unsplash.com/photo-1578985545062-69928b1d9577?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Assorted Indian mithai and sweets on a platter — prasad-style offering (illustrative)',
+    imageUrl: EXPERIENCE_IMAGES.prasadam,
+    imageAlt: 'Tirupati laddu prasadam and sweets',
   },
   {
     id: 'e4',
     title: 'Annadanam experience',
     body: 'Community meals that nourish body and devotion. We arrange slots and sponsorship pathways when you wish to give.',
     accent: 'annadanam',
-    imageUrl:
-      'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Volunteers serving food in a busy community dining line (illustrative)',
+    imageUrl: EXPERIENCE_IMAGES.annadanam,
+    imageAlt: 'Annadanam community meal service',
   },
   {
     id: 'e5',
     title: 'Sacred rituals',
     body: 'Sevas that deepen connection — coordinated with multilingual support so every family member understands the flow.',
     accent: 'ritual',
-    imageUrl:
-      'https://images.unsplash.com/photo-1544273676-dd2a060c7dd6?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Hands offering a lit oil lamp during prayer (illustrative)',
+    imageUrl: EXPERIENCE_IMAGES.ritual,
+    imageAlt: 'Sacred ritual with oil lamp offering',
   },
   {
     id: 'e6',
     title: 'Ghat roads & mountain breezes',
     body: 'Scenic bends deserve calm drivers and clear ETAs — from Tirupati to Tirumala and back, with predictable halts.',
     accent: 'roads',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Winding road through forested green hills — journey to the hills (illustrative)',
+    imageUrl: EXPERIENCE_IMAGES.roads,
+    imageAlt: 'Ghat road through forested hills to Tirumala',
   },
 ]
 

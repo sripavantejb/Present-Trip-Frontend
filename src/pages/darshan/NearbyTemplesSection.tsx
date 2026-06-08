@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { templeCardImage } from '../../features/darshan/data/images'
 
 type NearbyResult = {
   id: string
@@ -12,25 +13,25 @@ const MOCK_NEARBY: NearbyResult[] = [
     id: 'n1',
     name: 'Sri Kapileswara Swamy Temple',
     distance: '12 km',
-    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4a00b9bd4d81?w=400&h=280&fit=crop',
+    imageUrl: templeCardImage('kapileswara'),
   },
   {
     id: 'n2',
     name: 'Sri Padmavathi Ammavari Temple',
     distance: '28 km',
-    imageUrl: 'https://images.unsplash.com/photo-1605647540924-852290f6b0a5?w=400&h=280&fit=crop',
+    imageUrl: templeCardImage('padmavathi'),
   },
   {
     id: 'n3',
     name: 'Sri Govindaraja Swamy Temple',
     distance: '35 km',
-    imageUrl: 'https://images.unsplash.com/photo-1548013146-7249f0bb9e9f?w=400&h=280&fit=crop',
+    imageUrl: templeCardImage('govindaraja'),
   },
   {
     id: 'n4',
     name: 'ISKCON Tirupati',
     distance: '42 km',
-    imageUrl: 'https://images.unsplash.com/photo-1569163139394-de4798aa62b4?w=400&h=280&fit=crop',
+    imageUrl: templeCardImage('iskcon-tirupati'),
   },
 ]
 
@@ -118,7 +119,7 @@ export function NearbyTemplesSection() {
           <div className="pil-nearby__grid">
             {results.map((t) => (
               <article key={t.id} className="pil-nearby__temple-card pil-card">
-                <img className="pil-nearby__temple-img" src={t.imageUrl} alt="" loading="lazy" />
+                <img className="pil-nearby__temple-img" src={t.imageUrl} alt={t.name} loading="lazy" decoding="async" />
                 <h3 className="pil-nearby__temple-name">{t.name}</h3>
                 <p className="pil-nearby__temple-dist">{t.distance} away</p>
               </article>
