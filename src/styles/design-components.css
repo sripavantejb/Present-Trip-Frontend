@@ -138,8 +138,11 @@
 }
 
 .ds-container {
-  width: min(var(--layout-max-content), 100% - var(--space-lg) * 2);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--layout-max-content);
   margin-inline: auto;
+  padding-inline: var(--page-gutter, clamp(16px, 4vw, 40px));
 }
 
 .ds-section {

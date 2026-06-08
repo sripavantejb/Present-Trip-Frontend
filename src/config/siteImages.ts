@@ -1,5 +1,7 @@
 /** Local image paths under /public — single source for site imagery. */
 
+import { DARSHAN_HERO_IMAGE_URL } from '../features/darshan/data/images'
+
 const img = {
   destinations: {
     kerala: '/images/destinations/kerala.jpg',
@@ -45,7 +47,7 @@ export const SITE_IMAGES = {
     trains: '/hero-bg-trains.png',
     buses: '/hero-bg-buses.png',
     hotels: '/hero-bg-hotels.png',
-    darshan: '/images/darshan/temple-hero.png',
+    darshan: DARSHAN_HERO_IMAGE_URL,
   },
   weekendDeals: [
     { image: img.deals.delhi, imageAlt: 'Luxury hotel room in New Delhi' },

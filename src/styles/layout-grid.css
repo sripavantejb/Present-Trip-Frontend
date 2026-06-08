@@ -3,7 +3,7 @@
  */
 
 :root {
-  --grid-max: 1200px;
+  --grid-max: var(--layout-max-content);
   --grid-gap: 20px;
   --grid-gap-sm: 16px;
   --grid-cols: 12;

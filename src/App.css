@@ -772,24 +772,36 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: var(--pt-card-max);
+  max-width: var(--layout-max-content);
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  padding: 0 var(--page-gutter, clamp(16px, 4vw, 40px));
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 12px;
+  gap: 20px;
 }
 
 .pt-home__cardWrap.searchCardWrapper {
   position: relative;
-  z-index: 3;
+  z-index: 5;
+}
+
+.pt-home__cardWrap.searchCardWrapper:has(.dv2-search--popover-open),
+.pt-home__cardWrap.searchCardWrapper:has(.pt-home__darshanPanel--open) {
+  z-index: 30;
+}
+
+.pt-home__cardWrap.searchCardWrapper:has(.dv2-search--popover-open) + .pt-home__featureStripWrap,
+.pt-home__cardWrap.searchCardWrapper:has(.pt-home__darshanPanel--open) + .pt-home__featureStripWrap {
+  position: relative;
+  z-index: 1;
 }
 
 .pt-home__featureStripWrap.featureStripWrapper {
   position: relative;
-  z-index: 4;
+  z-index: 2;
   width: 100%;
+  margin-top: 4px;
 }
 
 /* Full-width white band for offers (reference layout) */
@@ -838,10 +850,6 @@
   box-shadow: var(--shadow-card);
   overflow: hidden;
   text-align: left;
-}
-
-.pt-home__card--darshan {
-  overflow: visible;
 }
 
 .pt-home__darshanEmbed {
@@ -928,6 +936,18 @@
 
 .pt-home__service--active {
   color: var(--color-ink);
+}
+
+.pt-home--darshan-active .pt-home__service--active {
+  color: var(--color-primary);
+}
+
+.pt-home--darshan-active .pt-home__service--active .pt-home__serviceIconWrap {
+  color: var(--color-primary);
+}
+
+.pt-home--darshan-active .pt-home__service--active::after {
+  background: var(--color-primary);
 }
 
 .pt-home__service--active::after {
@@ -1135,6 +1155,101 @@
   line-height: 1.25;
 }
 
+/* Flight / hotel search — styled inputs inside booking cells */
+.pt-home__fieldInput {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: var(--text-title-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+  line-height: 1.25;
+  letter-spacing: 0;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-sm);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.pt-home__fieldInput::placeholder {
+  color: var(--color-muted-soft);
+  font-weight: var(--weight-regular);
+}
+
+.pt-home__fieldInput:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+  background: var(--color-canvas);
+}
+
+.pt-home__fieldInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--color-canvas);
+  box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.14);
+}
+
+.pt-home__fieldInput--date {
+  padding-right: 12px;
+  min-height: 44px;
+  color-scheme: light;
+}
+
+.pt-home__fieldInput--date::-webkit-calendar-picker-indicator {
+  margin-left: 4px;
+  padding: 4px;
+  cursor: pointer;
+  opacity: 0.55;
+  border-radius: var(--radius-xs);
+  transition: opacity 0.15s ease;
+}
+
+.pt-home__fieldInput--date:hover::-webkit-calendar-picker-indicator,
+.pt-home__fieldInput--date:focus::-webkit-calendar-picker-indicator {
+  opacity: 0.9;
+}
+
+.pt-home__fieldInput--number {
+  -moz-appearance: textfield;
+}
+
+.pt-home__fieldInput--number::-webkit-outer-spin-button,
+.pt-home__fieldInput--number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pt-home__cellStack:has(.pt-home__fieldInput) {
+  margin-top: 2px;
+}
+
+.pt-home__cell:has(.pt-home__fieldInput:focus) {
+  background: var(--color-surface-soft);
+}
+
+.pt-home__cell:has(.pt-home__fieldInput:focus) .pt-home__cellIconBadge {
+  background: rgba(255, 56, 92, 0.1);
+  color: var(--color-primary);
+}
+
+.pt-home__returnCheck--date {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pt-home__returnCheck--date .pt-home__fieldInput {
+  flex: 1 1 160px;
+  max-width: 220px;
+  margin-left: auto;
+}
+
 .pt-home__cellMain--muted {
   font-size: var(--text-body-sm);
   font-weight: var(--weight-regular);
@@ -1190,6 +1305,10 @@
   padding: 16px 22px 22px;
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 1;
+  background: var(--color-canvas);
+  border-top: 1px solid var(--color-hairline-soft);
 }
 
 .pt-home__searchBtn {
@@ -1258,6 +1377,11 @@
   text-decoration: none;
   color: var(--color-ink);
   font-size: 13px;
+  line-height: 1.25;
+}
+
+.pt-home__secondaryLinkText {
+  line-height: 1.25;
   font-weight: var(--weight-medium);
   white-space: nowrap;
   transition: background-color 0.2s ease;

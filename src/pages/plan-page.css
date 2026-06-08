@@ -1,28 +1,19 @@
-.pil-plan-page {
-  min-height: 100vh;
-  background: var(--color-canvas);
+/* Plan page — wizard lives in ds-main below global chrome */
+
+.ds-page--plan-wizard .ds-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0;
 }
 
-.pil-wizard--fullscreen {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  max-width: none;
-  max-height: none;
-  margin: 0;
-  border-radius: 0;
-  border: none;
+.ds-page--plan-wizard.ds-page--mobile-nav .ds-main {
+  min-height: calc(100svh - var(--layout-header-height, 72px));
+  padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
 }
 
-.pil-wizard--fullscreen .pil-wizard__stepper {
-  background: var(--color-surface-soft);
-}
-
-.pil-wizard--fullscreen .pil-wizard__step {
-  font-size: var(--text-caption-sm);
-  white-space: nowrap;
-}
-
-.pil-wizard--fullscreen .pil-wizard__foot {
-  background: var(--color-canvas);
+.ds-page--plan-wizard .pil-wizard--embedded {
+  min-height: 0;
+  flex: 1;
 }

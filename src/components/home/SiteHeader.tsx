@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { Globe, Menu, UserCircle2 } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { buildAuthRedirectUrl, useAuth } from '../../context/AuthContext'
 import { AppIcon } from '../ui/AppIcon'
 
 const ACCOUNT_LINKS = [
@@ -49,7 +50,7 @@ export function SiteHeader() {
   const [localeOpen, setLocaleOpen] = useState(false)
   const [accountOpen, setAccountOpen] = useState(false)
   const [locale, setLocale] = useState<LocaleId>(readStoredLocale)
-  const [signedIn, setSignedIn] = useState(false)
+  const { user, isAuthenticated, logout } = useAuth()
 
   const localeRef = useRef<HTMLDivElement>(null)
   const accountRef = useRef<HTMLDivElement>(null)
@@ -91,14 +92,14 @@ export function SiteHeader() {
   }
 
   const handleSignIn = () => {
-    setSignedIn(true)
     setAccountOpen(false)
-    navigate('/trips')
+    navigate(buildAuthRedirectUrl('/login', pathname))
   }
 
   const handleSignOut = () => {
-    setSignedIn(false)
+    logout()
     setAccountOpen(false)
+    navigate('/')
   }
 
   const activeLocale = LOCALE_OPTIONS.find((o) => o.id === locale) ?? LOCALE_OPTIONS[0]
@@ -131,6 +132,20 @@ export function SiteHeader() {
           <Link to="/list-property" className="pt-site-header__hostLink">
             List your property
           </Link>
+
+          {!isAuthenticated ? (
+            <>
+              <Link to={buildAuthRedirectUrl('/login', pathname)} className="pt-site-header__authLink">
+                Log in
+              </Link>
+              <Link
+                to={buildAuthRedirectUrl('/signup', pathname)}
+                className="pt-site-header__authLink pt-site-header__authLink--primary"
+              >
+                Sign up
+              </Link>
+            </>
+          ) : null}
 
           <div className="pt-site-header__menuWrap" ref={localeRef}>
             <button
@@ -201,12 +216,26 @@ export function SiteHeader() {
                 role="menu"
                 aria-label="Account"
               >
-                {signedIn ? (
-                  <p className="pt-site-header__dropdownTitle">Your account</p>
+                {isAuthenticated && user ? (
+                  <p className="pt-site-header__dropdownTitle">
+                    Hi, {user.name.split(' ')[0]}
+                  </p>
                 ) : (
                   <p className="pt-site-header__dropdownTitle">Welcome to Present Trip</p>
                 )}
                 <ul className="pt-site-header__dropdownList">
+                  {isAuthenticated ? (
+                    <li role="none">
+                      <Link
+                        role="menuitem"
+                        to="/profile"
+                        className="pt-site-header__dropdownItem pt-site-header__dropdownItem--link"
+                        onClick={() => setAccountOpen(false)}
+                      >
+                        Profile
+                      </Link>
+                    </li>
+                  ) : null}
                   {ACCOUNT_LINKS.map((item) => (
                     <li key={item.to + item.label} role="none">
                       <Link
@@ -221,7 +250,7 @@ export function SiteHeader() {
                   ))}
                 </ul>
                 <div className="pt-site-header__dropdownDivider" role="separator" />
-                {signedIn ? (
+                {isAuthenticated ? (
                   <button
                     type="button"
                     role="menuitem"
@@ -231,14 +260,24 @@ export function SiteHeader() {
                     Sign out
                   </button>
                 ) : (
-                  <button
-                    type="button"
-                    role="menuitem"
-                    className="pt-site-header__dropdownItem pt-site-header__dropdownItem--cta"
-                    onClick={handleSignIn}
-                  >
-                    Sign in
-                  </button>
+                  <>
+                    <Link
+                      role="menuitem"
+                      to={buildAuthRedirectUrl('/signup', pathname)}
+                      className="pt-site-header__dropdownItem pt-site-header__dropdownItem--link"
+                      onClick={() => setAccountOpen(false)}
+                    >
+                      Sign up
+                    </Link>
+                    <button
+                      type="button"
+                      role="menuitem"
+                      className="pt-site-header__dropdownItem pt-site-header__dropdownItem--cta"
+                      onClick={handleSignIn}
+                    >
+                      Log in
+                    </button>
+                  </>
                 )}
               </div>
             ) : null}

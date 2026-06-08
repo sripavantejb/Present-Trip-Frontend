@@ -2,132 +2,95 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
 } from 'react'
+import {
+  fetchSession,
+  getStoredToken,
+  loginRequest,
+  setStoredToken,
+  signupRequest,
+  type AuthUser,
+} from '../api/authApi'
 
-export type AuthUser = {
-  id: string
-  name: string
-  email: string
-}
-
-type StoredUser = AuthUser & { password: string }
-
-const SESSION_KEY = 'pt-auth-session'
-const USERS_KEY = 'pt-auth-users'
-
-function readSession(): AuthUser | null {
-  try {
-    const raw = localStorage.getItem(SESSION_KEY)
-    if (!raw) return null
-    const parsed = JSON.parse(raw) as AuthUser
-    if (parsed?.id && parsed?.email) return parsed
-  } catch {
-    /* ignore */
-  }
-  return null
-}
-
-function readUsers(): StoredUser[] {
-  try {
-    const raw = localStorage.getItem(USERS_KEY)
-    if (!raw) return []
-    const parsed = JSON.parse(raw) as StoredUser[]
-    return Array.isArray(parsed) ? parsed : []
-  } catch {
-    return []
-  }
-}
-
-function writeSession(user: AuthUser | null) {
-  try {
-    if (user) localStorage.setItem(SESSION_KEY, JSON.stringify(user))
-    else localStorage.removeItem(SESSION_KEY)
-  } catch {
-    /* ignore */
-  }
-}
-
-function writeUsers(users: StoredUser[]) {
-  try {
-    localStorage.setItem(USERS_KEY, JSON.stringify(users))
-  } catch {
-    /* ignore */
-  }
-}
-
-function toPublicUser(user: StoredUser): AuthUser {
-  return { id: user.id, name: user.name, email: user.email }
-}
+export type { AuthUser }
 
 type AuthContextValue = {
   user: AuthUser | null
   isAuthenticated: boolean
-  login: (email: string, password: string) => { ok: true } | { ok: false; error: string }
+  isLoading: boolean
+  login: (email: string, password: string) => Promise<{ ok: true } | { ok: false; error: string }>
   signup: (
     name: string,
     email: string,
     password: string,
-  ) => { ok: true } | { ok: false; error: string }
+  ) => Promise<{ ok: true } | { ok: false; error: string }>
   logout: () => void
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null)
 
+function errorMessage(err: unknown): string {
+  if (err instanceof Error) return err.message
+  return 'Something went wrong. Please try again.'
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(() => readSession())
+  const [user, setUser] = useState<AuthUser | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
-  const login = useCallback((email: string, password: string) => {
-    const normalized = email.trim().toLowerCase()
-    if (!normalized || !password) {
-      return { ok: false as const, error: 'Enter your email and password.' }
+  useEffect(() => {
+    let cancelled = false
+
+    async function restore() {
+      if (!getStoredToken()) {
+        if (!cancelled) setIsLoading(false)
+        return
+      }
+      try {
+        const session = await fetchSession()
+        if (!cancelled) setUser(session?.user ?? null)
+      } catch {
+        setStoredToken(null)
+        if (!cancelled) setUser(null)
+      } finally {
+        if (!cancelled) setIsLoading(false)
+      }
     }
 
-    const match = readUsers().find((u) => u.email === normalized && u.password === password)
-    if (!match) {
-      return { ok: false as const, error: 'Invalid email or password. Try again or sign up.' }
+    void restore()
+    return () => {
+      cancelled = true
     }
-
-    const session = toPublicUser(match)
-    writeSession(session)
-    setUser(session)
-    return { ok: true as const }
   }, [])
 
-  const signup = useCallback((name: string, email: string, password: string) => {
-    const trimmedName = name.trim()
-    const normalized = email.trim().toLowerCase()
+  const login = useCallback(async (email: string, password: string) => {
+    try {
+      const data = await loginRequest(email, password)
+      setStoredToken(data.token)
+      setUser(data.user)
+      return { ok: true as const }
+    } catch (err) {
+      return { ok: false as const, error: errorMessage(err) }
+    }
+  }, [])
 
-    if (!trimmedName) return { ok: false as const, error: 'Enter your full name.' }
-    if (!normalized || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized)) {
-      return { ok: false as const, error: 'Enter a valid email address.' }
+  const signup = useCallback(async (name: string, email: string, password: string) => {
+    try {
+      const data = await signupRequest(name, email, password)
+      setStoredToken(data.token)
+      setUser(data.user)
+      return { ok: true as const }
+    } catch (err) {
+      return { ok: false as const, error: errorMessage(err) }
     }
-    if (password.length < 6) {
-      return { ok: false as const, error: 'Password must be at least 6 characters.' }
-    }
-
-    const users = readUsers()
-    if (users.some((u) => u.email === normalized)) {
-      return { ok: false as const, error: 'An account with this email already exists. Log in instead.' }
-    }
-
-    const stored: StoredUser = {
-      id: `u-${Date.now()}`,
-      name: trimmedName,
-      email: normalized,
-      password,
-    }
-    writeUsers([...users, stored])
-    const session = toPublicUser(stored)
-    writeSession(session)
-    setUser(session)
-    return { ok: true as const }
   }, [])
 
   const logout = useCallback(() => {
-    writeSession(null)
+    setStoredToken(null)
     setUser(null)
   }, [])
 
@@ -135,11 +98,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => ({
       user,
       isAuthenticated: Boolean(user),
+      isLoading,
       login,
       signup,
       logout,
     }),
-    [user, login, signup, logout],
+    [user, isLoading, login, signup, logout],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

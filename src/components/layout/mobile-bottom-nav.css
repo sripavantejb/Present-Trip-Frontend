@@ -1,0 +1,148 @@
+/* Mobile bottom navigation — app-style tab bar (hidden on desktop) */
+
+.pt-mobNav {
+  display: none;
+}
+
+.pt-mobNav__fab {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .pt-mobNav {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: var(--color-canvas);
+    border-top: 1px solid var(--color-hairline);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -4px 24px rgba(15, 23, 42, 0.06);
+  }
+
+  .pt-mobNav__list {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0;
+    margin: 0;
+    padding: 6px 4px 8px;
+    list-style: none;
+  }
+
+  .pt-mobNav__item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .pt-mobNav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 2px 4px;
+    min-height: 52px;
+    text-decoration: none;
+    color: var(--color-ink);
+    border-radius: var(--radius-sm);
+    transition:
+      color 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .pt-mobNav__link:hover {
+    background: var(--color-surface-soft);
+  }
+
+  .pt-mobNav__link--active {
+    color: var(--color-primary);
+  }
+
+  .pt-mobNav__link--active .pt-mobNav__iconWrap {
+    color: var(--color-primary);
+  }
+
+  .pt-mobNav__iconWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: var(--color-ink);
+  }
+
+  .pt-mobNav__link:not(.pt-mobNav__link--active) .pt-mobNav__iconWrap {
+    color: var(--color-ink);
+    opacity: 0.88;
+  }
+
+  .pt-mobNav__label {
+    font-size: 10px;
+    font-weight: var(--weight-medium);
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .pt-mobNav__link--active .pt-mobNav__label {
+    font-weight: var(--weight-semibold);
+  }
+
+  /* Support FAB — floats above nav, right side */
+  .pt-mobNav__fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 16px;
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+    z-index: 101;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    text-decoration: none;
+    box-shadow:
+      0 2px 8px rgba(255, 56, 92, 0.35),
+      0 8px 24px rgba(15, 23, 42, 0.12);
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .pt-mobNav__fab:hover {
+    background: var(--color-primary-active);
+    transform: translateY(-2px);
+  }
+
+  .pt-mobNav__fab:active {
+    transform: translateY(0);
+  }
+
+  /* Page chrome: room for nav + FAB */
+  .ds-page--mobile-nav .ds-main {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ds-page--mobile-nav .pt-footer {
+    display: none;
+  }
+
+  /* Sticky booking bars sit above the tab bar */
+  .ds-page--mobile-nav .dv2-sticky-bar,
+  .ds-page--mobile-nav .dv2-sticky-bar--detail {
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ds-page--mobile-nav .dv2-page--detail {
+    padding-bottom: calc(140px + env(safe-area-inset-bottom, 0px));
+  }
+}

@@ -1,0 +1,88 @@
+/**
+ * Site-wide page grid — shared max-width, gutters, and section rhythm.
+ */
+
+:root {
+  --page-gutter: clamp(16px, 4vw, 40px);
+  --page-narrow: min(720px, 100%);
+  --page-content: min(var(--layout-max-content), 100%);
+}
+
+/* Centered page column with consistent horizontal padding */
+.ds-page-shell {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--layout-max-content);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+.ds-page-shell--narrow {
+  max-width: min(800px, var(--layout-max-content));
+}
+
+.ds-page-shell--reading {
+  max-width: min(720px, var(--layout-max-content));
+}
+
+/* 12-column sub-grid for aligned sections */
+.ds-page-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--grid-gap, 20px);
+  width: 100%;
+}
+
+.ds-page-grid > * {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .ds-page-grid--sidebar-ready > .ds-page-grid__main {
+    grid-column: 1 / 9;
+  }
+
+  .ds-page-grid--sidebar-ready > .ds-page-grid__aside {
+    grid-column: 9 / -1;
+  }
+}
+
+.ds-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.ds-stack--lg {
+  gap: var(--space-xl);
+}
+
+.ds-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.ds-section-head .dv2__section-title,
+.ds-section-head .ds-display-sm {
+  margin: 0;
+}
+
+.ds-main {
+  min-width: 0;
+}
+
+/* Detail/booking pages: don't stretch main with empty flex gap */
+.ds-main:has(.dv2-page--detail),
+.ds-main:has(.dv2-flow) {
+  flex: 0 1 auto;
+  align-self: stretch;
+}
+
+.ds-page-shell--temple {
+  max-width: var(--layout-max-content);
+}
