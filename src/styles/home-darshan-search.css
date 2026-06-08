@@ -33,6 +33,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 0;
 }
 
 .pt-home__darshanSearchBody {
@@ -83,6 +84,8 @@
 
 .pt-home__darshanPromoIcon {
   flex-shrink: 0;
+  width: clamp(16px, 4vw, 18px);
+  height: clamp(16px, 4vw, 18px);
   color: var(--color-primary);
 }
 
@@ -102,6 +105,10 @@
   border-right: none;
   border-bottom: 1px solid var(--pt-border);
   align-items: center;
+}
+
+.pt-home__grid--darshan .pt-home__cell--withIcon {
+  gap: clamp(8px, 2.5vw, 12px);
 }
 
 .pt-home__grid--darshan .pt-home__cell--darshan-date {
@@ -130,7 +137,7 @@
   padding: 0;
   margin: 0;
   font: inherit;
-  font-size: var(--text-title-md);
+  font-size: clamp(0.9375rem, 3.6vw, var(--text-title-md));
   font-weight: var(--weight-semibold);
   color: var(--color-ink);
   line-height: 1.25;
@@ -291,6 +298,8 @@
 
 .pt-home__darshanNote svg {
   flex-shrink: 0;
+  width: clamp(14px, 3.5vw, 16px);
+  height: clamp(14px, 3.5vw, 16px);
   margin-top: 2px;
   color: var(--color-muted-soft);
 }
@@ -326,7 +335,12 @@
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 768px) {
+  .pt-home__darshanSections .darshan__section--post {
+    padding-top: clamp(32px, 8vw, 48px);
+    padding-bottom: clamp(32px, 8vw, 48px);
+  }
+
   .pt-home__grid--darshan {
     grid-template-columns: 1fr;
   }
@@ -336,6 +350,20 @@
   .pt-home__grid--darshan .pt-home__cell--darshan-devotees {
     grid-column: 1;
     border-right: none;
+    padding: clamp(12px, 3.5vw, 18px) clamp(14px, 4vw, 22px);
+  }
+
+  .pt-home__grid--darshan .pt-home__cellStack {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .pt-home__grid--darshan .pt-home__cellMain,
+  .pt-home__grid--darshan .pt-home__cellMain--placeholder,
+  .pt-home__grid--darshan .dv2-cell__input {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .pt-home__grid--darshan .pt-home__cell--darshan-temple {
@@ -352,10 +380,89 @@
     grid-row: 3;
   }
 
+  .pt-home__grid--darshan .pt-home__cellMain,
+  .pt-home__grid--darshan .pt-home__cellMain--placeholder {
+    font-size: clamp(0.9375rem, 3.6vw, 1.125rem);
+  }
+
+  .pt-home__grid--darshan .pt-home__cellLabel {
+    font-size: clamp(0.6875rem, 2.8vw, 0.75rem);
+    margin-bottom: clamp(4px, 1.5vw, 6px);
+  }
+
+  .pt-home__darshanPromo {
+    padding: clamp(12px, 3vw, 14px) clamp(16px, 4vw, 22px);
+  }
+
+  .pt-home__darshanPromoText strong {
+    font-size: clamp(0.8125rem, 3.2vw, 0.875rem);
+  }
+
+  .pt-home__darshanPromoText span {
+    font-size: clamp(0.6875rem, 2.8vw, 0.75rem);
+  }
+
+  .pt-home__darshanPopular {
+    padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 22px);
+  }
+
+  .pt-home__darshanPopularLabel {
+    font-size: clamp(0.625rem, 2.6vw, 0.6875rem);
+    margin-bottom: clamp(8px, 2vw, 10px);
+  }
+
+  .pt-home__darshanCta.pt-home__searchCtaInner {
+    padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 22px) clamp(16px, 4vw, 20px);
+  }
+
+  .pt-home--darshan-active .pt-home__darshanCta .pt-home__searchBtn {
+    min-height: clamp(44px, 12vw, 48px);
+    font-size: clamp(0.9375rem, 3.6vw, 1rem);
+  }
+
+  .pt-home__darshanNote {
+    padding: clamp(12px, 3vw, 14px) clamp(16px, 4vw, 22px) clamp(16px, 4vw, 20px);
+    font-size: clamp(0.6875rem, 2.8vw, 0.75rem);
+  }
+
+  .pt-home__darshanErrors {
+    padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 22px) 0;
+  }
+
   .pt-home__darshanPopover--calendar,
   .pt-home__cell--darshan-devotees .pt-home__darshanPopover--devotees {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
+    left: clamp(12px, 3vw, 16px);
+    right: clamp(12px, 3vw, 16px);
+    width: auto;
+    transform: none;
+  }
+
+  .pt-home__darshanPopover--list {
+    max-height: min(220px, 40vh);
+  }
+}
+
+@media (max-width: 480px) {
+  .pt-home__darshanChips {
+    flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .pt-home__darshanChips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pt-home__darshanChip {
+    flex: 0 0 auto;
+    padding: 6px 12px;
+    font-size: clamp(0.6875rem, 3vw, 0.75rem);
+  }
+
+  .pt-home__darshanPopover--calendar .dv2-cal__cell-num {
+    font-size: clamp(0.8125rem, 3.2vw, 0.875rem);
   }
 }

@@ -686,18 +686,13 @@
 
 /* Filters */
 .darshan__filter-bar {
-  position: sticky;
-  top: var(--layout-header-height, 80px);
-  z-index: 5;
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px 24px;
+  flex-direction: column;
+  gap: 12px;
   padding: 14px 0 20px;
   margin-bottom: 8px;
   background: var(--color-canvas, #fff);
   border-bottom: 1px solid var(--color-hairline-soft, #ebebeb);
-  /* Opaque bar only — backdrop-filter blurs content scrolling underneath */
-  isolation: isolate;
 }
 
 .darshan__section--muted .darshan__filter-bar {
@@ -706,9 +701,11 @@
 
 .darshan__filter-group {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
+  width: 100%;
+  min-width: 0;
 }
 
 .darshan__filter-label {
@@ -723,6 +720,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  width: 100%;
+  min-width: 0;
 }
 
 .darshan__filter-chip {
@@ -1680,17 +1679,54 @@
   }
 }
 
+@media (min-width: 640px) {
+  .darshan__filter-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+  }
+
+  .darshan__filter-group {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+  }
+
+  .darshan__filter-chips {
+    width: auto;
+  }
+}
+
 @media (max-width: 640px) {
+  .darshan__section--post {
+    padding: clamp(28px, 7vw, 40px) 0;
+  }
+
+  .darshan__info-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: clamp(12px, 3vw, 16px);
+    font-size: clamp(0.8125rem, 3.2vw, 0.875rem);
+  }
+
+  .darshan__info-banner svg,
+  .darshan__info-banner-icon {
+    width: clamp(18px, 4.5vw, 22px);
+    height: clamp(18px, 4.5vw, 22px);
+  }
+
+  .darshan__filter-chip {
+    padding: clamp(6px, 1.5vw, 7px) clamp(10px, 2.5vw, 12px);
+    font-size: clamp(0.72rem, 3vw, 0.8rem);
+  }
+
   .darshan__stay-grid,
   .darshan__seva-grid,
   .darshan__reviews-grid,
   .darshan__vehicle-grid,
   .darshan__why-book-grid {
     grid-template-columns: 1fr;
-  }
-
-  .darshan__filter-bar {
-    top: var(--layout-header-height, 72px);
   }
 
   .darshan__tab-pills {

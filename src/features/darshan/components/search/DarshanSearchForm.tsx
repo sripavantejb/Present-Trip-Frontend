@@ -6,7 +6,7 @@ import {
   MapPin,
   Users,
 } from 'lucide-react'
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AppIcon } from '../../../../components/ui/AppIcon'
 import { useDarshanBooking } from '../../context/DarshanBookingContext'
@@ -79,6 +79,10 @@ export function DarshanSearchForm({ showBanner = true, embedded = false }: Props
 
   const popoverOpen = openCalendar || openDevotees || openList
 
+  const stopPopoverToggle = (event: ReactMouseEvent) => {
+    event.stopPropagation()
+  }
+
   const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate()
   const firstDow = new Date(viewYear, viewMonth, 1).getDay()
   const minDate = todayIso()
@@ -132,7 +136,7 @@ export function DarshanSearchForm({ showBanner = true, embedded = false }: Props
         <strong>Plan My Pilgrimage</strong>
         <span>Multi-temple itinerary · stays · transport</span>
       </span>
-      <ChevronRight size={18} strokeWidth={2} className="pt-home__darshanPromoIcon" aria-hidden />
+      <AppIcon icon={ChevronRight} className="pt-home__darshanPromoIcon pt-icon" aria-hidden />
     </Link>
   ) : null
 
@@ -211,7 +215,7 @@ export function DarshanSearchForm({ showBanner = true, embedded = false }: Props
               className={`pt-home__cell pt-home__cell--withIcon pt-home__cell--darshan-temple dv2-cell--combobox${openList ? ' pt-home__cell--active' : ''}`}
             >
               <span className="pt-home__cellIconBadge">
-                <AppIcon icon={MapPin} size={18} className="pt-icon pt-icon--field" />
+                <AppIcon icon={MapPin} className="pt-icon pt-icon--field" />
               </span>
               <div className="pt-home__cellStack">
                 <span className="pt-home__cellLabel">Temple / Destination</span>
@@ -238,6 +242,8 @@ export function DarshanSearchForm({ showBanner = true, embedded = false }: Props
                   id={listId}
                   className="pt-home__darshanPopover pt-home__darshanPopover--list dv2-combobox__list"
                   role="listbox"
+                  onClick={stopPopoverToggle}
+                  onMouseDown={stopPopoverToggle}
                 >
                   {matches.map((t) => (
                     <li key={t.id} role="option" aria-selected={templeId === t.id}>
@@ -266,7 +272,7 @@ export function DarshanSearchForm({ showBanner = true, embedded = false }: Props
               }}
             >
               <span className="pt-home__cellIconBadge">
-                <AppIcon icon={CalendarDays} size={18} className="pt-icon pt-icon--field" />
+                <AppIcon icon={CalendarDays} className="pt-icon pt-icon--field" />
               </span>
               <div className="pt-home__cellStack">
                 <span className="pt-home__cellLabel">Date of visit</span>
@@ -278,9 +284,15 @@ export function DarshanSearchForm({ showBanner = true, embedded = false }: Props
                   {dateLabel}
                 </span>
               </div>
-              <ChevronDown size={18} className="pt-home__cellChevron" aria-hidden />
+              <AppIcon icon={ChevronDown} className="pt-home__cellChevron pt-icon" aria-hidden />
               {openCalendar ? (
-                <div className="pt-home__darshanPopover pt-home__darshanPopover--calendar" role="dialog" aria-label="Choose visit date">
+                <div
+                  className="pt-home__darshanPopover pt-home__darshanPopover--calendar"
+                  role="dialog"
+                  aria-label="Choose visit date"
+                  onClick={stopPopoverToggle}
+                  onMouseDown={stopPopoverToggle}
+                >
                   {calendarPanel}
                 </div>
               ) : null}
@@ -297,15 +309,21 @@ export function DarshanSearchForm({ showBanner = true, embedded = false }: Props
               }}
             >
               <span className="pt-home__cellIconBadge">
-                <AppIcon icon={Users} size={18} className="pt-icon pt-icon--field" />
+                <AppIcon icon={Users} className="pt-icon pt-icon--field" />
               </span>
               <div className="pt-home__cellStack">
                 <span className="pt-home__cellLabel">Devotees</span>
                 <span className="pt-home__cellMain">{devoteeSummary}</span>
               </div>
-              <ChevronDown size={18} className="pt-home__cellChevron" aria-hidden />
+              <AppIcon icon={ChevronDown} className="pt-home__cellChevron pt-icon" aria-hidden />
               {openDevotees ? (
-                <div className="pt-home__darshanPopover pt-home__darshanPopover--devotees" role="dialog" aria-label="Choose devotees">
+                <div
+                  className="pt-home__darshanPopover pt-home__darshanPopover--devotees"
+                  role="dialog"
+                  aria-label="Choose devotees"
+                  onClick={stopPopoverToggle}
+                  onMouseDown={stopPopoverToggle}
+                >
                   {devoteesPanel}
                 </div>
               ) : null}
@@ -347,7 +365,7 @@ export function DarshanSearchForm({ showBanner = true, embedded = false }: Props
         </div>
 
         <p className="pt-home__darshanNote">
-          <Info size={15} strokeWidth={2} aria-hidden />
+          <AppIcon icon={Info} className="pt-icon" aria-hidden />
           <span>
             We arrange darshan assistance on your behalf. Our team coordinates your slot and escort at the temple.
           </span>

@@ -11,5 +11,5 @@ const TAB_ICONS: Record<CategoryId, LucideIcon> = {
 }
 
 export function ServiceLineIcon({ id }: { id: CategoryId }) {
-  return <AppIcon icon={TAB_ICONS[id]} className="pt-icon pt-icon--tab" size={32} strokeWidth={1.65} />
+  return <AppIcon icon={TAB_ICONS[id]} className="pt-icon pt-icon--tab" strokeWidth={1.65} />
 }

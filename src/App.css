@@ -25,6 +25,31 @@
   color: currentColor;
 }
 
+.pt-icon--field {
+  width: clamp(16px, 4.5vw, 18px);
+  height: clamp(16px, 4.5vw, 18px);
+}
+
+.pt-icon--tab {
+  width: clamp(22px, 5.5vw, 32px);
+  height: clamp(22px, 5.5vw, 32px);
+}
+
+.pt-icon--secondary {
+  width: clamp(16px, 4vw, 18px);
+  height: clamp(16px, 4vw, 18px);
+}
+
+.pt-icon--trust {
+  width: clamp(18px, 4.5vw, 22px);
+  height: clamp(18px, 4.5vw, 22px);
+}
+
+.pt-icon--swap {
+  width: clamp(16px, 4vw, 18px);
+  height: clamp(16px, 4vw, 18px);
+}
+
 /* ----- Hero / themed backdrop ----- */
 @keyframes pt-card-enter {
   from {
@@ -872,17 +897,6 @@
   font-size: clamp(1.35rem, 2.5vw, 1.65rem);
 }
 
-@media (max-width: 767px) {
-  .pt-home__service {
-    min-width: 4.5rem;
-    padding: 12px 10px 14px;
-  }
-
-  .pt-home__serviceLabel {
-    font-size: 0.6875rem;
-  }
-}
-
 .pt-home__services {
   display: flex;
   gap: 0;
@@ -966,8 +980,8 @@
 }
 
 .pt-home__serviceIconWrap {
-  width: 32px;
-  height: 32px;
+  width: clamp(26px, 7vw, 32px);
+  height: clamp(26px, 7vw, 32px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1047,7 +1061,7 @@
 .pt-home__cell.pt-home__cell--withIcon {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: clamp(8px, 2.5vw, 12px);
   text-align: left;
 }
 
@@ -1062,8 +1076,8 @@
 
 .pt-home__cellIconBadge {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: clamp(34px, 9vw, 40px);
+  height: clamp(34px, 9vw, 40px);
   margin-top: 2px;
   display: inline-flex;
   align-items: center;
@@ -1079,8 +1093,8 @@
 }
 
 .pt-home__cellChevron {
-  width: 22px;
-  height: 22px;
+  width: clamp(16px, 4.5vw, 20px);
+  height: clamp(16px, 4.5vw, 20px);
   flex-shrink: 0;
   color: var(--color-muted-soft);
   margin-top: 0;
@@ -1115,7 +1129,7 @@
   display: block;
   width: 100%;
   text-align: left;
-  padding: 18px 22px 20px;
+  padding: clamp(14px, 4vw, 18px) clamp(16px, 4vw, 22px) clamp(16px, 4vw, 20px);
   border: none;
   background: var(--color-canvas);
   cursor: pointer;
@@ -1636,9 +1650,62 @@
     grid-template-columns: 1fr;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  .heroSection.pt-home__hero {
+    padding: clamp(12px, 3vw, 28px) clamp(12px, 3vw, 20px) clamp(24px, 6vw, 48px);
+  }
+
   .pt-home__heroInner {
-    padding: 0 var(--space-base);
+    padding: 0 clamp(12px, 3vw, var(--space-base));
+    min-width: 0;
+  }
+
+  .pt-home__cardWrap {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .pt-home__card {
+    border-radius: clamp(12px, 3vw, var(--pt-card-radius));
+  }
+
+  .pt-home__services {
+    justify-content: stretch;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+  }
+
+  .pt-home__service {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    scroll-snap-align: start;
+    padding: clamp(8px, 2vw, 12px) clamp(2px, 1vw, 8px) clamp(10px, 2.5vw, 14px);
+    gap: clamp(4px, 1.5vw, 8px);
+  }
+
+  .pt-home__serviceLabel {
+    font-size: clamp(0.5625rem, 2.4vw, 0.6875rem);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .pt-home__service--active::after {
+    left: clamp(4px, 1.5vw, 8px);
+    right: clamp(4px, 1.5vw, 8px);
+  }
+
+  .pt-home__cellMain,
+  .pt-home__fieldInput {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .pt-home__cellLabel {
+    font-size: clamp(0.6875rem, 2.8vw, 0.75rem);
   }
 
   .pt-home__grid--mock {

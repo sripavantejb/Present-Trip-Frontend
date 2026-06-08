@@ -145,13 +145,33 @@
 }
 
 @media (max-width: 767px) {
+  .pt-site-header__inner {
+    column-gap: clamp(8px, 2vw, 16px);
+    min-height: clamp(56px, 14vw, var(--layout-header-height));
+  }
+
+  .pt-home__logo {
+    font-size: clamp(17px, 4.5vw, 22px);
+  }
+
+  .pt-home__logoMark {
+    margin-left: clamp(4px, 1vw, 6px);
+    padding: 3px 7px 4px;
+    font-size: 0.5em;
+  }
+
   .pt-site-header__hostLink {
     display: none;
   }
 
   .pt-site-header__authLink {
-    padding: 8px 10px;
-    font-size: 13px;
+    padding: clamp(6px, 1.5vw, 8px) clamp(8px, 2vw, 10px);
+    font-size: clamp(12px, 3.2vw, 13px);
+  }
+
+  .pt-site-header__localeBtn {
+    width: clamp(36px, 10vw, 42px);
+    height: clamp(36px, 10vw, 42px);
   }
 }
 
