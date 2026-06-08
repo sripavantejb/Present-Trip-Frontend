@@ -27,7 +27,7 @@ export default function SignupPage() {
     if (isAuthenticated) navigate(redirect, { replace: true })
   }, [isAuthenticated, navigate, redirect])
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     setError('')
 
@@ -37,7 +37,7 @@ export default function SignupPage() {
     }
 
     setSubmitting(true)
-    const result = signup(name, email, password)
+    const result = await signup(name, email, password)
     setSubmitting(false)
     if (!result.ok) {
       setError(result.error)

@@ -23,20 +23,10 @@ function formatPrice(amount: number, currency = 'INR') {
 
 function RoomCard({
   room,
-  hotelCode,
-  traceId,
-  srdvType,
-  srdvIndex,
-  resultIndex,
   selectedRoomIndex,
   onSelect,
 }: {
   room: HotelRoomItem
-  hotelCode: string
-  traceId: string
-  srdvType: string
-  srdvIndex: string
-  resultIndex: string
   selectedRoomIndex: string | null
   onSelect: (room: HotelRoomItem) => void
 }) {
@@ -180,11 +170,6 @@ export function HotelRoomsSection({
                 <RoomCard
                   key={room.roomIndex || room.roomId}
                   room={room}
-                  hotelCode={hotelCode}
-                  traceId={traceId}
-                  srdvType={srdvType}
-                  srdvIndex={srdvIndex}
-                  resultIndex={resultIndex}
                   selectedRoomIndex={selectedRoomIndex}
                   onSelect={handleSelect}
                 />

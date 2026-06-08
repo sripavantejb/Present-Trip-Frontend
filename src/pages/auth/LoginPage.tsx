@@ -25,11 +25,11 @@ export default function LoginPage() {
     if (isAuthenticated) navigate(redirect, { replace: true })
   }, [isAuthenticated, navigate, redirect])
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     setError('')
     setSubmitting(true)
-    const result = login(email, password)
+    const result = await login(email, password)
     setSubmitting(false)
     if (!result.ok) {
       setError(result.error)
